@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Header = ({ headerSize }) => {
   const router = useRouter();
+  useEffect(() => {
+    console.log(headerSize);
+  }, [headerSize]);
   return (
     <header
       className={`fixed top-0 w-full h-${
-        router.pathname === "/QA" ? "28" : headerSize === "normal" ? "28" : "20"
+        router.pathname !== "/" ? "28" : headerSize === "normal" ? "28" : "20"
       } bg-white transition-all z-10 flex justify-center shadow-md`}
     >
       <div className="w-full max-w-screen-2xl h-full">
         <div
           className={`h-${
-            router.pathname === "/QA"
+            router.pathname !== "/"
               ? "1/3"
               : headerSize === "normal"
               ? "1/3"
@@ -24,23 +27,19 @@ const Header = ({ headerSize }) => {
             <a className="cursor-pointer">Admin</a>
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
-            <a className="cursor-pointer">B-platform</a>
+            <a className="cursor-pointer">B-Platform</a>
           </ul>
         </div>
         <div
           className={`absolute top-0 w-52 bg-white h-full flex justify-center items-center px-${
-            router.pathname === "/QA"
-              ? "4"
-              : headerSize === "normal"
-              ? "4"
-              : "6"
+            router.pathname !== "/" ? "4" : headerSize === "normal" ? "4" : "6"
           } transition-all z-20`}
         >
-          <img src="/logo.png" alt="likelion" />
+          <img src="/img/logo.png" alt="likelion" />
         </div>
         <div
           className={`relative bg-white h-${
-            router.pathname === "/QA"
+            router.pathname !== "/"
               ? "2/3"
               : headerSize === "normal"
               ? "2/3"
