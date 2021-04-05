@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="w-full mt-40 flex items-center flex-col">
       <Head>
-        <title>Create Next App</title>
+        <title>We are LikeLion US</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainIntro />
