@@ -3,11 +3,11 @@ import React from "react";
 const Nav = ({ headerSize }) => {
   return (
     <nav
-      className={`fixed top-0 bg-white h-12 w-full mt-${
+      className={`fixed top-0 bg-gray-100 h-12 w-full mt-${
         headerSize === "normal" ? "28" : "0"
       } transition-all z-0 flex justify-center`}
     >
-      <div className="w-full h-full bg-red-600 max-w-screen-2xl flex pl-16 items-center">
+      <div className="w-full h-full bg-gray-100 max-w-screen-2xl flex pl-16 items-center">
         <ul className="flex justify-between w-1/2">
           <li
             className="cursor-pointer text-grey-800"
