@@ -1,26 +1,17 @@
 import Head from "next/head";
-import MainContactUs from "../components/MainContactUs";
-import MainHallOfFame from "../components/MainHallOfFame";
-import MainIntro from "../components/MainIntro";
-import MainJoinAdmin from "../components/MainJoinAdmin";
-import MainJoinStudent from "../components/MainJoinStudent";
-import MainOverview from "../components/MainOverview";
-import MainSchools from "../components/MainSchools";
+import Layout from "../components/layout";
+import Main from "../components/Main";
 
 export default function Home() {
   return (
-    <div className="w-full mt-40 flex items-center flex-col">
+    <Layout>
       <Head>
         <title>We are LikeLion US</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MainIntro />
-      <MainOverview />
-      <MainSchools />
-      <MainHallOfFame />
-      <MainJoinAdmin />
-      <MainJoinStudent />
-      <MainContactUs />
-    </div>
+      <div className="w-full mt-40 flex items-center flex-col">
+        <Main />
+      </div>
+    </Layout>
   );
 }
