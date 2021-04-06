@@ -27,6 +27,7 @@
     "googleapis": "^70.0.0",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
+    "querystring": "^0.2.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.32",
     "typeorm-seeding": "^1.6.1"
