@@ -28,6 +28,9 @@ module.exports = {
         Lato: "Lato",
         Montserrat: "Montserrat",
       },
+      width: {
+        120: "30rem",
+      },
     },
   },
   variants: {},
