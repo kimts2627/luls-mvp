@@ -24,6 +24,10 @@ module.exports = {
       boxShadow: {
         "3xl": "10px 0 30px -15px rgba(0, 0, 0, 0.3)",
       },
+      font: {
+        Lato: "Lato",
+        Montserrat: "Montserrat",
+      },
     },
   },
   variants: {},

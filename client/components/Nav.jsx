@@ -23,7 +23,7 @@ const Nav = ({ headerSize }) => {
     //   } transition-all z-10 flex justify-center`}
     // >
     <nav
-      className={`fixed top-0 bg-gray-100 h-12 w-full mt-${headerSizeGenerator()} transition-all z-10 flex justify-center`}
+      className={`fixed top-0 bg-gray-100 h-12 w-full mt-${headerSizeGenerator()} transition-all z-30 flex justify-center`}
     >
       <div className="w-full h-full bg-gray-100 max-w-screen-2xl flex pl-16 items-center">
         <ul className="flex justify-between w-1/2">

@@ -9,7 +9,7 @@ import MainSchools from "./MainSchools";
 
 const Main = () => {
   return (
-    <main className="bg-blue-100 w-full max-w-screen-2xl">
+    <main className="w-full max-w-screen-2xl">
       <MainIntro />
       <MainOverview />
       <MainSchools />

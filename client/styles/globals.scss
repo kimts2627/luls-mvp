@@ -1,3 +1,25 @@
 @import "~tailwindcss/base";
 @import "~tailwindcss/components";
 @import "~tailwindcss/utilities";
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Montserrat:wght@800&display=swap");
+
+html {
+  font-family: "Lato";
+}
+
+.Montserrat {
+  font-family: "Montserrat";
+}
+
+.D2coding {
+  font-family: "D2Coding";
+}
+
+@font-face {
+  font-family: "D2Coding";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}

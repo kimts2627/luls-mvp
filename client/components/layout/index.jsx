@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
     }, []);
   }
   return (
-    <div>
+    <div className="font-Lato">
       <Header headerSize={headerSize} />
       <Nav headerSize={headerSize} />
       {children}

@@ -11,7 +11,7 @@ const Header = ({ headerSize }) => {
     <header
       className={`fixed top-0 w-full h-${
         router.pathname !== "/" ? "28" : headerSize === "normal" ? "28" : "20"
-      } bg-white transition-all z-20 flex justify-center shadow-md`}
+      } bg-white transition-all z-40 flex justify-center shadow-md`}
     >
       <div className="w-full max-w-screen-2xl h-full">
         <div
@@ -21,7 +21,7 @@ const Header = ({ headerSize }) => {
               : headerSize === "normal"
               ? "1/3"
               : "0"
-          } bg-white w-full transition-all z-20 flex flex-row-reverse`}
+          } bg-white w-full transition-all z-40 flex flex-row-reverse`}
         >
           <ul className="w-1/3 text-right h-full flex items-center justify-evenly underline">
             <a className="cursor-pointer">Admin</a>
@@ -33,7 +33,7 @@ const Header = ({ headerSize }) => {
         <div
           className={`absolute top-0 w-52 bg-white h-full flex justify-center items-center px-${
             router.pathname !== "/" ? "4" : headerSize === "normal" ? "4" : "6"
-          } transition-all z-30`}
+          } transition-all z-50`}
         >
           <img src="/img/logo.png" alt="likelion" />
         </div>
@@ -44,7 +44,7 @@ const Header = ({ headerSize }) => {
               : headerSize === "normal"
               ? "2/3"
               : "full"
-          } w-full transition-all z-20 flex flex-row-reverse`}
+          } w-full transition-all z-40 flex flex-row-reverse`}
         >
           <ul className="w-1/5 text-right h-full flex items-center justify-evenly text-lg font-bold">
             <Link href="/">
