@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import SigninModal from "../auth/SigninModal";
 
 const Header = ({ headerSize }) => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const Header = ({ headerSize }) => {
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>
+            <a className="cursor-pointer text-yellow-600">SignIn</a>
           </ul>
         </div>
         <div

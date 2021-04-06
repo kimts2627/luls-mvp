@@ -1,8 +1,10 @@
+import React, { useState } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
-import Main from "../components/Main";
+import Main from "../components/home/Main";
+import SigninModal from "../components/auth/SigninModal";
 
-export default function Home() {
+export default function Home({ isLogin }) {
   return (
     <Layout>
       <Head>

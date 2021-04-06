@@ -31,6 +31,19 @@ module.exports = {
       width: {
         120: "30rem",
       },
+      height: {
+        120: "30rem",
+        staticFull: "100rem",
+      },
+      animation: {
+        blink: "blink 0.7s infinite",
+      },
+      keyframes: {
+        blink: {
+          "0%, 100%": { opacity: "0" },
+          "50%": { opacity: "1" },
+        },
+      },
     },
   },
   variants: {},

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
-import Footer from "../Footer";
-import Header from "../Header";
-import Nav from "../Nav";
+import Footer from "./Footer";
+import Header from "./Header";
+import Nav from "./Nav";
 
 const Layout = ({ children }) => {
   const router = useRouter();

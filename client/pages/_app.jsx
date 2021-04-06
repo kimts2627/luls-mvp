@@ -1,16 +1,19 @@
-import Header from "../components/Header";
 import "../styles/globals.scss";
-// import "tailwindcss/tailwind.css";
-import Footer from "../components/Footer";
-import Nav from "../components/Nav";
 import React, { useState, useEffect } from "react";
+import withRedux from "next-redux-wrapper";
+import { Provider } from "react-redux";
+import { createStore, compose, applyMiddleware } from "redux";
+import reducer from "../reducers";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, store }) => {
   return (
-    <>
-      <Component {...pageProps} />
-    </>
+    <Provider store={store}>
+      <Component />
+    </Provider>
   );
 };
+
+const configureStore = (initialState, options) => {};
 
 export default MyApp;

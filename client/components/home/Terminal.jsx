@@ -14,8 +14,10 @@ const Terminal = () => {
         </span>
       </div>
       <div className="absolute left-3 top-9 flex items-center justify-">
-        <span className="w-2 h-5 border"></span>
-        <h1 className="D2coding text-xl text-white ml-3">Hack your life!</h1>
+        <h1 className="D2coding text-xl text-white ml-3 overflow-hidden">
+          Hack your life!
+        </h1>
+        <span className="w-2 h-5 border animate-blink"></span>
       </div>
     </span>
   );
