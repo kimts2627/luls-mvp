@@ -6,7 +6,7 @@ const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const SERVER_ROOT_URI = process.env.SERVER_ROOT_URI;
 // const JWT_SECRET = process.env.JWT_SECRET;
 // const COOKIE_NAME = process.env.COOKIE_NAME;
-const UI_ROOT_URI = process.env.UI_ROOT_URI;
+// const UI_ROOT_URI = process.env.UI_ROOT_URI;
 const redirectURI = 'users/googleCallback';
 import { getTokens } from '../../utils/getTokens';
 
