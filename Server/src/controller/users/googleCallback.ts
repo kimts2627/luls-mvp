@@ -1,19 +1,50 @@
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
+require('dotenv').config();
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const SERVER_ROOT_URI = process.env.SERVER_ROOT_URI;
+const JWT_SECRET = process.env.JWT_SECRET;
+const COOKIE_NAME = process.env.COOKIE_NAME;
+const UI_ROOT_URI = process.env.UI_ROOT_URI;
+const redirectURI = 'users/googleCallback';
+import { getTokens } from '../../utils/getTokens';
 
 export default async (req, res) => {
-  // let test = "ya29.a0AfH6SMBP22_10gPNy0koZLS6WE1KKBNo-d3Tumk9x1Z6gKqysCZOKhzfa5pL5NCiriBHI7bo7-xDhGdwg1eMLT82t-GaZHBDeB-4OiFlRpbbeeS7kIwFqXumrUEkmHhkfoniei-RvaBVJOQKAloeWHPst52B"
-  const authorization = req.headers['authorization'];
-  console.log(authorization);
-  const token = authorization.split(' ')[1];
-  console.log(token);
-  await axios
-    .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-      headers: { authorization: `Bearer ${token}` },
-    })
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err.response.data);
+  const code = req.query.code as string;
+
+  const data = await getTokens({
+    code,
+    clientId: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    redirectUri: `${SERVER_ROOT_URI}/${redirectURI}`,
+  });
+  console.log(data);
+  // Fetch the user's profile with the access token and bearer
+  const googleUser = await axios
+    .get(
+      `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${data.access_token}`,
+      {
+        headers: {
+          Authorization: `Bearer ${data.id_token}`,
+        },
+      }
+    )
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error(`Failed to fetch user`);
+      throw new Error(error.message);
     });
+  console.log(googleUser);
+
+  // const token = jwt.sign(googleUser, JWT_SECRET);
+
+  // res.cookie(COOKIE_NAME, token, {
+  //   maxAge: 900000,
+  //   httpOnly: true,
+  //   secure: false,
+  // });
+
+  // res.redirect(UI_ROOT_URI);
+  res.status(200).send(googleUser);
 };
