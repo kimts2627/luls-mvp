@@ -37,11 +37,16 @@ module.exports = {
       },
       animation: {
         blink: "blink 0.7s infinite",
+        fadein: "fadein 1s linear forwards",
       },
       keyframes: {
         blink: {
           "0%, 100%": { opacity: "0" },
           "50%": { opacity: "1" },
+        },
+        fadein: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "0.6" },
         },
       },
     },

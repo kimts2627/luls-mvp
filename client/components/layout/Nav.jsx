@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Nav = ({ headerSize }) => {
   const router = useRouter();

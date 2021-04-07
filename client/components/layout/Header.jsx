@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import SigninModal from "../auth/SigninModal";
+import { useDispatch } from "react-redux";
+import { handleLoginModal } from "../../reducers/auth";
 
 const Header = ({ headerSize }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
+
+  const handlingLoginModal = useCallback(() => {
+    dispatch(handleLoginModal());
+  });
+
   useEffect(() => {
     console.log(headerSize);
   }, [headerSize]);
@@ -33,7 +40,12 @@ const Header = ({ headerSize }) => {
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>
-            <a className="cursor-pointer text-yellow-600">SignIn</a>
+            <a
+              className="cursor-pointer text-yellow-600"
+              onClick={handlingLoginModal}
+            >
+              SignIn
+            </a>
           </ul>
         </div>
         <div
@@ -45,7 +57,13 @@ const Header = ({ headerSize }) => {
               : "h-6"
           } transition-all z-50 ml-6`}
         >
-          <img src="/img/logo.png" alt="likelion" />
+          <Link href="/">
+            <img
+              src="/img/logo.png"
+              alt="likelion"
+              className="cursor-pointer"
+            />
+          </Link>
         </div>
         <div
           className={`relative bg-white ${
