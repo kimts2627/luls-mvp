@@ -26,9 +26,9 @@ const Header = ({ headerSize }) => {
               : headerSize === "normal"
               ? "h-1/3"
               : "h-0"
-          } bg-white w-full transition-all z-40 flex flex-row-reverse`}
+          } bg-white w-full transition-all z-40 flex flex-row-reverse pr-6`}
         >
-          <ul className="w-1/3 text-right h-full flex items-center justify-evenly underline">
+          <ul className="w-96 text-right h-full flex items-center justify-between underline">
             <a className="cursor-pointer">Admin</a>
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
@@ -43,7 +43,7 @@ const Header = ({ headerSize }) => {
               : headerSize === "normal"
               ? "h-4"
               : "h-6"
-          } transition-all z-50`}
+          } transition-all z-50 ml-6`}
         >
           <img src="/img/logo.png" alt="likelion" />
         </div>
@@ -54,9 +54,9 @@ const Header = ({ headerSize }) => {
               : headerSize === "normal"
               ? "h-2/3"
               : "h-full"
-          } w-full transition-all z-40 flex flex-row-reverse`}
+          } w-full transition-all z-40 flex flex-row-reverse pr-6`}
         >
-          <ul className="w-1/5 text-right h-full flex items-center justify-evenly text-lg font-bold">
+          <ul className="w-32 text-right h-full flex items-center justify-between text-lg font-bold">
             <Link href="/">
               <a>Home</a>
             </Link>
