@@ -5,7 +5,7 @@ const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const SERVER_ROOT_URI = process.env.SERVER_ROOT_URI;
 // const JWT_SECRET = process.env.JWT_SECRET;
-// const COOKIE_NAME = process.env.COOKIE_NAME;
+const COOKIE_NAME = process.env.COOKIE_NAME;
 // const UI_ROOT_URI = process.env.UI_ROOT_URI;
 const redirectURI = 'users/googleCallback';
 import { getTokens } from '../../utils/getTokens';
@@ -39,11 +39,11 @@ export default async (req, res) => {
 
   // const token = jwt.sign(googleUser, JWT_SECRET);
 
-  // res.cookie(COOKIE_NAME, token, {
-  //   maxAge: 900000,
-  //   httpOnly: true,
-  //   secure: false,
-  // });
+  res.cookie(COOKIE_NAME, data.access_token, {
+    maxAge: 900000, // 900000 -> 900초 ->15분
+    httpOnly: true,
+    secure: false,
+  });
 
   // res.redirect(UI_ROOT_URI);
   res.status(200).send(googleUser);

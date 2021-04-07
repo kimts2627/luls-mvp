@@ -4,15 +4,15 @@ import session from 'express-session';
 import logger from 'morgan';
 import { createConnection } from 'typeorm';
 import 'dotenv/config';
+import redis from 'redis';
+import { redisCheck } from './middleware/redisCheck';
 const usersRouter = require('./routes/user');
 
 createConnection()
   .then(() => console.log('typeorm connection complete'))
   .catch((error) => console.log('TypeORM connection error: ', error));
 const app = express();
-// const usersRouter = require('./src/routes/user');
-// import redis from 'redis';
-// const socialsRouter = require('./routes/social');
+const redisClient = redis.createClient();
 
 const PORT = 3006;
 
@@ -48,10 +48,13 @@ app.get('/', (req, res) => {
   res.status(200).send('Success');
 });
 
-// app.use('/userImg', express.static('./controller/users/userImg'));
+app.get('/test', (req, res) => {
+  redisCheck('Seokjae', 'Access_Token');
+});
+
 app.use('/users', usersRouter);
 // app.get('/redis', (req, res) => {
-//   var client = redis.createClient();
+//   let client = redis.createClient();
 //   client.on('error', function (err) {
 //     console.log('Error ' + err);
 //   });
@@ -63,7 +66,10 @@ app.use('/users', usersRouter);
 
 //   // 값을 가져옴
 //   client.get('String Key', function (err, reply) {
+//     console.log('-------------');
+//     console.log('String Key 값');
 //     console.log(reply.toString());
+//     console.log('-------------');
 //   });
 
 //   // 해시 테이블의 값을 가져옴
