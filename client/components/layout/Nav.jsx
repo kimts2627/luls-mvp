@@ -1,16 +1,24 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Nav = ({ headerSize }) => {
+  const router = useRouter();
+
   return (
     <nav
-      className={`fixed top-0 bg-gray-100 h-12 w-full mt-${
-        headerSize === "normal" ? "28" : "0"
-      } transition-all z-0 flex justify-center`}
+      className={`fixed top-0 bg-gray-100 h-12 w-full ${
+        router.pathname !== "/"
+          ? "mt-0"
+          : headerSize === "normal"
+          ? "mt-28"
+          : "mt-0"
+      } transition-all z-10 flex justify-center`}
     >
-      <div className="w-full h-full bg-gray-100 max-w-screen-2xl flex pl-16 items-center">
-        <ul className="flex justify-between w-1/2">
+      <div className="w-full h-full bg-gray-100 max-w-screen-2xl flex pl-6 items-center">
+        <ul className="flex justify-start w-full">
           <li
-            className="cursor-pointer text-grey-800"
+            className="cursor-pointer text-grey-800 mr-6"
             onClick={() =>
               window.scrollTo({
                 top: 0,
@@ -22,7 +30,7 @@ const Nav = ({ headerSize }) => {
             Intro
           </li>
           <li
-            className="cursor-pointer text-grey-800"
+            className="cursor-pointer text-grey-800 mr-6"
             onClick={() =>
               window.scrollTo({
                 top: 1350,
@@ -34,7 +42,7 @@ const Nav = ({ headerSize }) => {
             OverView
           </li>
           <li
-            className="cursor-pointer text-grey-800"
+            className="cursor-pointer text-grey-800 mr-6"
             onClick={() =>
               window.scrollTo({
                 top: 2700,
@@ -46,7 +54,7 @@ const Nav = ({ headerSize }) => {
             Schools
           </li>
           <li
-            className="cursor-pointer text-grey-800"
+            className="cursor-pointer text-grey-800 mr-6"
             onClick={() =>
               window.scrollTo({
                 top: 4000,
@@ -58,7 +66,7 @@ const Nav = ({ headerSize }) => {
             Hall of Fame
           </li>
           <li
-            className="cursor-pointer text-grey-800"
+            className="cursor-pointer text-grey-800 mr-6"
             onClick={() =>
               window.scrollTo({
                 top: 5300,
@@ -70,7 +78,7 @@ const Nav = ({ headerSize }) => {
             Join as Admin
           </li>
           <li
-            className="cursor-pointer text-grey-800"
+            className="cursor-pointer text-grey-800 mr-6"
             onClick={() =>
               window.scrollTo({
                 top: 6600,
@@ -82,7 +90,7 @@ const Nav = ({ headerSize }) => {
             Join as Student
           </li>
           <li
-            className="cursor-pointer text-grey-800"
+            className="cursor-pointer text-grey-800 mr-6"
             onClick={() =>
               window.scrollTo({
                 top: 7900,
