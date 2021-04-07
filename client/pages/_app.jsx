@@ -1,32 +1,21 @@
 import "../styles/globals.scss";
 import React, { useState, useEffect } from "react";
 import withRedux from "next-redux-wrapper";
-import { Provider } from "react-redux";
-import { createStore, compose, applyMiddleware } from "redux";
+import { createStore } from "redux";
+import reducer from "../reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-let state = {
-  isLogin: false,
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
-
-const MyApp = ({ Component, pageProps, store }) => {
+const MyApp = ({ Component }) => {
   return (
     <>
-      <Component {...pageProps} />
+      <Component />
     </>
   );
 };
 
 const configureStore = (initialState, options) => {
-  return createStore(reducer, initialState);
+  const store = createStore(reducer, initialState, composeWithDevTools());
+  return store;
 };
 
-// export default withRedux(configureStore)(MyApp);
-export default MyApp;
+export default withRedux(configureStore)(MyApp);
