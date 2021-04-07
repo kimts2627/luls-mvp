@@ -10,18 +10,22 @@ const Header = ({ headerSize }) => {
   }, [headerSize]);
   return (
     <header
-      className={`fixed top-0 w-full h-${
-        router.pathname !== "/" ? "28" : headerSize === "normal" ? "28" : "20"
+      className={`fixed top-0 w-full ${
+        router.pathname !== "/"
+          ? "h-28"
+          : headerSize === "normal"
+          ? "h-28"
+          : "h-20"
       } bg-white transition-all z-40 flex justify-center shadow-md`}
     >
       <div className="w-full max-w-screen-2xl h-full">
         <div
-          className={`h-${
+          className={`${
             router.pathname !== "/"
-              ? "1/3"
+              ? "h-1/3"
               : headerSize === "normal"
-              ? "1/3"
-              : "0"
+              ? "h-1/3"
+              : "h-0"
           } bg-white w-full transition-all z-40 flex flex-row-reverse`}
         >
           <ul className="w-1/3 text-right h-full flex items-center justify-evenly underline">
@@ -34,18 +38,22 @@ const Header = ({ headerSize }) => {
         </div>
         <div
           className={`absolute top-0 w-52 bg-white h-full flex justify-center items-center px-${
-            router.pathname !== "/" ? "4" : headerSize === "normal" ? "4" : "6"
+            router.pathname !== "/"
+              ? "h-4"
+              : headerSize === "normal"
+              ? "h-4"
+              : "h-6"
           } transition-all z-50`}
         >
           <img src="/img/logo.png" alt="likelion" />
         </div>
         <div
-          className={`relative bg-white h-${
+          className={`relative bg-white ${
             router.pathname !== "/"
-              ? "2/3"
+              ? "h-2/3"
               : headerSize === "normal"
-              ? "2/3"
-              : "full"
+              ? "h-2/3"
+              : "h-full"
           } w-full transition-all z-40 flex flex-row-reverse`}
         >
           <ul className="w-1/5 text-right h-full flex items-center justify-evenly text-lg font-bold">
