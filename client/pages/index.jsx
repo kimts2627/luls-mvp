@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import Main from "../components/home/Main";
 import { useSelector } from "react-redux";
 import SigninModal from "../components/auth/SigninModal";
+import axios from "axios";
 
 export default function Home({ data }) {
   const token = useSelector((state) => state.auth.token);
