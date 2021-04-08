@@ -5,7 +5,7 @@ import Main from "../components/home/Main";
 import { useSelector } from "react-redux";
 import SigninModal from "../components/auth/SigninModal";
 
-export default function Home() {
+export default function Home({ data }) {
   const token = useSelector((state) => state.auth.token);
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
   return (
@@ -15,9 +15,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full mt-40 flex items-center flex-col">
-        <Main />
+        <Main message={data.message} />
       </div>
       {!token && isLoginModalOn ? <SigninModal /> : null}
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await axios("https://www.likelionustest.com/users/test");
+  const data = await res.data;
+
+  return { props: { data } };
 }
