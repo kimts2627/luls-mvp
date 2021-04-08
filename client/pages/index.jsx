@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import Main from "../components/home/Main";
@@ -7,6 +7,9 @@ import SigninModal from "../components/auth/SigninModal";
 import axios from "axios";
 
 export default function Home({ data }) {
+  useEffect(() => {
+    console.log(data);
+  }, []);
   const token = useSelector((state) => state.auth.token);
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
   return (
