@@ -6,7 +6,7 @@ const Terminal = () => {
 
   useEffect(() => {
     axios.get("https://www.likelionustest.com/users/test").then((data) => {
-      handleTest(data.message);
+      handleTest(data.data.message);
       console.log(data);
     });
   }, []);
