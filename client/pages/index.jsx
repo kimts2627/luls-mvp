@@ -19,7 +19,7 @@ export default function Home({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full mt-40 flex items-center flex-col">
-        <Main message={data[1].ko} />
+        <Main />
       </div>
       {!token && isLoginModalOn ? <SigninModal /> : null}
     </Layout>
