@@ -12,7 +12,7 @@ createConnection()
   .then(() => console.log('typeorm connection complete'))
   .catch((error) => console.log('TypeORM connection error: ', error));
 const app = express();
-const redisClient = redis.createClient();
+// const redisClient = redis.createClient();
 
 const PORT = 3006;
 
