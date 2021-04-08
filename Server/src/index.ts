@@ -4,15 +4,15 @@ import session from 'express-session';
 import logger from 'morgan';
 import { createConnection } from 'typeorm';
 import 'dotenv/config';
-// import redis from 'redis';
-// import { redisCheck } from './middleware/redisCheck';
+import redis from 'redis';
+import { redisCheck } from './middleware/redisCheck';
 const usersRouter = require('./routes/user');
 
 createConnection()
   .then(() => console.log('typeorm connection complete'))
   .catch((error) => console.log('TypeORM connection error: ', error));
 const app = express();
-// const redisClient = redis.createClient();
+const redisClient = redis.createClient();
 
 const PORT = 3006;
 
@@ -48,9 +48,9 @@ app.get('/', (req, res) => {
   res.status(200).send('Success');
 });
 
-// app.get('/test', (req, res) => {
-//   redisCheck('Seokjae', 'Access_Token');
-// });
+app.get('/test', (req, res) => {
+  redisCheck('Seokjae', 'Access_Token');
+});
 
 app.use('/users', usersRouter);
 // app.get('/redis', (req, res) => {
