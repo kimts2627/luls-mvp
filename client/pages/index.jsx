@@ -6,9 +6,9 @@ import { useSelector } from "react-redux";
 import SigninModal from "../components/auth/SigninModal";
 import axios from "axios";
 
-export default function Home({ res }) {
+export default function Home({ data }) {
   useEffect(() => {
-    console.log(res);
+    console.log(data);
     console.log(axios.get("https://www.likelionustest.com/users/test"));
   }, []);
   const token = useSelector((state) => state.auth.token);
@@ -20,7 +20,7 @@ export default function Home({ res }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full mt-40 flex items-center flex-col">
-        <Main message={res} />
+        <Main message={data} />
       </div>
       {!token && isLoginModalOn ? <SigninModal /> : null}
     </Layout>
@@ -29,10 +29,11 @@ export default function Home({ res }) {
 
 export async function getStaticProps() {
   const res = await axios.get("https://www.likelionustest.com/users/test");
+  const data = res.data;
 
   return {
     props: {
-      res,
+      data,
     },
   };
 }
