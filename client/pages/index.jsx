@@ -22,7 +22,7 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await axios("https://www.likelionustest.com/users/test");
   const data = await res.data;
 
