@@ -24,7 +24,9 @@ const SigninModal = () => {
   });
 
   const requestGoogleOauth = async () => {
-    const res = await axios.get("https://www.likelionustest.com/users/login");
+    const res = await axios.get("https://www.likelionustest.com/users/login", {
+      withCredentials: true,
+    });
     const data = await res.data;
     console.log(data);
     router.push(data);

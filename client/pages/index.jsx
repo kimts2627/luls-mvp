@@ -29,7 +29,7 @@ export async function getStaticProps() {
   let data = await res.data;
   console.log(data);
 
-  if (res.status !== "200") {
+  if (!data.message) {
     data = { message: "server is closed" };
   }
   return {
