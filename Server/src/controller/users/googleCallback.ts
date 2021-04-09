@@ -7,6 +7,7 @@ const COOKIE_NAME = process.env.COOKIE_NAME;
 const redirectURI = 'users/googleCallback';
 const JWT_SECRET = process.env.JWT_SECRET;
 const UI_ROOT_URI = process.env.UI_ROOT_URI;
+import querystring from 'querystring';
 import { getTokens } from '../../utils/getTokens';
 import { getTokenUserInfo } from '../../utils/getTokenUserInfo';
 
@@ -34,9 +35,9 @@ export default async (req, res) => {
     secure: false,
   });
 
-  res.redirect(UI_ROOT_URI, {
-    access_Token,
-    userinfo: googleUser,
-  });
+  res.redirect(
+    'https://www.likelionusa.com' +
+      querystring.stringify({ access_Token: access_Token })
+  );
   // res.status(200).send();
 };
