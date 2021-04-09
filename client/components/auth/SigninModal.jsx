@@ -52,7 +52,7 @@ const SigninModal = () => {
     client_id: GOOGLE_CLIENT_ID,
     access_type: "offline",
     redirect_uri: "https://likelionusa.com",
-    response_type: "token",
+    response_type: "code",
     scope: "profile",
   });
 
