@@ -1,10 +1,11 @@
 require('dotenv').config();
+import jwt from 'jsonwebtoken';
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const SERVER_ROOT_URI = process.env.SERVER_ROOT_URI;
 const COOKIE_NAME = process.env.COOKIE_NAME;
 const redirectURI = 'users/googleCallback';
-// const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET;
 // const UI_ROOT_URI = process.env.UI_ROOT_URI;
 import { getTokens } from '../../utils/getTokens';
 import { getTokenUserInfo } from '../../utils/getTokenUserInfo';
@@ -23,7 +24,7 @@ export default async (req, res) => {
   const googleUser = await getTokenUserInfo(data.access_token);
   console.log(googleUser);
 
-  // const token = jwt.sign(googleUser, JWT_SECRET);
+  const jwtToken = jwt.sign(googleUser, JWT_SECRET);
 
   res.cookie(COOKIE_NAME, data.refresh_token, {
     maxAge: 900000, // 900000 -> 900초 ->15분
@@ -32,5 +33,11 @@ export default async (req, res) => {
   });
 
   // res.redirect(UI_ROOT_URI);
-  res.status(200).send({ access_token: data, userinfo: googleUser });
+  res.status(200).send({
+    token: {
+      access_token: data.access_token,
+      expires_in: data.expires_in,
+    },
+    userinfo: jwtToken,
+  });
 };
