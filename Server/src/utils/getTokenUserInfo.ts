@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const getTokenUserInfo = async (access_token: any) => {
-  return await axios
+export const getTokenUserInfo = (access_token: any) => {
+  return axios
     .get(
       `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`,
       {

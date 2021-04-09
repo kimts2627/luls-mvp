@@ -1,13 +1,11 @@
-import axios from 'axios';
-import jwt from 'jsonwebtoken';
 require('dotenv').config();
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const SERVER_ROOT_URI = process.env.SERVER_ROOT_URI;
-// const JWT_SECRET = process.env.JWT_SECRET;
 const COOKIE_NAME = process.env.COOKIE_NAME;
-// const UI_ROOT_URI = process.env.UI_ROOT_URI;
 const redirectURI = 'users/googleCallback';
+// const JWT_SECRET = process.env.JWT_SECRET;
+// const UI_ROOT_URI = process.env.UI_ROOT_URI;
 import { getTokens } from '../../utils/getTokens';
 import { getTokenUserInfo } from '../../utils/getTokenUserInfo';
 
@@ -21,7 +19,7 @@ export default async (req, res) => {
     redirectUri: `${SERVER_ROOT_URI}/${redirectURI}`,
   });
   // console.log(data);
-  // Fetch the user's profile with the access token and bearer
+  // Fetch the user's profile with the access token
   const googleUser = await getTokenUserInfo(data.access_token);
   console.log(googleUser);
 
@@ -34,7 +32,5 @@ export default async (req, res) => {
   });
 
   // res.redirect(UI_ROOT_URI);
-  res
-    .status(200)
-    .send({ access_token: data.access_token, userinfo: googleUser });
+  res.status(200).send({ access_token: data, userinfo: googleUser });
 };
