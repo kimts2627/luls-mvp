@@ -14,8 +14,8 @@ const MyApp = ({ Component, pageProps }) => {
   const [authCode, handleAuthCode] = useState(null);
 
   const getToken = async () => {
-    handleAuthCode(`${router.query.code}${router.query.scope}`);
-    console.log(code, authCode)
+    handleAuthCode(`${router.asPath.slice(2)}`);
+    console.log(authCode);
 
     let query = {
       code: authCode,
@@ -34,7 +34,8 @@ const MyApp = ({ Component, pageProps }) => {
     );
 
     let data = res.data;
-    console.log(data);
+    window.localStorage.setItem('token', data);
+    console.log(window.localStorage.getItem('token'));
   };
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const MyApp = ({ Component, pageProps }) => {
     if(router.asPath.slice(0,6) === '/?code') {
       console.log('구글이다')
       getToken();
-      router.query = {};
+      router.push('/');
       console.log("query delete");
     }
   });
