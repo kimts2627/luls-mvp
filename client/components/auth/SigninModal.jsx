@@ -37,7 +37,7 @@ const SigninModal = () => {
 
   const reqAuthorizationToGoogle = async () => {
     const loginUrl = AUTHORIZE_URI + "?" + queryStr;
-    route.push(loginUrl);
+    router.push(loginUrl);
   };
 
   return (
