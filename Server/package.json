@@ -9,6 +9,7 @@
     "dev": "nodemon src/index.ts",
     "pm2:start": "pm2 start src/index.ts",
     "pm2:stop": "pm2 stop src/index.ts",
+    "pm2:restart": "pm2 restart src/index.ts",
     "typeorm:create": "ts-node ./node_modules/typeorm/cli.js migration:create -n",
     "typeorm:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "typeorm:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",

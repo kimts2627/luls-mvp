@@ -6,7 +6,7 @@ const SERVER_ROOT_URI = process.env.SERVER_ROOT_URI;
 const COOKIE_NAME = process.env.COOKIE_NAME;
 const redirectURI = 'users/googleCallback';
 const JWT_SECRET = process.env.JWT_SECRET;
-// const UI_ROOT_URI = process.env.UI_ROOT_URI;
+const UI_ROOT_URI = process.env.UI_ROOT_URI;
 import { getTokens } from '../../utils/getTokens';
 import { getTokenUserInfo } from '../../utils/getTokenUserInfo';
 
@@ -19,12 +19,14 @@ export default async (req, res) => {
     clientSecret: GOOGLE_CLIENT_SECRET,
     redirectUri: `${SERVER_ROOT_URI}/${redirectURI}`,
   });
-  // console.log(data);
   // Fetch the user's profile with the access token
   const googleUser = await getTokenUserInfo(data.access_token);
-  console.log(googleUser);
 
-  const jwtToken = jwt.sign(googleUser, JWT_SECRET);
+  const access_Token = jwt.sign(
+    { access_token: data.access_token, expires_in: data.expires_in },
+    JWT_SECRET,
+    { expiresIn: '30m' }
+  );
 
   res.cookie(COOKIE_NAME, data.refresh_token, {
     maxAge: 900000, // 900000 -> 900초 ->15분
@@ -32,12 +34,9 @@ export default async (req, res) => {
     secure: false,
   });
 
-  // res.redirect(UI_ROOT_URI);
-  res.status(200).send({
-    token: {
-      access_token: data.access_token,
-      expires_in: data.expires_in,
-    },
-    userinfo: jwtToken,
+  res.redirect(UI_ROOT_URI, {
+    access_Token,
+    userinfo: googleUser,
   });
+  // res.status(200).send();
 };

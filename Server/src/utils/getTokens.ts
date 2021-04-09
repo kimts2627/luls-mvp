@@ -25,9 +25,9 @@ export async function getTokens({
   const url = 'https://oauth2.googleapis.com/token';
   const values = {
     code,
-    client_id: clientId,
-    client_secret: clientSecret,
-    redirect_uri: redirectUri,
+    clientId,
+    clientSecret,
+    redirectUri,
     grant_type: 'authorization_code',
   };
 
