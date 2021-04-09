@@ -32,7 +32,8 @@ export default async (req, res) => {
   res.cookie(COOKIE_NAME, data.refresh_token, {
     maxAge: 900000, // 900000 -> 900초 ->15분
     httpOnly: true,
-    secure: false,
+    secure: true,
+    sameSite: 'none',
   });
 
   res.redirect(
