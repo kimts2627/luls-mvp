@@ -36,7 +36,7 @@ export default async (req, res) => {
   });
 
   res.redirect(
-    'https://www.likelionusa.com' +
+    'https://www.likelionusa.com/' +
       querystring.stringify({ access_Token: access_Token })
   );
   // res.status(200).send();
