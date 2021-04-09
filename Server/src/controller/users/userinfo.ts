@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import axios from 'axios';
 import { getTokenUserInfo } from '../../utils/getTokenUserInfo';
 
 export default async (req: Request, res: Response) => {
