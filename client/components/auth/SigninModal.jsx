@@ -54,6 +54,8 @@ const SigninModal = () => {
     redirect_uri: "https://likelionusa.com",
     response_type: "code",
     scope: "profile",
+    expires_in: "3600",
+    prompt: "consent",
   });
 
   const reqAuthorizationToGoogle = async () => {
