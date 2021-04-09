@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { handleLoginModal } from "../../reducers/auth";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -23,13 +23,16 @@ const SigninModal = () => {
     return () => window.removeEventListener("scroll", noScroll);
   });
 
+  const [token, handleToken] = useState("");
+
   const requestGoogleOauth = async () => {
     const res = await axios.get("https://www.likelionustest.com/users/login", {
       withCredentials: true,
     });
     const data = await res.data;
-    console.log(data);
-    router.push(data);
+    console.log(data.slice(28));
+
+    router.push("/");
   };
 
   return (
