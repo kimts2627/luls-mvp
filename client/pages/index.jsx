@@ -26,8 +26,12 @@ const Home = ({ data }) => {
 
 export async function getStaticProps() {
   const res = await axios.get("https://www.likelionustest.com/users/test");
-  const data = await res.data;
+  let data = await res.data;
   console.log(data);
+
+  if (res.status !== "200") {
+    data = { message: "server is closed" };
+  }
   return {
     props: {
       data,

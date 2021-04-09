@@ -2,8 +2,10 @@ import React, { useCallback, useEffect } from "react";
 import { handleLoginModal } from "../../reducers/auth";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const SigninModal = () => {
+  const router = useRouter();
   const noScroll = () => {
     window.scrollTo(0, 0);
   };
@@ -24,7 +26,8 @@ const SigninModal = () => {
   const requestGoogleOauth = async () => {
     const res = await axios.get("https://www.likelionustest.com/users/login");
     const data = await res.data;
-    console.log(res);
+    console.log(data);
+    router.push(data);
   };
 
   return (
