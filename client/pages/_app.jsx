@@ -38,13 +38,14 @@ const MyApp = ({ Component, pageProps }) => {
   };
 
   useEffect(() => {
-    console.log(`현재 쿼리는${router.query}`);
-    if(router.query.code) {
+    console.log(router);
+    if(router.asPath.slice(0,6) === '/?code') {
+      console.log('구글이다')
       getToken();
       router.query = {};
       console.log("query delete");
     }
-  }, []);
+  });
 
   return (
     <>
