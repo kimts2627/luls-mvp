@@ -14,7 +14,6 @@ const MyApp = ({ Component, pageProps }) => {
   const [authCode, handleAuthCode] = useState(null);
 
   const getToken = async () => {
-    handleAuthCode(`${router.asPath.slice(7, router.asPath.indexOf('&'))}`);
     console.log(authCode);
 
     let query = {
@@ -45,6 +44,7 @@ const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     console.log(router);
     if(router.asPath.slice(0,6) === '/?code') {
+      handleAuthCode(`${router.asPath.slice(7, router.asPath.indexOf('&'))}`);
       console.log('구글이다')
       getToken();
       router.push('/');
