@@ -14,7 +14,7 @@ const MyApp = ({ Component, pageProps }) => {
   const [authCode, handleAuthCode] = useState(null);
 
   const getToken = async () => {
-    handleAuthCode(`${router.asPath.slice(2)}`);
+    handleAuthCode(`${router.asPath.slice(7)}`);
     console.log(authCode);
 
     let query = {
@@ -24,6 +24,8 @@ const MyApp = ({ Component, pageProps }) => {
       redirect_uri: "https://likelionusa.com",
       grant_type: "authorization_code",
     };
+
+    console.log(query);
 
     let res = await axios.post(
       // https://accounts.google.com/o/oauth2/auth/
