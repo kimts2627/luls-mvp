@@ -5,10 +5,10 @@ import { createStore } from "redux";
 import reducer from "../reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const MyApp = ({ Component }) => {
+const MyApp = ({ Component, pageProps }) => {
   return (
     <>
-      <Component />
+      <Component {...pageProps} />
     </>
   );
 };

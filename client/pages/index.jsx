@@ -5,9 +5,8 @@ import Main from "../components/home/Main";
 import { useSelector } from "react-redux";
 import SigninModal from "../components/auth/SigninModal";
 import axios from "axios";
-import fetch from "node-fetch";
 
-export default function Home({ data }) {
+const Home = ({ data }) => {
   console.log(data);
   const token = useSelector((state) => state.auth.token);
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
@@ -18,16 +17,16 @@ export default function Home({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full mt-40 flex items-center flex-col">
-        <Main />
+        <Main message={data[1].ko} />
       </div>
       {!token && isLoginModalOn ? <SigninModal /> : null}
     </Layout>
   );
-}
+};
 
 export async function getStaticProps() {
-  const res = await fetch("https://api.manana.kr/address/korea.json");
-  const data = await res.json();
+  const res = await axios.get("https://api.manana.kr/address/korea.json");
+  const data = await res.data;
   console.log(data);
   return {
     props: {
@@ -35,3 +34,12 @@ export async function getStaticProps() {
     },
   };
 }
+
+// Home.getInitialProps = async () => {
+//   const res = await axios.get("https://api.manana.kr/address/korea.json");
+//   const data = res.data;
+//   console.log("a", data);
+//   return { data: data[1] };
+// };
+
+export default Home;

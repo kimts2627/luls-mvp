@@ -10,7 +10,7 @@ import MainSchools from "./MainSchools";
 const Main = ({ message }) => {
   return (
     <main className="w-full max-w-screen-2xl">
-      <MainIntro />
+      <MainIntro message={message} />
       <MainOverview />
       <MainSchools />
       <MainHallOfFame />
