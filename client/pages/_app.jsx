@@ -21,7 +21,7 @@ const MyApp = ({ Component, pageProps }) => {
       code: authCode,
       client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
       client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-      redirect_uri: "https://likelionusa.com",
+      redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
       grant_type: "authorization_code",
     };
 
@@ -37,7 +37,7 @@ const MyApp = ({ Component, pageProps }) => {
       }
     );
 
-    let data = res.data;
+    let data = await res.data;
     window.localStorage.setItem('token', data);
     console.log(window.localStorage.getItem('token'));
   };
