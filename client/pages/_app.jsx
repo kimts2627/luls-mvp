@@ -11,37 +11,38 @@ import qs from "qs";
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter();
 
-  const [AuthCode, handleAuthCode] = useState(null);
+  const [authCode, handleAuthCode] = useState(null);
+
+  const getToken = async () => {
+    if (router.query.code && router.query.scope) {
+      handleAuthCode(`${router.query.code}${router.query.scope}`);
+      console.log(code, authCode)
+      let query = {
+        code: authCode,
+        client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+        client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+        redirect_uri: "https://likelionusa.com",
+        grant_type: "authorization_code",
+      };
+
+      let res = await axios.post(
+        `https://acounts.google.com/o/oauth2/token?${qs.stringify(query)}`,
+        {
+          withCredentials: true,
+          header: { "Content-Type": "application/x-www-form-urlencoded" },
+        }
+      );
+
+      let data = res.data;
+      console.log(data);
+    }
+  };
 
   useEffect(() => {
     console.log(router.asPath);
-    const getToken = async () => {
-      if (router.query.code && router.query.scope) {
-        handleAuthCode(`${router.query.code.slice(2)}${router.query.scope}`);
-
-        let query = {
-          code: AuthCode,
-          client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
-          client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-          redirect_uri: "https://likelionusa.com",
-          grant_type: "authorization_code",
-        };
-
-        let res = await axios.post(
-          `https://acounts.google.com/o/oauth2/token?${qs.stringify(query)}`,
-          {
-            withCredentials: true,
-            header: { "Content-Type": "application/x-www-form-urlencoded" },
-          }
-        );
-
-        let data = res.data;
-
-        console.log(data);
-      }
-    };
     getToken();
-  });
+  }, []);
+
   return (
     <>
       <Component {...pageProps} />
