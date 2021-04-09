@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { handleLoginModal } from "../../reducers/auth";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const SigninModal = () => {
   const noScroll = () => {
@@ -19,6 +20,13 @@ const SigninModal = () => {
     }
     return () => window.removeEventListener("scroll", noScroll);
   });
+
+  const requestGoogleOauth = async () => {
+    const res = await axios.get("https://www.likelionustest.com/users/login");
+    const data = await res.data;
+    console.log(res);
+  };
+
   return (
     <div className="absolute top-0 w-full h-full bg-black z-50 flex items-center justify-center blackback">
       <img
@@ -32,7 +40,10 @@ const SigninModal = () => {
           Access to <span className="text-yellow-600">@likelion.net</span>{" "}
           acount
         </h1>
-        <button className="relative bg-blue-400 text-white w-1/2 h-12 pl-10 rounded-md outline-none">
+        <button
+          className="relative bg-blue-400 text-white w-1/2 h-12 pl-10 rounded-md outline-none"
+          onClick={requestGoogleOauth}
+        >
           <img
             src="/img/Google.png"
             alt="google"

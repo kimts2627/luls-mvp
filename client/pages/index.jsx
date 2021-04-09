@@ -17,7 +17,7 @@ const Home = ({ data }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full mt-40 flex items-center flex-col">
-        <Main message={data[1].ko} />
+        <Main message={data.message} />
       </div>
       {!token && isLoginModalOn ? <SigninModal /> : null}
     </Layout>
@@ -25,7 +25,7 @@ const Home = ({ data }) => {
 };
 
 export async function getStaticProps() {
-  const res = await axios.get("https://api.manana.kr/address/korea.json");
+  const res = await axios.get("https://www.likelionustest.com/users/test");
   const data = await res.data;
   console.log(data);
   return {
