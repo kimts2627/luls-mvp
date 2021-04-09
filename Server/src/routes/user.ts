@@ -6,5 +6,6 @@ import { usersController } from '../controller';
 router.get('/login', usersController.login);
 router.get('/googleCallback', usersController.googleCallback);
 router.get('/test', usersController.test);
+router.get('/userinfo', usersController.userinfo);
 
 module.exports = router;
