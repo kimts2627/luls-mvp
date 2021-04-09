@@ -14,34 +14,36 @@ const MyApp = ({ Component, pageProps }) => {
   const [authCode, handleAuthCode] = useState(null);
 
   const getToken = async () => {
-    if (router.query.code && router.query.scope) {  
-      handleAuthCode(`${router.query.code}${router.query.scope}`);
-      console.log(code, authCode)
+    handleAuthCode(`${router.query.code}${router.query.scope}`);
+    console.log(code, authCode)
 
-      let query = {
-        code: authCode,
-        client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
-        client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-        redirect_uri: "https://likelionusa.com",
-        grant_type: "authorization_code",
-      };
+    let query = {
+      code: authCode,
+      client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+      client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+      redirect_uri: "https://likelionusa.com",
+      grant_type: "authorization_code",
+    };
 
-      let res = await axios.post(
-        `https://acounts.google.com/o/oauth2/token?${qs.stringify(query)}`,
-        {
-          withCredentials: true,
-          header: { "Content-Type": "application/x-www-form-urlencoded" },
-        }
-      );
+    let res = await axios.post(
+      `https://acounts.google.com/o/oauth2/token?${qs.stringify(query)}`,
+      {
+        withCredentials: true,
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+      }
+    );
 
-      let data = res.data;
-      console.log(data);
-    }
+    let data = res.data;
+    console.log(data);
   };
 
   useEffect(() => {
-    console.log(router.asPath);
-    getToken();
+    console.log(router.query);
+    if(router.query.code) {
+      getToken();
+      router.query = {};
+      console.log("query delete");
+    }
   }, []);
 
   return (
