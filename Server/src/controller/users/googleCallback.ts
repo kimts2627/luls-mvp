@@ -6,8 +6,6 @@ const SERVER_ROOT_URI = process.env.SERVER_ROOT_URI;
 const COOKIE_NAME = process.env.COOKIE_NAME;
 const redirectURI = 'users/googleCallback';
 const JWT_SECRET = process.env.JWT_SECRET;
-const UI_ROOT_URI = process.env.UI_ROOT_URI;
-import querystring from 'querystring';
 import { getTokens } from '../../utils/getTokens';
 import { getTokenUserInfo } from '../../utils/getTokenUserInfo';
 
@@ -20,6 +18,7 @@ export default async (req, res) => {
     clientSecret: GOOGLE_CLIENT_SECRET,
     redirectUri: `${SERVER_ROOT_URI}/${redirectURI}`,
   });
+  console.log(data);
   // Fetch the user's profile with the access token
   const googleUser = await getTokenUserInfo(data.access_token);
 
@@ -38,6 +37,6 @@ export default async (req, res) => {
     sameSite: 'none',
   });
 
-  res.redirect('https://www.likelionusa.com');
+  // res.redirect('https://www.likelionusa.com');
   // res.status(200).send();
 };
