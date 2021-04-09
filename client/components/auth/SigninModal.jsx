@@ -3,6 +3,8 @@ import { handleLoginModal } from "../../reducers/auth";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useRouter } from "next/router";
+import qs from "qs";
+import { route } from "next/dist/next-server/server/router";
 
 const SigninModal = () => {
   const router = useRouter();
@@ -23,13 +25,19 @@ const SigninModal = () => {
     return () => window.removeEventListener("scroll", noScroll);
   });
 
-  const requestGoogleOauth = async () => {
-    const res = await axios.get("https://www.likelionustest.com/users/login", {
-      withCredentials: true,
-    });
-    const data = await res.data;
-    console.log(data);
-    router.push(data);
+  const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
+  const AUTHORIZE_URI = "https://accounts.google.com/o/oauth2/v2/auth";
+
+  const queryStr = qs.stringify({
+    client_id: GOOGLE_CLIENT_ID,
+    redirect_uri: "https://likelionusa.com",
+    response_type: "token",
+    scope: "profile",
+  });
+
+  const reqAuthorizationToGoogle = async () => {
+    const loginUrl = AUTHORIZE_URI + "?" + queryStr;
+    route.push(loginUrl);
   };
 
   return (
@@ -38,7 +46,7 @@ const SigninModal = () => {
         src="/img/x.png"
         alt="back"
         className="w-10 absolute mb-80 cursor-pointer"
-        onClick={handlingLoginModal}
+        onClick={reqAuthorizationToGoogle}
       />
       <section className="w-96 h-48 bg-white rounded-md flex flex-col justify-evenly items-center">
         <h1 className="text-sm">
