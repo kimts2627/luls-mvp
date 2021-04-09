@@ -26,7 +26,9 @@ const MyApp = ({ Component, pageProps }) => {
     };
 
     let res = await axios.post(
-      `https://acounts.google.com/o/oauth2/token/?${qs.stringify(query)}`,
+      // https://accounts.google.com/o/oauth2/auth/
+      // https://acounts.google.com/o/oauth2/token/
+      `https://accounts.google.com/o/oauth2/auth/?${qs.stringify(query)}`,
       {
         withCredentials: true,
         header: { "Content-Type": "application/x-www-form-urlencoded" },
