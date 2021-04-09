@@ -29,6 +29,8 @@ export default async (req, res) => {
     { expiresIn: '30m' }
   );
 
+  req.session.access_Token = access_Token;
+
   res.cookie(COOKIE_NAME, data.refresh_token, {
     maxAge: 900000, // 900000 -> 900초 ->15분
     httpOnly: true,
@@ -36,9 +38,6 @@ export default async (req, res) => {
     sameSite: 'none',
   });
 
-  res.redirect(
-    'https://www.likelionusa.com/?' +
-      querystring.stringify({ access_Token: access_Token })
-  );
+  res.redirect('https://www.likelionusa.com');
   // res.status(200).send();
 };
