@@ -14,10 +14,10 @@ const MyApp = ({ Component, pageProps }) => {
   const [authCode, handleAuthCode] = useState(null);
 
   const getToken = async () => {
-    if (router.query.code && router.query.scope) {
+    if (router.query.code && router.query.scope) { 
       handleAuthCode(`${router.query.code}${router.query.scope}`);
       console.log(code, authCode)
-      
+
       let query = {
         code: authCode,
         client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
