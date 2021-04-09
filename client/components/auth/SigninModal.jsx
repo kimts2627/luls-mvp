@@ -46,7 +46,7 @@ const SigninModal = () => {
         src="/img/x.png"
         alt="back"
         className="w-10 absolute mb-80 cursor-pointer"
-        onClick={reqAuthorizationToGoogle}
+        onClick={handlingLoginModal}
       />
       <section className="w-96 h-48 bg-white rounded-md flex flex-col justify-evenly items-center">
         <h1 className="text-sm">
@@ -55,7 +55,7 @@ const SigninModal = () => {
         </h1>
         <button
           className="relative bg-blue-400 text-white w-1/2 h-12 pl-10 rounded-md outline-none"
-          onClick={requestGoogleOauth}
+          onClick={reqAuthorizationToGoogle}
         >
           <img
             src="/img/Google.png"
