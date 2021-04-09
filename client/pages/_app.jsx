@@ -38,7 +38,7 @@ const MyApp = ({ Component, pageProps }) => {
   };
 
   useEffect(() => {
-    console.log(router.query);
+    console.log(`현재 쿼리는${router.query}`);
     if(router.query.code) {
       getToken();
       router.query = {};
