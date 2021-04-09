@@ -25,11 +25,32 @@ const SigninModal = () => {
     return () => window.removeEventListener("scroll", noScroll);
   });
 
+  /*
+    클라이언트 아이디는 지금처럼 하고
+    최초 로그인 하면 서버에 억세스 토큰 보내주고
+    클라는 억세스, 리프레쉬 갖고있기.
+    ! 억세스는 로컬 스토리지, 리프레쉬는 쿠키에 저장
+
+
+    만료시 클라에서 구글에 토큰 갱신 후
+    억세스토큰 서버에 보내주기. 서버에서 토큰 복사
+    ? /login
+
+    자료 요청 시 클라이언트 억세스 토큰과 서버 억세스 토큰 대조 후
+    서버에서 구글에 요청 후, 자료 첨삭 후에 클라로 보내주기
+    ! 
+
+    로그아웃
+    클라 토큰 다 삭제후 서버에 로그아웃 api 요청
+    ?
+  */
+
   const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
   const AUTHORIZE_URI = "https://accounts.google.com/o/oauth2/v2/auth";
 
   const queryStr = qs.stringify({
     client_id: GOOGLE_CLIENT_ID,
+    access_type: "offline",
     redirect_uri: "https://likelionusa.com",
     response_type: "token",
     scope: "profile",
