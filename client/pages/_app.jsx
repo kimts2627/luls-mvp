@@ -14,7 +14,7 @@ const MyApp = ({ Component, pageProps }) => {
   const [authCode, handleAuthCode] = useState(null);
 
   const getToken = async () => {
-    handleAuthCode(`${router.asPath.slice(7)}`);
+    handleAuthCode(`${router.query.code}`);
     console.log(authCode);
 
     let query = {
