@@ -52,7 +52,7 @@ const SigninModal = () => {
     access_type: "offline",
     redirect_uri: "https://likelionusa.com",
     response_type: "code",
-    // scope: "profile",
+    scope: "profile",
     prompt: "consent",
   });
 
