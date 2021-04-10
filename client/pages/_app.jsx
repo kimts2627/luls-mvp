@@ -40,7 +40,7 @@ const MyApp = ({ Component, pageProps }) => {
     // window.localStorage.setItem('token', JSON.parse(data));
     // console.log(window.localStorage.getItem('token'));
 
-    console.log(`자료는 ${JSON.parse(data)}`)
+    console.log(`자료는 ${data}`)
   };
 
   useEffect(() => {
