@@ -11,12 +11,12 @@ import qs from "qs";
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter();
 
-  const [authCode, handleAuthCode] = useState(null);
+  const [authCode, handleAuthCode] = useState('a');
 
   const getToken = async () => {
     console.log(authCode);
 
-    let query = {
+    const query = {
       code: authCode,
       client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
       client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
@@ -37,8 +37,10 @@ const MyApp = ({ Component, pageProps }) => {
     );
 
     let data = await res.data;
-    window.localStorage.setItem('token', data);
-    console.log(window.localStorage.getItem('token'));
+    // window.localStorage.setItem('token', JSON.parse(data));
+    // console.log(window.localStorage.getItem('token'));
+
+    console.log(`자료는 ${JSON.parse(data)}`)
   };
 
   useEffect(() => {
