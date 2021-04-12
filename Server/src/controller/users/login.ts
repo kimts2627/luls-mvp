@@ -18,5 +18,7 @@ export default async (req: Request, res: Response) => {
   // 유저 정보가 있을 시
   if (userInfo) {
     res.status(200).send(userInfo);
+  } else {
+    res.status(401).send({ message: 'Login Failed' });
   }
 };
