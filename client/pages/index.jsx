@@ -19,7 +19,7 @@ const Home = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    if (window.localStorage.getItem("token")) {
+    if (window.localStorage.getItem("token") && !isSignupModalOn) {
       //! login request to server
       const token = window.localStorage.getItem("token");
       console.log(token);
