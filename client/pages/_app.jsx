@@ -18,13 +18,13 @@ const MyApp = ({ Component, pageProps }) => {
 
   // const [authCode, handleAuthCode] = useState("a");
 
-  const isAuth = useSelector((state) => state.auth.isAuth);
+  // const isAuth = useSelector((state) => state.auth.isAuth);
 
   let authCode;
 
-  const handlingAuth = useCallback(() => {
-    dispatch(handleAuth());
-  }, []);
+  // const handlingAuth = useCallback(() => {
+  //   dispatch(handleAuth());
+  // }, []);
 
   const getToken = async () => {
     const query = {
@@ -72,7 +72,7 @@ const MyApp = ({ Component, pageProps }) => {
     if (window.localStorage.getItem("token")) {
       console.log("token 있다");
       //! Set isAuth state to true
-      handlingAuth();
+      // handlingAuth();
     }
   });
 
