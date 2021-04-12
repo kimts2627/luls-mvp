@@ -50,8 +50,8 @@ const Home = ({ data }) => {
         <Main message={data.message} />
       </div>
       {isLoginModalOn ? <SigninModal /> : null}
-      {/* {isSignupModalOn ? <SignupModal /> : null} */}
-      <SignupModal />
+      {isSignupModalOn ? <SignupModal /> : null}
+      {/* <SignupModal /> */}
     </Layout>
   );
 };
