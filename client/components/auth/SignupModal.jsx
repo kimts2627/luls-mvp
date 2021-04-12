@@ -59,7 +59,7 @@ const SignupModal = () => {
         <div>
           Personal
           <span>
-            <p>City</p>
+            <p>Location</p>
             <input
               type="text"
               placeholder="City"
