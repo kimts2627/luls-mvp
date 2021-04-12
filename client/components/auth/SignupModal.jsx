@@ -39,6 +39,7 @@ const SignupModal = () => {
   };
 
   const sendSignupRequest = () => {
+    // if()
     console.log(signUpInfo);
     // axios.
   };
