@@ -17,7 +17,7 @@ const Home = ({ data }) => {
       const token = window.localStorage.getItem("token");
       console.log(token);
       axios
-        .get("https://www.likelionustest.com/users/login", {
+        .get("https://people.googleapis.com/v1/contactGroups", {
           withCredentials: true,
           header: {
             Authorization: `Bearer ${token}`,
