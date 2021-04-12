@@ -26,7 +26,7 @@ const Home = ({ data }) => {
         .then(console.log)
         .catch(console.log);
     }
-  }, []);
+  });
 
   return (
     <Layout>
