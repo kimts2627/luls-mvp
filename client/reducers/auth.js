@@ -13,11 +13,8 @@ export const handleLoginModal = () => ({
   type: HANDLE_LOGIN_MODAL,
 });
 
-export const handleAuth = (state) => ({
+export const handleAuth = () => ({
   type: HANDLE_AUTH,
-  payload: {
-    state,
-  },
 });
 
 export const initialState = {
@@ -35,7 +32,7 @@ const reducer = (state = initialState, action) => {
         isLoginModalOn: !state.isLoginModalOn,
       });
     case HANDLE_AUTH:
-      return Object.assign({}, state, { isAuth: action.payload.state });
+      return Object.assign({}, state, { isAuth: !isAuth });
     default:
       return state;
   }

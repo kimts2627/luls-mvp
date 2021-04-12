@@ -21,7 +21,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   let authCode;
 
-  const handlingAuth = dispatch(handleAuth(state));
+  const handlingAuth = dispatch(handleAuth());
 
   const getToken = async () => {
     const query = {
@@ -69,7 +69,7 @@ const MyApp = ({ Component, pageProps }) => {
     if (window.localStorage.getItem("token")) {
       console.log("token 있다");
       //! Set isAuth state to true
-      handlingAuth(true);
+      handlingAuth();
     }
   });
 
