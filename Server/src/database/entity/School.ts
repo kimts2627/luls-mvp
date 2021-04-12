@@ -1,8 +1,21 @@
-import { Entity, Column, BaseEntity, PrimaryColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  BaseEntity,
+  PrimaryColumn,
+  NoVersionOrUpdateDateColumnError,
+  OneToOne,
+  JoinColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import Member from '../../database/entity/Member';
 
 @Entity()
 export default class School extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
   Name: string;
 
   @Column()

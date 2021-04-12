@@ -29,6 +29,6 @@ export default async (req: Request, res: Response) => {
         res.status(400).send('invalid access token');
       });
   } else {
-    res.status(400).send({ data: null, message: 'headers not authorized' });
+    res.status(400).send({ message: 'headers not authorized' });
   }
 };

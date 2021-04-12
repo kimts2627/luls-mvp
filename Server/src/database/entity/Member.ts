@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import School from './School';
 import Location from './Location';
@@ -34,6 +35,10 @@ export default class Member extends BaseEntity {
   // @Column()
   // Attendance: string;
 
+  @OneToOne(() => School)
+  @JoinColumn({ name: 'School_Id' })
+  School_Id: School;
+
   @CreateDateColumn({
     name: 'created_at',
   })
@@ -44,9 +49,9 @@ export default class Member extends BaseEntity {
   })
   updatedAt: Date;
 
-  @ManyToOne((type) => School)
-  @JoinColumn({ name: 'School_Name' })
-  School_Name: School;
+  // @ManyToOne((type) => School)
+  // @JoinColumn({ name: 'School_Name' })
+  // School_Name: School;
 
   @ManyToOne((type) => Location)
   @JoinColumn({ name: 'City' })

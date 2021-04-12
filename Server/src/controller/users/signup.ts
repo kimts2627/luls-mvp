@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { identitytoolkit } from 'googleapis/build/src/apis/identitytoolkit';
 import { getManager, getConnection, getMongoManager } from 'typeorm';
 import { Member, Location, School } from '../../database/entity';
 
@@ -17,9 +18,8 @@ export default async (req: Request, res: Response) => {
     State,
     Birthday,
   } = req.body;
-  await getManager().transaction(
-    'SERIALIZABLE',
-    async (transactionalEntityManager) => {
+  await getManager()
+    .transaction('SERIALIZABLE', async (transactionalEntityManager) => {
       await transactionalEntityManager
         .save(Location, {
           City: City,
@@ -28,7 +28,8 @@ export default async (req: Request, res: Response) => {
         })
         .then((result) => {
           console.log(result);
-        });
+        })
+        .catch((err) => {});
       await transactionalEntityManager
         .save(School, {
           Name: School_Name,
@@ -38,7 +39,7 @@ export default async (req: Request, res: Response) => {
           Graduation_Year: Graduation_Year,
         })
         .then((result) => {
-          console.log(result);
+          console.log(result.id);
         })
         .catch((err) => {
           console.log(err);
@@ -58,7 +59,9 @@ export default async (req: Request, res: Response) => {
         .catch((err) => {
           console.log(err);
         });
-    }
-  );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   res.send('Clear');
 };
