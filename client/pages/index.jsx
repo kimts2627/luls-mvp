@@ -14,11 +14,12 @@ const Home = ({ data }) => {
   useEffect(() => {
     if (window.localStorage.getItem("token")) {
       //! login request to server
+      const token = window.localStorage.getItem("token");
       axios
         .get("https://www.likelionustest.com/users/login", {
           withCredentials: true,
           header: {
-            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then(console.log)
