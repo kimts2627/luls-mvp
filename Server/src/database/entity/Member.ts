@@ -35,9 +35,12 @@ export default class Member extends BaseEntity {
   // @Column()
   // Attendance: string;
 
-  @OneToOne(() => School)
-  @JoinColumn({ name: 'School_Id' })
-  School_Id: School;
+  @OneToOne((type) => School, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'School_id' })
+  School_id: School;
 
   @CreateDateColumn({
     name: 'created_at',

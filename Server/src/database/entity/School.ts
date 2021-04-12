@@ -12,8 +12,13 @@ import Member from '../../database/entity/Member';
 
 @Entity()
 export default class School extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  // @PrimaryGeneratedColumn()
+  // id: number;
+  @OneToOne((type) => Member, {
+    primary: true,
+  })
+  @JoinColumn({ name: 'id' })
+  id: Member;
 
   @Column()
   Name: string;
