@@ -19,13 +19,15 @@ const MyApp = ({ Component, pageProps }) => {
 
   const isAuth = useSelector((state) => state.auth.isAuth);
 
+  let authCode;
+
   const handlingAuth = useCallback(() => {
     dispatch(handleAuth(state));
   }, []);
 
   const getToken = async () => {
     const query = {
-      code: JSON.parse(window.getItem("authcode")),
+      code: authCode,
       client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
       client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
       redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
@@ -59,13 +61,10 @@ const MyApp = ({ Component, pageProps }) => {
 
   useEffect(() => {
     if (router.asPath.slice(0, 6) === "/?code") {
-      window.localStorage.setItem(
-        "authcode",
-        `${router.asPath.slice(7, router.asPath.indexOf("&"))}`
-      );
+      authCode = `${router.asPath.slice(7, router.asPath.indexOf("&"))}`;
       getToken();
     }
-  }, []);
+  });
 
   useEffect(() => {
     //* login stablizer
