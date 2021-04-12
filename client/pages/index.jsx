@@ -15,6 +15,7 @@ const Home = ({ data }) => {
     if (window.localStorage.getItem("token")) {
       //! login request to server
       const token = window.localStorage.getItem("token");
+      console.log(token);
       axios
         .get("https://www.likelionustest.com/users/login", {
           withCredentials: true,
