@@ -32,7 +32,7 @@ const Home = ({ data }) => {
         })
         .then(console.log)
         .catch((err) => {
-          console.log(err);
+          console.log(err.status);
           if (err.message === "Login Failed") {
             // handlingSignupModal();
           }
