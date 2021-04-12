@@ -25,7 +25,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   const getToken = async () => {
     const query = {
-      code: authCode,
+      code: JSON.parse(window.getItem("authcode")),
       client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
       client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
       redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
@@ -45,7 +45,7 @@ const MyApp = ({ Component, pageProps }) => {
       console.log("Sucess");
       //! redirect to main page & delete Authorization code
       router.push("/");
-      handleAuthCode(null);
+      window.localStorage.clear();
       //! Set access token at localstorage
       window.localStorage.setItem("token", data.access_token);
       //! Set refresh token at cookie
@@ -59,7 +59,10 @@ const MyApp = ({ Component, pageProps }) => {
 
   useEffect(() => {
     if (router.asPath.slice(0, 6) === "/?code") {
-      handleAuthCode(`${router.asPath.slice(7, router.asPath.indexOf("&"))}`);
+      window.localStorage.setItem(
+        "authcode",
+        `${router.asPath.slice(7, router.asPath.indexOf("&"))}`
+      );
       getToken();
     }
   }, []);
