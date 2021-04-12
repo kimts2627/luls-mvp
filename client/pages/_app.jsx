@@ -9,7 +9,6 @@ import axios from "axios";
 import qs from "qs";
 import cookieCutter from "cookie-cutter";
 import { useDispatch, useSelector } from "react-redux";
-import { handleAuth } from "../reducers/auth";
 // import { handleAuth } from "../reducers/auth";
 
 const MyApp = ({ Component, pageProps }) => {
