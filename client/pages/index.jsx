@@ -32,8 +32,8 @@ const Home = ({ data }) => {
         })
         .then(console.log)
         .catch((err) => {
-          console.log(err.status);
-          if (err.message === "Login Failed") {
+          console.log(err.response);
+          if (err.response.status === "Login Failed") {
             // handlingSignupModal();
           }
         });
