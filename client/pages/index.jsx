@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import Main from "../components/home/Main";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SigninModal from "../components/auth/SigninModal";
 import axios from "axios";
+import SignupModal from "../components/auth/SignupModal";
+import { handleSignupModal } from "../reducers/auth";
 
 const Home = ({ data }) => {
-  console.log(data);
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
+  const isSignupModalOn = useSelector((state) => state.auth.isSignupModalOn);
+
+  const handlingSignupModal = useCallback(() => {
+    dispatch(handleSignupModal());
+  }, []);
 
   useEffect(() => {
     if (window.localStorage.getItem("token")) {
@@ -24,7 +31,12 @@ const Home = ({ data }) => {
           },
         })
         .then(console.log)
-        .catch(console.log);
+        .catch((err) => {
+          console.log(err.message);
+          if (err.message === "Login Failed") {
+            handlingSignupModal();
+          }
+        });
     }
   });
 
@@ -37,7 +49,8 @@ const Home = ({ data }) => {
       <div className="w-full mt-40 flex items-center flex-col">
         <Main message={data.message} />
       </div>
-      {!token && isLoginModalOn ? <SigninModal /> : null}
+      {isLoginModalOn ? <SigninModal /> : null}
+      {isSignupModalOn ? <SignupModal /> : null}
     </Layout>
   );
 };
@@ -48,7 +61,7 @@ export async function getStaticProps() {
   console.log(data);
 
   if (!data.message) {
-    data = { message: "server is closed" };
+    data = { message: "hello world" };
   }
   return {
     props: {
