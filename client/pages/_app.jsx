@@ -50,7 +50,7 @@ const MyApp = ({ Component, pageProps }) => {
       //! Set refresh token at cookie
       cookieCutter.set("refresh", data.refresh_token);
       //! Login Request to server!!!
-      if (window.localStorage.getItem("token") && !isSignupModalOn) {
+      if (window.localStorage.getItem("token")) {
         const token = window.localStorage.getItem("token");
         console.log(token);
         axios
@@ -65,10 +65,12 @@ const MyApp = ({ Component, pageProps }) => {
             console.log(data);
           })
           .catch((err) => {
-            console.log(err.response);
-            //! Open Signup Modal !!!
-            if (err.response.data.message === "Login Failed") {
-              handlingSignupModal();
+            if (!isSignupModalOn) {
+              console.log(err.response);
+              //! Open Signup Modal !!!
+              if (err.response.data.message === "Login Failed") {
+                handlingSignupModal();
+              }
             }
           });
       }

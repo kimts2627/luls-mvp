@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { handleLoginModal } from "../../reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -11,6 +11,8 @@ const SignupModal = () => {
   const noScroll = () => {
     window.scrollTo(0, 0);
   };
+
+  const errRef = useRef();
 
   const dispatch = useDispatch();
   const signUpInfo = useSelector((state) => state.auth.signUpInfo);
@@ -39,7 +41,12 @@ const SignupModal = () => {
   };
 
   const sendSignupRequest = () => {
-    // if()
+    for (let i in signUpInfo) {
+      if (!signUpInfo[i]) {
+        errRef.current.textContent = "모든 항목을 작성 해 주세요!";
+        throw new Error("모든항목 작성 요망");
+      }
+    }
     console.log(signUpInfo);
     // axios.
   };
@@ -126,6 +133,9 @@ const SignupModal = () => {
             />
           </span>
         </div>
+        <p ref={errRef} className="text-red-500 text-10">
+          test
+        </p>
         <button
           className="relative bg-yellow-500 text-white w-1/2 h-12 rounded-md outline-none"
           onClick={sendSignupRequest}
