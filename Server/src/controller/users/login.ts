@@ -22,6 +22,6 @@ export default async (req: Request, res: Response) => {
      * 추가 회원가입 정보 입력 페이지로 리다이렉트
      * res.redirect(추가 입력 페이지) */
     // Member.insertInfo(userInfo);
-    res.status(200).send({ message: 'Login Failed' });
+    res.status(400).send({ message: 'Login Failed' });
   }
 };
