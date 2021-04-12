@@ -13,9 +13,9 @@ export const handleLoginModal = () => ({
   type: HANDLE_LOGIN_MODAL,
 });
 
-export const handleAuth = () => ({
-  type: HANDLE_AUTH,
-});
+// export const handleAuth = () => ({
+//   type: HANDLE_AUTH,
+// });
 
 export const initialState = {
   token: null,
@@ -31,8 +31,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         isLoginModalOn: !state.isLoginModalOn,
       });
-    case HANDLE_AUTH:
-      return Object.assign({}, state, { isAuth: !isAuth });
+    // case HANDLE_AUTH:
+    //   return Object.assign({}, state, { isAuth: !isAuth });
     default:
       return state;
   }
