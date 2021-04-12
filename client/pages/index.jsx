@@ -29,10 +29,6 @@ export async function getStaticProps() {
   let data = await res.data;
   console.log(data);
 
-  if (typeof window !== undefined) {
-    console.log("yeah", window.localStorage.getItem("token"));
-  }
-
   if (!data.message) {
     data = { message: "server is closed" };
   }
