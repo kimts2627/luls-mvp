@@ -9,6 +9,7 @@ module.exports = {
   database: process.env.DATABASE_NAME,
   synchronize: true,
   logging: false,
+  autoCommit: false,
   entities: ['src/database/entity/**/*.ts'],
   migrations: ['src/database/migration/**/*.ts'],
   seeds: ['src/database/seeder/**/*.ts'],

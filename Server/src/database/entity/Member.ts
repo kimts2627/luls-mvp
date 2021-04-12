@@ -22,8 +22,8 @@ export default class Member extends BaseEntity {
   @Column()
   Email: string;
 
-  @Column()
-  Password: string;
+  // @Column()
+  // Password: string;
 
   @Column()
   First_Name: string;
@@ -31,8 +31,8 @@ export default class Member extends BaseEntity {
   @Column()
   Last_Name: string;
 
-  @Column()
-  Attendance: string;
+  // @Column()
+  // Attendance: string;
 
   @CreateDateColumn({
     name: 'created_at',
