@@ -29,7 +29,7 @@ export async function getStaticProps() {
   let data = await res.data;
   console.log(data);
 
-  if (window) {
+  if (typeof window !== undefined) {
     console.log("yeah", window.localStorage.getItem("token"));
   }
 
