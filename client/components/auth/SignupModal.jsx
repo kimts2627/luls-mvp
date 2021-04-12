@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect } from "react";
 import { handleLoginModal } from "../../reducers/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useRouter } from "next/router";
 import qs from "qs";
+import { handleSignupModal, handleSignupInfo } from "../../reducers/auth";
 
 const SignupModal = () => {
   const router = useRouter();
@@ -12,9 +13,14 @@ const SignupModal = () => {
   };
 
   const dispatch = useDispatch();
+  const signUpInfo = useSelector((state) => state.auth.signUpInfo);
 
   const handlingSignupModal = useCallback(() => {
     dispatch(handleSignupModal());
+  }, []);
+
+  const handlingSignupInfo = useCallback((info) => {
+    dispatch(handleSignupInfo(info));
   }, []);
 
   useEffect(() => {
@@ -23,6 +29,19 @@ const SignupModal = () => {
     }
     return () => window.removeEventListener("scroll", noScroll);
   });
+
+  const handlesSignupInfo = (event) => {
+    console.log({ [event.target.getAttribute("name")]: event.target.value });
+    handlingSignupInfo({
+      ...signUpInfo,
+      [event.target.getAttribute("name")]: event.target.value,
+    });
+  };
+
+  const sendSignupRequest = () => {
+    console.log(signUpInfo);
+    // axios.
+  };
 
   return (
     <div className="absolute top-0 w-full h-full bg-black z-50 flex items-center justify-center blackback">
@@ -37,10 +56,78 @@ const SignupModal = () => {
           Access to <span className="text-yellow-600">@likelion.net</span>{" "}
           acount
         </h1>
-        <input type="text" placeholder="School Name" />
+        <div>
+          Personal
+          <span>
+            <p>City</p>
+            <input
+              type="text"
+              placeholder="City"
+              name="City"
+              onChange={(e) => handlesSignupInfo(e)}
+            />
+            <input
+              type="text"
+              placeholder="Country"
+              name="Country"
+              onChange={(e) => handlesSignupInfo(e)}
+            />
+            <input
+              type="text"
+              placeholder="State"
+              name="State"
+              onChange={(e) => handlesSignupInfo(e)}
+            />
+          </span>
+          <span>
+            <p>Birthday</p>
+            <input
+              type="date"
+              name="Birthday"
+              onChange={(e) => handlesSignupInfo(e)}
+            />
+          </span>
+        </div>
+        <div>
+          University
+          <input
+            type="text"
+            placeholder="University Name"
+            name="School_Name"
+            onChange={(e) => handlesSignupInfo(e)}
+          />
+          <input
+            type="text"
+            placeholder="Major"
+            name="Major"
+            onChange={(e) => handlesSignupInfo(e)}
+          />
+          <input
+            type="text"
+            placeholder="Degree"
+            name="Degree"
+            onChange={(e) => handlesSignupInfo(e)}
+          />
+          <span>
+            <p>Entrance</p>
+            <input
+              type="date"
+              name="Entrance_Year"
+              onChange={(e) => handlesSignupInfo(e)}
+            />
+          </span>
+          <span>
+            <p>Graduation</p>
+            <input
+              type="date"
+              name="Graduation_Year"
+              onChange={(e) => handlesSignupInfo(e)}
+            />
+          </span>
+        </div>
         <button
-          className="relative bg-yellow-600 text-white w-1/2 h-12 pl-10 rounded-md outline-none"
-          onClick={reqAuthorizationToGoogle}
+          className="relative bg-yellow-500 text-white w-1/2 h-12 rounded-md outline-none"
+          onClick={sendSignupRequest}
         >
           SignUp
         </button>

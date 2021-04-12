@@ -2,6 +2,7 @@ export const HANDLE_TOKEN = "auth/HANDLE_TOKEN";
 export const HANDLE_LOGIN_MODAL = "auth/HANDLE_LOGIN_MODAL";
 export const HANDLE_AUTH = "auth/HANDLE_AUTH";
 export const HANDLE_SIGNUP_MODAL = "auth/HANDLE_SIGNUP_MODAL";
+export const HANDLE_SIGNUP_INFO = "auth/HANDLE_SIGNUP_INFO";
 
 export const handleToken = (token) => ({
   type: HANDLE_TOKEN,
@@ -22,11 +23,29 @@ export const handleAuth = () => ({
   type: HANDLE_AUTH,
 });
 
+export const handleSignupInfo = (info) => ({
+  type: HANDLE_SIGNUP_INFO,
+  payload: {
+    info,
+  },
+});
+
 export const initialState = {
   token: null,
   isLoginModalOn: false,
   isSignupModalOn: false,
   isAuth: false,
+  signUpInfo: {
+    School_Name: "",
+    Major: "",
+    Degree: "",
+    Entrance_Year: "",
+    Graduation_Year: "",
+    City: "",
+    County: "",
+    State: "",
+    Birthday: "",
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +62,8 @@ const reducer = (state = initialState, action) => {
       });
     case HANDLE_AUTH:
       return Object.assign({}, state, { isAuth: !state.isAuth });
+    case HANDLE_SIGNUP_INFO:
+      return Object.assign({}, state, { signUpInfo: action.payload.info });
     default:
       return state;
   }

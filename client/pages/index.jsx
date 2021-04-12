@@ -32,9 +32,9 @@ const Home = ({ data }) => {
         })
         .then(console.log)
         .catch((err) => {
-          console.log(err.message);
+          console.log(err.data.message);
           if (err.message === "Login Failed") {
-            handlingSignupModal();
+            // handlingSignupModal();
           }
         });
     }
@@ -51,6 +51,7 @@ const Home = ({ data }) => {
       </div>
       {isLoginModalOn ? <SigninModal /> : null}
       {isSignupModalOn ? <SignupModal /> : null}
+      {/* <SignupModal /> */}
     </Layout>
   );
 };
