@@ -16,12 +16,13 @@ const Home = ({ data }) => {
       //! login request to server
       const token = window.localStorage.getItem("token");
       console.log(token);
-      fetch("https://www.likelionustest.com/users/login", {
-        // withCredentials: true,
-        header: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      axios
+        .get("https://www.likelionustest.com/users/login", {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then(console.log)
         .catch(console.log);
     }
