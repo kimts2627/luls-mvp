@@ -52,7 +52,29 @@ const MyApp = ({ Component, pageProps }) => {
       window.localStorage.setItem("token", data.access_token);
       //! Set refresh token at cookie
       cookieCutter.set("refresh", data.refresh_token);
-      console.log("login success");
+      //! Login Request to server!!!
+      if (window.localStorage.getItem("token") && !isSignupModalOn) {
+        const token = window.localStorage.getItem("token");
+        console.log(token);
+        axios
+          .get("https://www.likelionustest.com/users/login", {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((data) => {
+            //! Get userinfo data!!!
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err.response);
+            //! Open Signup Modal !!!
+            if (err.response.data.message === "Login Failed") {
+              handlingSignupModal();
+            }
+          });
+      }
       return;
     } else {
       throw new Error("login failed");

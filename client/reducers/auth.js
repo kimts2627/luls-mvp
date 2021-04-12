@@ -42,7 +42,7 @@ export const initialState = {
     Entrance_Year: "",
     Graduation_Year: "",
     City: "",
-    County: "",
+    Country: "",
     State: "",
     Birthday: "",
   },

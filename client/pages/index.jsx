@@ -19,25 +19,25 @@ const Home = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    if (window.localStorage.getItem("token") && !isSignupModalOn) {
-      //! login request to server
-      const token = window.localStorage.getItem("token");
-      console.log(token);
-      axios
-        .get("https://www.likelionustest.com/users/login", {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then(console.log)
-        .catch((err) => {
-          console.log(err.response);
-          if (err.response.data.message === "Login Failed") {
-            handlingSignupModal();
-          }
-        });
-    }
+    // if (window.localStorage.getItem("token") && !isSignupModalOn) {
+    //   //! login request to server
+    //   const token = window.localStorage.getItem("token");
+    //   console.log(token);
+    //   axios
+    //     .get("https://www.likelionustest.com/users/login", {
+    //       withCredentials: true,
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     })
+    //     .then(console.log)
+    //     .catch((err) => {
+    //       console.log(err.response);
+    //       if (err.response.data.message === "Login Failed") {
+    //         handlingSignupModal();
+    //       }
+    //     });
+    // }
   }, []);
 
   return (
