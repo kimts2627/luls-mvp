@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import { identitytoolkit } from 'googleapis/build/src/apis/identitytoolkit';
-import { getManager, getConnection, getMongoManager } from 'typeorm';
+import { getManager } from 'typeorm';
 import { Member, Location, School } from '../../database/entity';
 
 export default async (req: Request, res: Response) => {
@@ -28,8 +27,8 @@ export default async (req: Request, res: Response) => {
         })
         .then((result) => {
           console.log(result);
-        })
-        .catch((err) => {});
+        });
+
       await transactionalEntityManager
         .save(School, {
           Name: School_Name,
@@ -39,14 +38,12 @@ export default async (req: Request, res: Response) => {
           Graduation_Year: Graduation_Year,
         })
         .then((result) => {
-          console.log(result.id);
-        })
-        .catch((err) => {
-          console.log(err);
+          console.log(result);
         });
+
       await transactionalEntityManager
         .save(Member, {
-          School_Name: School_Name,
+          Name: School_Name,
           Email: Email,
           F_Name: F_Name,
           L_Name: L_Name,
@@ -55,9 +52,6 @@ export default async (req: Request, res: Response) => {
         })
         .then((result) => {
           console.log(result);
-        })
-        .catch((err) => {
-          console.log(err);
         });
     })
     .catch((err) => {
