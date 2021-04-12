@@ -1,6 +1,6 @@
 export const HANDLE_TOKEN = "auth/HANDLE_TOKEN";
 export const HANDLE_LOGIN_MODAL = "auth/HANDLE_LOGIN_MODAL";
-export const HANDLE_AUTH = "auth/HANDLE_AUTH";
+// export const HANDLE_AUTH = "auth/HANDLE_AUTH";
 
 export const handleToken = (token) => ({
   type: HANDLE_TOKEN,
@@ -20,7 +20,7 @@ export const handleLoginModal = () => ({
 export const initialState = {
   token: null,
   isLoginModalOn: false,
-  isAuth: false,
+  // isAuth: false,
 };
 
 const reducer = (state = initialState, action) => {
