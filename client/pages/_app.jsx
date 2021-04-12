@@ -15,7 +15,7 @@ const MyApp = ({ Component, pageProps }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [authCode, handleAuthCode] = useState("a");
+  // const [authCode, handleAuthCode] = useState("a");
 
   const isAuth = useSelector((state) => state.auth.isAuth);
 
