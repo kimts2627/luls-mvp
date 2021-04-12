@@ -9,8 +9,8 @@ export default async (req: Request, res: Response) => {
   const userInfo = await getManager()
     .createQueryBuilder(Member, 'member')
     .innerJoinAndSelect('member.School_Name', 'School')
-    .innerJoinAndSelect('member.City', 'Location')
-    .where('user.email = :email', { Email: email })
+    .innerJoinAndSelect('member.Location', 'Location')
+    .where('member.Email = :Email', { Email: email })
     .getOne();
   // 유저 정보가 있을 시
   if (userInfo) {
@@ -18,7 +18,10 @@ export default async (req: Request, res: Response) => {
   }
   // 유저 정보가 없을 때
   else {
-    Member.insertInfo(userInfo);
-    res.status(200).send({ message: 'Login successfully' });
+    /**
+     * 추가 회원가입 정보 입력 페이지로 리다이렉트
+     * res.redirect(추가 입력 페이지) */
+    // Member.insertInfo(userInfo);
+    res.status(200).send({ message: 'Login Failed' });
   }
 };
