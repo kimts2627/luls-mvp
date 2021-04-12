@@ -43,7 +43,7 @@ const MyApp = ({ Component, pageProps }) => {
     if (data) {
       console.log("Sucess");
       //! redirect to main page & delete Authorization code
-      router.push("/");
+      // router.push("/");
       window.localStorage.clear();
       //! Set access token at localstorage
       window.localStorage.setItem("token", data.access_token);
