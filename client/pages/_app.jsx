@@ -21,9 +21,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   let authCode;
 
-  const handlingAuth = useCallback(() => {
-    dispatch(handleAuth(state));
-  }, []);
+  const handlingAuth = dispatch(handleAuth(state));
 
   const getToken = async () => {
     const query = {
