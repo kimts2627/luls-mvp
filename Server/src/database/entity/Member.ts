@@ -26,10 +26,10 @@ export default class Member extends BaseEntity {
   // Password: string;
 
   @Column()
-  First_Name: string;
+  F_Name: string;
 
   @Column()
-  Last_Name: string;
+  L_Name: string;
 
   // @Column()
   // Attendance: string;
@@ -50,7 +50,7 @@ export default class Member extends BaseEntity {
 
   @ManyToOne((type) => Location)
   @JoinColumn({ name: 'City' })
-  Location: Location;
+  City: Location;
 
   static async insertInfo(data: object): Promise<Member | undefined> {
     await this.createQueryBuilder()
