@@ -15,12 +15,10 @@ const Home = ({ data }) => {
     if (window.localStorage.getItem("token")) {
       //! login request to server
       axios
-        .get("https://likelionustest/users/login", {
+        .get("https://www.likelionustest.com/users/login", {
           withCredentials: true,
           header: {
-            Authorization: `Bearer ${JSON.parse(
-              window.localStorage.getItem("token")
-            )}`,
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
           },
         })
         .then(console.log)
