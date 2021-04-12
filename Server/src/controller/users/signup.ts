@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getManager, getConnection, getMongoManager } from 'typeorm';
-import { Member } from '../../database/entity';
+import { Member, Location } from '../../database/entity';
 
 export default async (req: Request, res: Response) => {
   const {
@@ -16,11 +16,11 @@ export default async (req: Request, res: Response) => {
     State,
     Birthday,
   } = req.body;
-  await getManager().transaction(
-    'SERIALIZABLE',
-    async (transactionalEntityManager) => {
-      await transactionalEntityManager.save(members);
-      await transactionalEntityManager.save(Location);
-    }
-  );
+  //   await getManager().transaction(
+  //     'SERIALIZABLE',
+  //     async (transactionalEntityManager) => {
+  //       await transactionalEntityManager.save(Member);
+  //       await transactionalEntityManager.save(Location);
+  //     }
+  //   );
 };
