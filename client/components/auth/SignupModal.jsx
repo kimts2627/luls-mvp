@@ -60,12 +60,9 @@ const SignupModal = () => {
         onClick={handlingSignupModal}
       />
       <section className="w-96 bg-white rounded-md flex flex-col justify-evenly items-center">
-        <h1 className="text-sm">
-          Access to <span className="text-yellow-600">@likelion.net</span>{" "}
-          acount
-        </h1>
+        <h1 className="text-sm">Need more informations...</h1>
         <div>
-          Personal
+          <h1 className="text-yellow-600">Personal</h1>
           <span>
             <p>Location</p>
             <input
@@ -97,7 +94,7 @@ const SignupModal = () => {
           </span>
         </div>
         <div>
-          University
+          <h1 className="text-yellow-600">University</h1>
           <input
             type="text"
             placeholder="University Name"
@@ -133,7 +130,7 @@ const SignupModal = () => {
             />
           </span>
         </div>
-        <p ref={errRef} className="text-red-500 text-10">
+        <p ref={errRef} className="text-red-500 text-sm">
           test
         </p>
         <button

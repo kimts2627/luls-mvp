@@ -85,7 +85,7 @@ const MyApp = ({ Component, pageProps }) => {
       authCode = `${router.asPath.slice(7, router.asPath.indexOf("&"))}`;
       getToken();
     }
-  });
+  }, []);
 
   useEffect(() => {
     //* login stablizer
