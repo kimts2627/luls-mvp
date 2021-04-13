@@ -20,18 +20,33 @@ export default class School extends BaseEntity {
   // @JoinColumn({ name: 'id' })
   // id: Member;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Name: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Degree: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Major: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Entrance_Year: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Graduation_Year: string;
 }

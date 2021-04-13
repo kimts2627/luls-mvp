@@ -11,13 +11,22 @@ import Member_BulletIn from './Member_BulletIn';
 
 @Entity()
 export default class BulletIn extends BaseEntity {
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Title: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Content: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Username: string;
 
   @Column()
