@@ -55,15 +55,14 @@ const SigninModal = () => {
     ].join(" "),
   });
 
-  const reqAuthorizationToGoogle = async () => {
+  const reqAuthorizationToGoogle = () => {
     const loginUrl = AUTHORIZE_URI + "?" + queryStr;
     router.push(loginUrl);
   };
 
   return (
     <div
-      className="absolute top-0 w-full h-full bg-black z-50 flex items-center justify-center blackback
-    "
+      className="absolute top-0 w-full h-full bg-black z-50 flex items-center justify-center blackback"
       ref={modalRef}
     >
       <img
