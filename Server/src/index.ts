@@ -5,7 +5,7 @@ import logger from 'morgan';
 import { createConnection } from 'typeorm';
 import 'dotenv/config';
 import redis from 'redis';
-import { redisCheck } from './middleware/redisCheck';
+import { redisCheck } from './utils/redisCheck';
 const usersRouter = require('./routes/user');
 
 createConnection()

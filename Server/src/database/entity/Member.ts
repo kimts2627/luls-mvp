@@ -17,17 +17,11 @@ export default class Member extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column({
-  //   type: 'int',
-  //   nullable: false,
-  // })
-  // School_id: number;
-
   @Column({
-    type: 'int',
+    type: 'varchar',
     nullable: false,
   })
-  Permission: number;
+  Permission: string;
 
   @Column({
     type: 'varchar',
@@ -53,16 +47,6 @@ export default class Member extends BaseEntity {
   })
   Birthday: string;
 
-  // @Column()
-  // Attendance: string;
-
-  @OneToOne((type) => School, {
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'School_id' })
-  School_id: School;
-
   @CreateDateColumn({
     name: 'created_at',
   })
@@ -73,9 +57,13 @@ export default class Member extends BaseEntity {
   })
   updatedAt: Date;
 
-  // @ManyToOne((type) => School)
-  // @JoinColumn({ name: 'School_Name' })
-  // School_Name: School;
+  @OneToOne((type) => School, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    nullable: false,
+  })
+  @JoinColumn({ name: 'School_id' })
+  School_id: School;
 
   @OneToOne((type) => Location, {
     nullable: false,

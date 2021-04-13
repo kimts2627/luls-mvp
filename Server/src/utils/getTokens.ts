@@ -1,7 +1,7 @@
 import axios from 'axios';
 import querystring from 'querystring';
 
-export async function getTokens({
+export const getTokens: Function = async ({
   code,
   clientId,
   clientSecret,
@@ -17,7 +17,7 @@ export async function getTokens({
   refresh_token: string;
   scope: string;
   id_token: string;
-}> {
+}> => {
   /*
    * Uses the code to get tokens
    * that can be used to fetch the user's profile
@@ -42,4 +42,4 @@ export async function getTokens({
     console.error(`Failed to fetch auth tokens`);
     throw new Error(error.message);
   }
-}
+};

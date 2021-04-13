@@ -8,15 +8,21 @@ import {
 
 @Entity()
 export default class Location extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({})
   id: number;
 
-  @Column()
+  @Column({
+    nullable: false,
+  })
   City: string;
 
-  @Column()
+  @Column({
+    nullable: false,
+  })
   Country: string;
 
-  @Column()
+  @Column({
+    nullable: false,
+  })
   State: string;
 }

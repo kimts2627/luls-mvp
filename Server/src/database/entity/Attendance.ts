@@ -15,13 +15,16 @@ export default class Attendance extends BaseEntity {
   @PrimaryColumn()
   id: number;
 
-  //   @Column()
-  //   Member_Id: number;
-
-  @Column()
+  @Column({
+    type: 'datetime',
+    nullable: true,
+  })
   att_date: Date;
 
-  @Column()
+  @Column({
+    type: 'int',
+    nullable: true,
+  })
   status: number;
 
   @OneToOne(() => Member)

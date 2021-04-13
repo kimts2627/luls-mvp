@@ -16,10 +16,10 @@ export default class Member_BulletIn extends BaseEntity {
   @Column()
   BulletIn_Id: number;
 
+  @Column()
+  Status: boolean;
+
   @ManyToOne((type) => Member)
   @JoinColumn({ name: 'Members_Id' })
   Member: Member;
-
-  @Column()
-  Status: boolean;
 }
