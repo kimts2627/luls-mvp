@@ -8,7 +8,7 @@ export default async (req: Request, res: Response) => {
   // email로 유저 정보 조회
   const userInfo = await getManager()
     .createQueryBuilder(Member, 'member')
-    .innerJoinAndSelect('member.School_Id', 'School')
+    .innerJoinAndSelect('member.School_id', 'School')
     .innerJoinAndSelect('member.City', 'Location')
     .where('member.Email = :Email', { Email: email })
     .getOne()
