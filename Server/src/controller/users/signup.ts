@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
 import { getManager, getConnection } from 'typeorm';
-import { Member, Location, School } from '../../database/entity';
+import { Member, Location, School, Attendance } from '../../database/entity';
 
 export default async (req: Request, res: Response) => {
   const {
     School_Name,
-    Email,
     Degree,
     Major,
     Entrance_Year,
@@ -17,17 +16,15 @@ export default async (req: Request, res: Response) => {
     State,
     Birthday,
   } = req.body;
+  const { email, permission } = res.locals;
   const connection = getConnection();
   const queryRunner = connection.createQueryRunner();
 
-  // establish real database connection using our new query runner
   await queryRunner.connect();
-
-  // now we can execute any queries on a query runner, for example:
-
-  // lets now open a new transaction:
   await queryRunner.startTransaction();
+
   try {
+    // Insert Location Table
     const location = await queryRunner.manager
       .save(Location, {
         City: City,
@@ -35,9 +32,10 @@ export default async (req: Request, res: Response) => {
         State: State,
       })
       .catch((err) => {
+        console.log(err);
         return err;
       });
-    console.log(location);
+    // Insert School Table
     const result = await queryRunner.manager
       .save(School, {
         Name: School_Name,
@@ -49,11 +47,12 @@ export default async (req: Request, res: Response) => {
       .catch((err) => {
         return err;
       });
-    console.log(result);
-    await queryRunner.manager
+    // Insert Member Table
+    const member = await queryRunner.manager
       .save(Member, {
         Name: School_Name,
-        Email: Email,
+        Permission: permission,
+        Email: email,
         F_Name: F_Name,
         L_Name: L_Name,
         City: location.id,
@@ -64,28 +63,38 @@ export default async (req: Request, res: Response) => {
         console.log(err);
         return err;
       });
+    // Insert Attendance Table
+    await queryRunner.manager
+      .save(Attendance, {
+        Member: member.id,
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
 
     await queryRunner.commitTransaction();
-  } catch {
+  } catch (err) {
     await queryRunner.rollbackTransaction();
     res.status(400).send('땡');
   } finally {
     await queryRunner.release();
-    res.send('Clear');
+    res.status(201).send('Signup Success');
   }
+
   // await getManager()
   //   .transaction('SERIALIZABLE', async (transactionalEntityManager) => {
-  //     await transactionalEntityManager
+  //     const location = await transactionalEntityManager
   //       .save(Location, {
   //         City: City,
   //         Country: Country,
   //         State: State,
   //       })
-  //       .then((result) => {
-  //         console.log(result);
+  //       .catch((err) => {
+  //         return err;
   //       });
 
-  //     await transactionalEntityManager
+  //     const result = await transactionalEntityManager
   //       .save(School, {
   //         Name: School_Name,
   //         Degree: Degree,
@@ -93,27 +102,24 @@ export default async (req: Request, res: Response) => {
   //         Entrance_Year: Entrance_Year,
   //         Graduation_Year: Graduation_Year,
   //       })
-  //       .then(async (result) => {
-  //         return await transactionalEntityManager.find(School, {
-  //           id: result.id,
-  //         });
-  //       })
-  //       .then(async (result) => {
-  //         console.log(result);
-  //         await transactionalEntityManager
-  //           .save(Member, {
-  //             Name: School_Name,
-  //             Email: Email,
-  //             F_Name: F_Name,
-  //             L_Name: L_Name,
-  //             City: City,
-  //             Birthday: Birthday,
-  //             School_id: result[0].id,
-  //           })
-  //           .then((result) => {
-  //             console.log(result);
-  //           });
+  //       .catch((err) => {
+  //         return err;
   //       });
+
+  //     await transactionalEntityManager
+  //       .save(Member, {
+  //         Name: School_Name,
+  //         Email: Email,
+  //         F_Name: F_Name,
+  //         L_Name: L_Name,
+  //         City: location.id,
+  //         Birthday: Birthday,
+  //         School_id: result.id,
+  //       })
+  //       .catch((err) => {
+  //         return err;
+  //       });
+  //     res.status(201).send('성공');
   //   })
   //   .catch((err) => {
   //     console.log(err);
