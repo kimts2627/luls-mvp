@@ -1,5 +1,5 @@
 import "../styles/globals.scss";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { createWrapper } from "next-redux-wrapper";
 import { createStore } from "redux";
 import reducer from "../reducers";
@@ -10,6 +10,8 @@ import qs from "qs";
 import cookieCutter from "cookie-cutter";
 import { useDispatch, useSelector } from "react-redux";
 import { handleSignupModal } from "../reducers/auth";
+import SigninModal from "../components/auth/SigninModal";
+import SignupModal from "../components/auth/SignupModal";
 
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -17,6 +19,7 @@ const MyApp = ({ Component, pageProps }) => {
   let authCode;
 
   const isSignupModalOn = useSelector((state) => state.auth.isSignupModalOn);
+  const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
 
   const handlingSignupModal = useCallback(() => {
     dispatch(handleSignupModal());
@@ -96,17 +99,22 @@ const MyApp = ({ Component, pageProps }) => {
     }
   });
 
+  useEffect(() => {
+    if (isLoginModalOn || isSignupModalOn) {
+      document.querySelector("body").style.overflow = "hidden";
+    } else if (!isLoginModalOn && !isSignupModalOn) {
+      document.querySelector("body").style.overflow = "auto";
+    }
+  }, [isLoginModalOn, isSignupModalOn]);
+
   return (
     <>
       <Component {...pageProps} />
+      {isLoginModalOn ? <SigninModal /> : null}
+      {isSignupModalOn ? <SignupModal /> : null}
     </>
   );
 };
-
-// const configureStore = (initialState, options) => {
-//   const store = createStore(reducer, initialState, composeWithDevTools());
-//   return store;
-// };
 
 const makeStore = (context) => createStore(reducer, composeWithDevTools());
 const wrapper = createWrapper(makeStore, { debug: true });

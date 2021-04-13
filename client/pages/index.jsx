@@ -49,9 +49,8 @@ const Home = ({ data }) => {
       <div className="w-full mt-40 flex items-center flex-col">
         <Main message={data.message} />
       </div>
-      {isLoginModalOn ? <SigninModal /> : null}
-      {isSignupModalOn ? <SignupModal /> : null}
-      {/* <SignupModal /> */}
+      {/* {isLoginModalOn ? <SigninModal /> : null}
+      {isSignupModalOn ? <SignupModal /> : null} */}
     </Layout>
   );
 };

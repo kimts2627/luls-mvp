@@ -7,7 +7,7 @@ import Nav from "./Nav";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  //* header의 크기를 결정하는 headerSize state, 해당 상태를 통해 실제 header와 부속들의 크기를 핸들링 함
+  //* header의 크기를 결정하는 headerSize state, 해당 상태를 통해 실제 header와 부속들의 크기를 핸들링 함수
   const [headerSize, handlingHeaderSize] = useState("normal");
 
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);

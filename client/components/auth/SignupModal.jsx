@@ -8,12 +8,7 @@ import { handleSignupModal, handleSignupInfo } from "../../reducers/auth";
 
 const SignupModal = () => {
   const router = useRouter();
-  const noScroll = () => {
-    window.scrollTo(0, 0);
-  };
-
   const errRef = useRef();
-
   const dispatch = useDispatch();
   const signUpInfo = useSelector((state) => state.auth.signUpInfo);
 
@@ -27,16 +22,13 @@ const SignupModal = () => {
 
   useEffect(() => {
     if (window) {
-      window.addEventListener("scroll", noScroll);
     }
-    return () => window.removeEventListener("scroll", noScroll);
   });
 
-  const handlesSignupInfo = (event) => {
-    console.log({ [event.target.getAttribute("name")]: event.target.value });
+  const handlesSignupInfo = (e) => {
     handlingSignupInfo({
       ...signUpInfo,
-      [event.target.getAttribute("name")]: event.target.value,
+      [e.target.getAttribute("name")]: e.target.value,
     });
   };
 
@@ -115,14 +107,14 @@ const SignupModal = () => {
                 placeholder="Major"
                 name="Major"
                 onChange={(e) => handlesSignupInfo(e)}
-                className="border-2 border-yellow-500 rounded-md w-36 mr-8 mb-4"
+                className="border-2 border-yellow-500 rounded-md w-36 px-1 mr-8 mb-4"
               />
               <input
                 type="text"
                 placeholder="Degree"
                 name="Degree"
                 onChange={(e) => handlesSignupInfo(e)}
-                className="border-2 border-yellow-500 rounded-md w-36 mb-4"
+                className="border-2 border-yellow-500 rounded-md px-1 w-36 mb-4"
               />
             </div>
           </div>
@@ -147,7 +139,7 @@ const SignupModal = () => {
             </span>
           </div>
         </div>
-        <p ref={errRef} className="text-red-500 text-sm mb-4 h-8"></p>
+        <p ref={errRef} className="text-red-500 text-sm mb-4 mt-2 h-8"></p>
         <button
           className="relative bg-yellow-500 text-white w-1/2 h-12 rounded-md outline-none mb-8"
           onClick={sendSignupRequest}

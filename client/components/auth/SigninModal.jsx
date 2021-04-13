@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { handleLoginModal } from "../../reducers/auth";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -7,11 +7,8 @@ import qs from "qs";
 
 const SigninModal = () => {
   const router = useRouter();
-  const noScroll = () => {
-    window.scrollTo(0, 0);
-  };
-
   const dispatch = useDispatch();
+  const modalRef = useRef();
 
   const handlingLoginModal = useCallback(() => {
     dispatch(handleLoginModal());
@@ -19,10 +16,9 @@ const SigninModal = () => {
 
   useEffect(() => {
     if (window) {
-      window.addEventListener("scroll", noScroll);
+      modalRef.current.style.top = `${window.pageYOffset}px`;
     }
-    return () => window.removeEventListener("scroll", noScroll);
-  });
+  }, []);
 
   /*
     클라이언트 아이디는 지금처럼 하고
@@ -50,7 +46,7 @@ const SigninModal = () => {
   const queryStr = qs.stringify({
     client_id: GOOGLE_CLIENT_ID,
     access_type: "offline",
-    redirect_uri: "https://likelionusa.com",
+    redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
     response_type: "code",
     scope: "profile",
     prompt: "consent",
@@ -62,7 +58,11 @@ const SigninModal = () => {
   };
 
   return (
-    <div className="absolute top-0 w-full h-full bg-black z-50 flex items-center justify-center blackback">
+    <div
+      className="absolute top-0 w-full h-full bg-black z-50 flex items-center justify-center blackback
+    "
+      ref={modalRef}
+    >
       <img
         src="/img/x.png"
         alt="back"
