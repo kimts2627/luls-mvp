@@ -17,20 +17,41 @@ export default class Member extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  // @Column({
+  //   type: 'int',
+  //   nullable: false,
+  // })
+  // School_id: number;
+
+  @Column({
+    type: 'int',
+    nullable: false,
+  })
   Permission: number;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   Email: string;
 
-  // @Column()
-  // Password: string;
-
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   F_Name: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
   L_Name: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
+  Birthday: string;
 
   // @Column()
   // Attendance: string;
@@ -56,7 +77,9 @@ export default class Member extends BaseEntity {
   // @JoinColumn({ name: 'School_Name' })
   // School_Name: School;
 
-  @ManyToOne((type) => Location)
+  @OneToOne((type) => Location, {
+    nullable: false,
+  })
   @JoinColumn({ name: 'City' })
   City: Location;
 
