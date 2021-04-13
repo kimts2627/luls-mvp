@@ -46,7 +46,7 @@ const SigninModal = () => {
   const queryStr = qs.stringify({
     client_id: GOOGLE_CLIENT_ID,
     access_type: "offline",
-    redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
+    redirect_uri: "https://likelionusa.com",
     response_type: "code",
     scope: "profile",
     prompt: "consent",

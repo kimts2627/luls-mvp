@@ -90,14 +90,14 @@ const MyApp = ({ Component, pageProps }) => {
     }
   }, []);
 
-  useEffect(() => {
-    //* login stablizer
-    if (window.localStorage.getItem("token")) {
-      console.log("token 있다");
-      //! Set isAuth state to true
-      // handlingAuth();
-    }
-  });
+  // useEffect(() => {
+  //   //* login stablizer
+  //   if (window.localStorage.getItem("token")) {
+  //     console.log("token 있다");
+  //     //! Set isAuth state to true
+  //     // handlingAuth();
+  //   }
+  // });
 
   useEffect(() => {
     if (isLoginModalOn || isSignupModalOn) {
