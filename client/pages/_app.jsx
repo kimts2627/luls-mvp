@@ -103,7 +103,7 @@ const MyApp = ({ Component, pageProps }) => {
         handlingLogin();
         handlingUserInfo(res.data);
         handleAlert();
-        console.log(`login complete, welcome ${userInfo.L_Name}`);
+        // console.log(`login complete, welcome ${userInfo.L_Name}`);
       })
       .catch((err) => {
         if (!isSignupModalOn) {
