@@ -40,7 +40,26 @@ const SignupModal = () => {
       }
     }
     console.log(signUpInfo);
-    // axios.
+    let token = window.localStorage.getItem("token");
+    axios
+      .post("https://likelionustest.com/users/signup", signUpInfo, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(data);
+        handlingSignupModal();
+        return axios.get("https://likelionustest.com/users/login", {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      })
+      .then(console.log);
   };
 
   return (

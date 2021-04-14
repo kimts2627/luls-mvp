@@ -73,6 +73,12 @@ const MyApp = ({ Component, pageProps }) => {
               //! Open Signup Modal !!!
               if (err.response.data.message === "Login Failed") {
                 handlingSignupModal();
+              } else if (err.response.data === "저희 유저가 아닙니다.") {
+                window.localStorage.clear();
+                // Needs to remove refresh token cookie
+                return alert(
+                  'Please login to "@likelion.net" or "@google.com"'
+                );
               }
             }
           });
