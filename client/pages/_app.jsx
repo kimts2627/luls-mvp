@@ -27,7 +27,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   const getToken = async () => {
     const query = {
-      code: authCode,
+      code: decodeURIComponent(authCode),
       client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
       client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
       redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
