@@ -1,16 +1,19 @@
 import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 
-const AuthModal = (status) => {
+const AuthModal = () => {
   const barRef = useRef();
 
+  const authAlert = useSelector((state) => state.auth.authAlert);
+
   useEffect(() => {
-    if (status === null) {
+    if (authAlert === null) {
       barRef.current.style.top = "-4rem";
     }
-    if (status === "login" || status === "logout") {
+    if (authAlert === "login" || authAlert === "logout") {
       barRef.current.style.top = "1.5rem";
     }
-  }, [status]);
+  }, [authAlert]);
 
   const exitAlert = () => {
     barRef.current.style.top = "-4rem";
@@ -39,7 +42,7 @@ const AuthModal = (status) => {
         </div>
         <div class="ml-3">
           <p class="text-sm font-medium text-green-800">
-            {status === "login"
+            {authAlert === "login"
               ? "Successfully logged in"
               : "Successfully logged out"}
           </p>
