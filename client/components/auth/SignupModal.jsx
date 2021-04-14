@@ -44,6 +44,13 @@ const SignupModal = () => {
     dispatch(setAlert(status));
   }, []);
 
+  const handleAlert = () => {
+    settingAlert("login");
+    setTimeout(() => {
+      settingAlert(null);
+    }, 4000);
+  };
+
   const sendSignupRequest = () => {
     for (let i in signUpInfo) {
       if (!signUpInfo[i]) {
@@ -74,10 +81,7 @@ const SignupModal = () => {
       .then((res) => {
         handlingLogin();
         handlingUserInfo(res.data);
-        settingAlert("login");
-        setTimeout(() => {
-          settingAlert(null), 4000;
-        });
+        handleAlert();
         console.log(`login complete, welcome ${res.data.L_Name}`);
       })
       .catch((err) => {

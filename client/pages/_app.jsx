@@ -81,6 +81,13 @@ const MyApp = ({ Component, pageProps }) => {
     }
   };
 
+  const handleAlert = () => {
+    settingAlert("logout");
+    setTimeout(() => {
+      settingAlert(null);
+    }, 4000);
+  };
+
   const loginReqToServer = () => {
     let token = window.localStorage.getItem("token");
     axios
@@ -93,10 +100,7 @@ const MyApp = ({ Component, pageProps }) => {
       .then((res) => {
         handlingLogin();
         handlingUserInfo(res.data);
-        settingAlert("login");
-        setTimeout(() => {
-          settingAlert(null), 4000;
-        });
+        handleAlert();
         console.log(`login complete, welcome ${res.data.L_Name}`);
       })
       .catch((err) => {

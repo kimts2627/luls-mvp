@@ -33,15 +33,19 @@ const Header = ({ headerSize }) => {
     dispatch(setAlert(status));
   });
 
+  const handleAlert = () => {
+    settingAlert("logout");
+    setTimeout(() => {
+      settingAlert(null);
+    }, 4000);
+  };
+
   const signOut = () => {
     handlingLogout();
     handlingUserInfo(null);
     window.localStorage.clear();
     //! 쿠키 삭제 요망
-    settingAlert("logout");
-    setTimeout(() => {
-      settingAlert(null), 4000;
-    });
+    handleAlert();
   };
 
   return (
