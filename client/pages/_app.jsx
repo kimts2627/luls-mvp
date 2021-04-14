@@ -13,6 +13,7 @@ import {
   handleSignupModal,
   handleLogin,
   handleUserInfo,
+  setAlert,
 } from "../reducers/auth";
 import SigninModal from "../components/auth/SigninModal";
 import SignupModal from "../components/auth/SignupModal";

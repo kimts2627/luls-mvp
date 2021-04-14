@@ -7,15 +7,15 @@ const Nav = ({ headerSize }) => {
 
   return (
     <nav
-      className={`fixed top-0 bg-gray-100 h-12 w-full ${
+      className={`fixed top-0 h-12 w-full ${
         router.pathname !== "/"
           ? "mt-0"
           : headerSize === "normal"
           ? "mt-28"
           : "mt-0"
-      } transition-all z-10 flex justify-center`}
+      } transition-all z-20 flex justify-center bg-gray-100 shadow-inner`}
     >
-      <div className="w-full h-full bg-gray-100 max-w-screen-2xl flex pl-6 items-center">
+      <div className="w-full h-full max-w-screen-2xl flex pl-6 items-center">
         <ul className="flex justify-start w-full">
           <li
             className="cursor-pointer text-grey-800 mr-6"
