@@ -10,7 +10,7 @@ export const getGoogleAuthURL: Function = () => {
     client_id: GOOGLE_CLIENT_ID,
     access_type: 'offline',
     response_type: 'code',
-    prompt: 'none',
+    prompt: 'consent',
     scope: [
       'https://www.googleapis.com/auth/userinfo.profile',
       'https://www.googleapis.com/auth/userinfo.email',
