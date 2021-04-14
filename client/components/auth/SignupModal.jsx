@@ -45,13 +45,13 @@ const SignupModal = () => {
 
   return (
     <div className="absolute top-0 w-full h-full bg-black z-50 flex items-center justify-center blackback">
-      <img
-        src="/img/x.png"
-        alt="back"
-        className="w-10 absolute top-64 cursor-pointer"
-        onClick={handlingSignupModal}
-      />
-      <section className="w-96 bg-white rounded-md flex flex-col justify-evenly items-center">
+      <section className="relative w-96 bg-white rounded-md flex flex-col justify-evenly items-center">
+        <img
+          src="/img/x.png"
+          alt="back"
+          className="w-10 absolute mt-40 cursor-pointer"
+          onClick={handlingSignupModal}
+        />
         <h1 className="text-lg my-10">Need more informations</h1>
         <div className="w-full px-8">
           <h1 className="text-yellow-600 text-lg mb-4">Personal</h1>
