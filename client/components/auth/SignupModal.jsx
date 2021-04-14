@@ -42,7 +42,7 @@ const SignupModal = () => {
     console.log(signUpInfo);
     let token = window.localStorage.getItem("token");
     axios
-      .post("https://likelionustest.com/users/signup", signUpInfo, {
+      .post("https://www.likelionustest.com/users/signup", signUpInfo, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ const SignupModal = () => {
       .then((data) => {
         console.log(data);
         handlingSignupModal();
-        return axios.get("https://likelionustest.com/users/login", {
+        return axios.get("https://www.likelionustest.com/users/login", {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
