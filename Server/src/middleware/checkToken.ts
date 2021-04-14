@@ -15,6 +15,8 @@ export default async (
     await getTokenUserInfo(token)
       .then((result) => {
         res.locals.email = result.email;
+        res.locals.F_Name = result.family_name;
+        res.locals.L_Name = result.given_name;
         next();
       })
       .catch((err) => {
