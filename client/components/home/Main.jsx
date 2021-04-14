@@ -7,10 +7,10 @@ import MainJoinStudent from "./MainJoinStudent";
 import MainOverview from "./MainOverview";
 import MainSchools from "./MainSchools";
 
-const Main = ({ message }) => {
+const Main = () => {
   return (
     <main className="w-full max-w-screen-2xl">
-      <MainIntro message={message} />
+      <MainIntro />
       <MainOverview />
       <MainSchools />
       <MainHallOfFame />
