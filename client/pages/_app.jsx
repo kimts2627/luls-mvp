@@ -38,6 +38,10 @@ const MyApp = ({ Component, pageProps }) => {
     dispatch(handleUserInfo(userInfo));
   }, []);
 
+  const settingAlert = useCallback((status) => {
+    dispatch(setAlert(status));
+  }, []);
+
   const getToken = async () => {
     const query = {
       code: decodeURIComponent(authCode),
@@ -88,6 +92,10 @@ const MyApp = ({ Component, pageProps }) => {
       .then((res) => {
         handlingLogin();
         handlingUserInfo(res.data);
+        settingAlert("login");
+        setTimeout(() => {
+          settingAlert(null), 4000;
+        });
         console.log(`login complete, welcome ${res.data.L_Name}`);
       })
       .catch((err) => {

@@ -8,6 +8,7 @@ import {
   handleSignupInfo,
   handleLogin,
   handleUserInfo,
+  setAlert,
 } from "../../reducers/auth";
 
 const SignupModal = () => {
@@ -37,6 +38,10 @@ const SignupModal = () => {
 
   const handlingUserInfo = useCallback((userInfo) => {
     dispatch(handleUserInfo(userInfo));
+  }, []);
+
+  const settingAlert = useCallback((status) => {
+    dispatch(setAlert(status));
   }, []);
 
   const sendSignupRequest = () => {
@@ -69,6 +74,10 @@ const SignupModal = () => {
       .then((res) => {
         handlingLogin();
         handlingUserInfo(res.data);
+        settingAlert("login");
+        setTimeout(() => {
+          settingAlert(null), 4000;
+        });
         console.log(`login complete, welcome ${res.data.L_Name}`);
       })
       .catch((err) => {

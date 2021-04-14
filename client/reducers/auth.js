@@ -4,6 +4,7 @@ export const HANDLE_LOGOUT = "auth/HANDLE_LOGOUT";
 export const HANDLE_SIGNUP_MODAL = "auth/HANDLE_SIGNUP_MODAL";
 export const HANDLE_SIGNUP_INFO = "auth/HANDLE_SIGNUP_INFO";
 export const HANDLE_USERINFO = "auth/HANDLE_USERINFO";
+export const SET_ALERT = "auth/SET_ALERT";
 
 export const handleLoginModal = () => ({
   type: HANDLE_LOGIN_MODAL,
@@ -35,10 +36,18 @@ export const handleUserInfo = (userInfo) => ({
   },
 });
 
+export const setAlert = (status) => ({
+  type: SET_ALERT,
+  payload: {
+    status,
+  },
+});
+
 export const initialState = {
   isLoginModalOn: false,
   isSignupModalOn: false,
   isAuth: false,
+  authAlert: null,
   signUpInfo: {
     School_Name: "",
     Major: "",
@@ -71,6 +80,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { signUpInfo: action.payload.info });
     case HANDLE_USERINFO:
       return Object.assign({}, state, { userInfo: action.payload.userInfo });
+    case SET_ALERT:
+      return Object.assign({}, state, { authAlert: action.payload.status });
     default:
       return state;
   }

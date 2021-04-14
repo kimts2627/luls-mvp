@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,13 +6,16 @@ import {
   handleLoginModal,
   handleLogout,
   handleUserInfo,
+  setAlert,
 } from "../../reducers/auth";
+import AuthModal from "../auth/AuthModal";
 
 const Header = ({ headerSize }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
   const isAuth = useSelector((state) => state.auth.isAuth);
+  const authAlert = useSelector((state) => state.auth.authAlert);
 
   const handlingLoginModal = useCallback(() => {
     dispatch(handleLoginModal());
@@ -26,17 +29,21 @@ const Header = ({ headerSize }) => {
     dispatch(handleUserInfo(userInfo));
   });
 
+  const settingAlert = useCallback((status) => {
+    dispatch(setAlert(status));
+  });
+
   const signOut = () => {
     handlingLogout();
     handlingUserInfo(null);
     window.localStorage.clear();
     //! 쿠키 삭제 요망
-    return alert("Logout Success!");
+    settingAlert("logout");
+    setTimeout(() => {
+      settingAlert(null), 4000;
+    });
   };
 
-  useEffect(() => {
-    console.log(headerSize);
-  }, [headerSize]);
   return (
     <header
       className={`fixed top-0 w-full ${
@@ -47,6 +54,7 @@ const Header = ({ headerSize }) => {
           : "h-20"
       } bg-white transition-all z-40 flex justify-center shadow-md`}
     >
+      <AuthModal status={authAlert} />
       <div className="w-full max-w-screen-2xl h-full">
         <div
           className={`${
