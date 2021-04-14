@@ -18,7 +18,7 @@ const Terminal = () => {
       </div>
       <div className="absolute left-3 top-9 flex items-center justify-">
         <h1 className="D2coding text-xl text-white ml-3 overflow-hidden">
-          {userInfo !== null ? userInfo.L_Name : "Hack your Life!"}
+          {userInfo !== null ? `Hello, ${userInfo.L_Name}!` : "Hack your Life!"}
         </h1>
         <span className="w-2 h-5 border animate-blink"></span>
       </div>

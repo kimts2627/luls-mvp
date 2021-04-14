@@ -2,7 +2,11 @@ import React, { useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLoginModal, handleLogout } from "../../reducers/auth";
+import {
+  handleLoginModal,
+  handleLogout,
+  handleUserInfo,
+} from "../../reducers/auth";
 
 const Header = ({ headerSize }) => {
   const dispatch = useDispatch();
@@ -17,6 +21,18 @@ const Header = ({ headerSize }) => {
   const handlingLogout = useCallback(() => {
     dispatch(handleLogout());
   });
+
+  const handlingUserInfo = useCallback((userInfo) => {
+    dispatch(handleUserInfo(userInfo));
+  });
+
+  const signOut = () => {
+    handlingLogout();
+    handlingUserInfo(null);
+    window.localStorage.clear();
+    //! 쿠키 삭제 요망
+    return alert("Logout Success!");
+  };
 
   useEffect(() => {
     console.log(headerSize);
@@ -47,11 +63,8 @@ const Header = ({ headerSize }) => {
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>
             {isAuth ? (
-              <a
-                className="cursor-pointer text-yellow-600"
-                onClick={handlingLogout}
-              >
-                SignOut
+              <a className="cursor-pointer text-yellow-600" onClick={signOut}>
+                Signout
               </a>
             ) : (
               <a
