@@ -3,8 +3,12 @@ import { handleLoginModal } from "../../reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useRouter } from "next/router";
-import qs from "qs";
-import { handleSignupModal, handleSignupInfo } from "../../reducers/auth";
+import {
+  handleSignupModal,
+  handleSignupInfo,
+  handleLogin,
+  handleUserInfo,
+} from "../../reducers/auth";
 
 const SignupModal = () => {
   const router = useRouter();
@@ -20,11 +24,6 @@ const SignupModal = () => {
     dispatch(handleSignupInfo(info));
   }, []);
 
-  useEffect(() => {
-    if (window) {
-    }
-  });
-
   const handlesSignupInfo = (e) => {
     handlingSignupInfo({
       ...signUpInfo,
@@ -32,11 +31,19 @@ const SignupModal = () => {
     });
   };
 
+  const handlingLogin = useCallback(() => {
+    dispatch(handleLogin());
+  }, []);
+
+  const handlingUserInfo = useCallback((userInfo) => {
+    dispatch(handleUserInfo(userInfo));
+  }, []);
+
   const sendSignupRequest = () => {
     for (let i in signUpInfo) {
       if (!signUpInfo[i]) {
-        errRef.current.textContent = "모든 항목을 작성 해 주세요!";
-        throw new Error("모든항목 작성 요망");
+        errRef.current.textContent = "Please fill out all items!";
+        throw new Error("Please fill out all items");
       }
     }
     console.log(signUpInfo);
@@ -59,7 +66,14 @@ const SignupModal = () => {
           },
         });
       })
-      .then(console.log);
+      .then((res) => {
+        handlingLogin();
+        handlingUserInfo(res.data);
+        console.log(`login complete, welcome ${res.data.L_Name}`);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 
   return (

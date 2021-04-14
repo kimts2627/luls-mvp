@@ -1,15 +1,21 @@
 import React, { useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { handleLoginModal } from "../../reducers/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLoginModal, handleLogout } from "../../reducers/auth";
 
 const Header = ({ headerSize }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const isAuth = useSelector((state) => state.auth.isAuth);
+
   const handlingLoginModal = useCallback(() => {
     dispatch(handleLoginModal());
+  });
+
+  const handlingLogout = useCallback(() => {
+    dispatch(handleLogout());
   });
 
   useEffect(() => {
@@ -40,12 +46,21 @@ const Header = ({ headerSize }) => {
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>
-            <a
-              className="cursor-pointer text-yellow-600"
-              onClick={handlingLoginModal}
-            >
-              SignIn
-            </a>
+            {isAuth ? (
+              <a
+                className="cursor-pointer text-yellow-600"
+                onClick={handlingLogout}
+              >
+                SignOut
+              </a>
+            ) : (
+              <a
+                className="cursor-pointer text-yellow-600"
+                onClick={handlingLoginModal}
+              >
+                SignIn
+              </a>
+            )}
           </ul>
         </div>
         <div

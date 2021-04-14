@@ -9,7 +9,11 @@ import axios from "axios";
 import qs from "qs";
 import cookieCutter from "cookie-cutter";
 import { useDispatch, useSelector } from "react-redux";
-import { handleSignupModal } from "../reducers/auth";
+import {
+  handleSignupModal,
+  handleLogin,
+  handleUserInfo,
+} from "../reducers/auth";
 import SigninModal from "../components/auth/SigninModal";
 import SignupModal from "../components/auth/SignupModal";
 
@@ -23,6 +27,14 @@ const MyApp = ({ Component, pageProps }) => {
 
   const handlingSignupModal = useCallback(() => {
     dispatch(handleSignupModal());
+  }, []);
+
+  const handlingLogin = useCallback(() => {
+    dispatch(handleLogin());
+  }, []);
+
+  const handlingUserInfo = useCallback((userInfo) => {
+    dispatch(handleUserInfo(userInfo));
   }, []);
 
   const getToken = async () => {
@@ -63,9 +75,10 @@ const MyApp = ({ Component, pageProps }) => {
               Authorization: `Bearer ${token}`,
             },
           })
-          .then((data) => {
-            //! Get userinfo data!!!
-            console.log(data);
+          .then((res) => {
+            handlingLogin();
+            handlingUserInfo(res.data);
+            console.log(`login complete, welcome ${res.data.L_Name}`);
           })
           .catch((err) => {
             if (!isSignupModalOn) {
