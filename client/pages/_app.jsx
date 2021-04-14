@@ -25,6 +25,7 @@ const MyApp = ({ Component, pageProps }) => {
   const isSignupModalOn = useSelector((state) => state.auth.isSignupModalOn);
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
   const isAuth = useSelector((state) => state.auth.isAuth);
+  const userInfo = useSelector((state) => state.auth.userInfo);
 
   const handlingSignupModal = useCallback(() => {
     dispatch(handleSignupModal());
@@ -82,7 +83,7 @@ const MyApp = ({ Component, pageProps }) => {
   };
 
   const handleAlert = () => {
-    settingAlert("logout");
+    settingAlert("login");
     setTimeout(() => {
       settingAlert(null);
     }, 4000);
@@ -101,11 +102,11 @@ const MyApp = ({ Component, pageProps }) => {
         handlingLogin();
         handlingUserInfo(res.data);
         handleAlert();
-        console.log(`login complete, welcome ${res.data.L_Name}`);
+        console.log(`login complete, welcome ${userInfo.L_Name}`);
       })
       .catch((err) => {
         if (!isSignupModalOn) {
-          console.log(err.response);
+          console.log(err);
           //! Open Signup Modal !!!
           if (err.response.data.message === "Login Failed") {
             handlingSignupModal();
