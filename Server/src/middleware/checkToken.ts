@@ -18,9 +18,11 @@ export default async (
         next();
       })
       .catch((err) => {
-        res.status(400).send('invaild access token');
+        res.status(400).send('getTokenUserInfo / invaild access token');
       });
   } else {
-    res.status(400).send({ data: null, message: 'invalid access token' });
+    res
+      .status(400)
+      .send({ data: null, message: 'checkToken / invalid access token' });
   }
 };

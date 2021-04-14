@@ -5,14 +5,14 @@ export default async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const email = res.locals.email.split('@');
-  if (email[1] === 'likelion.org') {
+  const email = res.locals.email.split('@')[1];
+  if (email === 'likelion.org') {
     res.locals.permission = 'admin';
     next();
-  } else if (email[1] === 'likelion.net') {
+  } else if (email === 'likelion.net') {
     res.locals.permission = 'student';
     next();
-  } else if (email[1] === 'gmail.com') {
+  } else if (email === 'gmail.com') {
     res.locals.permission = 'common';
     next();
   } else {
