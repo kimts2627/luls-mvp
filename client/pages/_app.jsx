@@ -82,6 +82,7 @@ const MyApp = ({ Component, pageProps }) => {
   };
 
   const loginReqToServer = () => {
+    let token = window.localStorage.getItem("token");
     axios
       .get("https://www.likelionustest.com/users/login", {
         withCredentials: true,
