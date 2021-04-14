@@ -24,6 +24,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   const isSignupModalOn = useSelector((state) => state.auth.isSignupModalOn);
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
   const handlingSignupModal = useCallback(() => {
     dispatch(handleSignupModal());
@@ -68,38 +69,40 @@ const MyApp = ({ Component, pageProps }) => {
       if (window.localStorage.getItem("token")) {
         const token = window.localStorage.getItem("token");
         console.log(token);
-        axios
-          .get("https://www.likelionustest.com/users/login", {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((res) => {
-            handlingLogin();
-            handlingUserInfo(res.data);
-            console.log(`login complete, welcome ${res.data.L_Name}`);
-          })
-          .catch((err) => {
-            if (!isSignupModalOn) {
-              console.log(err.response);
-              //! Open Signup Modal !!!
-              if (err.response.data.message === "Login Failed") {
-                handlingSignupModal();
-              } else if (err.response.data === "저희 유저가 아닙니다.") {
-                window.localStorage.clear();
-                // Needs to remove refresh token cookie
-                return alert(
-                  'Please login to "@likelion.net" or "@google.com"'
-                );
-              }
-            }
-          });
+        loginReqToServer();
       }
       return;
     } else {
       throw new Error("login failed");
     }
+  };
+
+  const loginReqToServer = () => {
+    axios
+      .get("https://www.likelionustest.com/users/login", {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        handlingLogin();
+        handlingUserInfo(res.data);
+        console.log(`login complete, welcome ${res.data.L_Name}`);
+      })
+      .catch((err) => {
+        if (!isSignupModalOn) {
+          console.log(err.response);
+          //! Open Signup Modal !!!
+          if (err.response.data.message === "Login Failed") {
+            handlingSignupModal();
+          } else if (err.response.data === "저희 유저가 아닙니다.") {
+            window.localStorage.clear();
+            // Needs to remove refresh token cookie
+            return alert('Please login to "@likelion.net" or "@google.com"');
+          }
+        }
+      });
   };
 
   useEffect(() => {
@@ -109,14 +112,13 @@ const MyApp = ({ Component, pageProps }) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   //* login stablizer
-  //   if (window.localStorage.getItem("token")) {
-  //     console.log("token 있다");
-  //     //! Set isAuth state to true
-  //     // handlingAuth();
-  //   }
-  // });
+  //! Login stablizer
+  useEffect(() => {
+    if (window.localStorage.getItem("token") && !isAuth) {
+      loginReqToServer();
+      console.log("login stablized");
+    }
+  });
 
   useEffect(() => {
     if (isLoginModalOn || isSignupModalOn) {
