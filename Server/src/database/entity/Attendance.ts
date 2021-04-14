@@ -28,6 +28,6 @@ export default class Attendance extends BaseEntity {
   status: number;
 
   @OneToOne(() => Member)
-  @JoinColumn({ name: 'Member_Id' })
+  @JoinColumn({ name: 'member_id' })
   Member: Member;
 }

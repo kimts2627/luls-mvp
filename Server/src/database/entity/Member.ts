@@ -20,30 +20,35 @@ export default class Member extends BaseEntity {
   @Column({
     type: 'varchar',
     nullable: false,
+    length: 10,
   })
   Permission: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
+    length: 30,
   })
   Email: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
+    length: 10,
   })
   F_Name: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
+    length: 20,
   })
   L_Name: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
+    length: 10,
   })
   Birthday: string;
 

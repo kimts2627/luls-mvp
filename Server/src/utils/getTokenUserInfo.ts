@@ -12,7 +12,7 @@ export const getTokenUserInfo: Function = (access_token: any) => {
     )
     .then((res) => res.data)
     .catch((error) => {
-      console.error(`Failed to fetch user`);
+      console.error(`googleapis / Failed to fetch user`);
       throw new Error(error.message);
     });
 };
