@@ -53,6 +53,7 @@ const SigninModal = () => {
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/userinfo.email",
     ].join(" "),
+    hd: ["likelion.com", "google.com"].join(" "),
   });
 
   const reqAuthorizationToGoogle = () => {
