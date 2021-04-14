@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const Terminal = () => {
-  const userinfo = useSelector((state) => state.auth.userinfo);
+  const userInfo = useSelector((state) => state.auth.userInfo);
   return (
     <span className="absolute left-36 top-36 bg-black z-10 shadow-xl rounded-xl w-120 h-72 flex items-center flex-col animate-none">
       <div className="w-full h-6 bg-gray-800 rounded-t-xl flex items-center">
@@ -18,7 +18,7 @@ const Terminal = () => {
       </div>
       <div className="absolute left-3 top-9 flex items-center justify-">
         <h1 className="D2coding text-xl text-white ml-3 overflow-hidden">
-          {userinfo.L_Name ? userinfo.L_Name : "Hack your Life!"}
+          {userInfo !== null ? userInfo.L_Name : "Hack your Life!"}
         </h1>
         <span className="w-2 h-5 border animate-blink"></span>
       </div>
