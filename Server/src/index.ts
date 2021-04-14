@@ -7,6 +7,7 @@ import 'dotenv/config';
 import redis from 'redis';
 import { redisCheck } from './utils/redisCheck';
 const usersRouter = require('./routes/user');
+const bulletinRouter = require('./routes/bulletin');
 
 createConnection()
   .then(() => console.log('typeorm connection complete'))
@@ -53,6 +54,7 @@ app.get('/test', (req, res) => {
 });
 
 app.use('/users', usersRouter);
+app.use('/bulletin', bulletinRouter);
 // app.get('/redis', (req, res) => {
 //   let client = redis.createClient();
 //   client.on('error', function (err) {

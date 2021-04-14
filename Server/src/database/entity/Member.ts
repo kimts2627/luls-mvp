@@ -8,14 +8,24 @@ import {
   ManyToOne,
   JoinColumn,
   OneToOne,
+  OneToMany,
 } from 'typeorm';
 import School from './School';
 import Location from './Location';
+import Member_BulletIn from './Member_BulletIn';
+import BulletIn from './BulletIn';
 
 @Entity()
 export default class Member extends BaseEntity {
+  // @PrimaryGeneratedColumn()
+  // id: number;
+  @OneToMany(
+    () => Member_BulletIn,
+    (member_bulletin) => member_bulletin.Members_Id
+  )
+  @JoinColumn({ name: 'id' })
   @PrimaryGeneratedColumn()
-  id: number;
+  id: Member;
 
   @Column({
     type: 'varchar',
@@ -86,16 +96,16 @@ export default class Member extends BaseEntity {
     return;
   }
 
-  static async changeInfo(
-    id: number,
-    data: object
-  ): Promise<Member | undefined> {
-    await this.createQueryBuilder()
-      .update(Member)
-      .set(data)
-      .where('id = :id', { id })
-      .execute();
+  // static async changeInfo(
+  //   id: number,
+  //   data: object
+  // ): Promise<Member | undefined> {
+  //   await this.createQueryBuilder()
+  //     .update(Member)
+  //     .set(data)
+  //     .where('id = :id', { id })
+  //     .execute();
 
-    return this.findOne({ id });
-  }
+  //   return this.findOne({ id });
+  // }
 }

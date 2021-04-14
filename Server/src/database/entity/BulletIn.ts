@@ -6,11 +6,24 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
 import Member_BulletIn from './Member_BulletIn';
 
 @Entity()
 export default class BulletIn extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({
+    type: 'varchar',
+    nullable: false,
+    length: 10,
+  })
+  category: string;
+
   @Column({
     type: 'varchar',
     nullable: false,
@@ -39,9 +52,9 @@ export default class BulletIn extends BaseEntity {
   })
   updatedAt: Date;
 
-  @ManyToOne((type) => Member_BulletIn, {
-    primary: true,
-  })
-  @JoinColumn({ name: 'id' })
-  id: Member_BulletIn;
+  // @OneToOne((type) => Member_BulletIn, {
+  //   primary: true,
+  // })
+  // @JoinColumn({ name: 'id' })
+  // id: Member_BulletIn;
 }

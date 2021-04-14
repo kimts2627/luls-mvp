@@ -7,12 +7,13 @@ import {
   PrimaryColumn,
   OneToOne,
   JoinColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import Member from './Member';
 
 @Entity()
 export default class Attendance extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
