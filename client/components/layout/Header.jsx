@@ -74,7 +74,7 @@ const Header = ({ headerSize }) => {
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>
-            {isAuth ? (
+            {window.localStorage.getItem("token") ? (
               <a className="cursor-pointer text-yellow-600" onClick={signOut}>
                 Signout
               </a>
