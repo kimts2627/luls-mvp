@@ -21,7 +21,7 @@ const AuthModal = () => {
 
   return (
     <div
-      class="absolute w-1/3 rounded-md -top-14 bg-green-100 p-4 z-50 transition-all"
+      class="absolute w-1/3 rounded-md -top-14 bg-green-100 p-4 z-50 transition-all duration-500"
       ref={barRef}
     >
       <div class="flex">
@@ -44,7 +44,9 @@ const AuthModal = () => {
           <p class="text-sm font-medium text-green-800">
             {authAlert === "login"
               ? "Successfully logged in"
-              : "Successfully logged out"}
+              : authAlert === "logout"
+              ? "Successfully logged out"
+              : ""}
           </p>
         </div>
         <div class="ml-auto pl-3">
