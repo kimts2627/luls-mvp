@@ -46,7 +46,7 @@ const AuthModal = () => {
               ? "Successfully logged in"
               : authAlert === "logout"
               ? "Successfully logged out"
-              : ""}
+              : "Successfully logged in"}
           </p>
         </div>
         <div class="ml-auto pl-3">
