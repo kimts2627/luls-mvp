@@ -9,14 +9,12 @@ export default async (req: Request, res: Response) => {
     Major,
     Entrance_Year,
     Graduation_Year,
-    F_Name,
-    L_Name,
     City,
     Country,
     State,
     Birthday,
   } = req.body;
-  const { email, permission } = res.locals;
+  const { email, F_Name, L_Name, permission } = res.locals;
   const connection = getConnection();
   const queryRunner = connection.createQueryRunner();
 
