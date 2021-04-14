@@ -49,7 +49,7 @@ const SignupModal = () => {
         <img
           src="/img/x.png"
           alt="back"
-          className="w-10 absolute -mt-20 cursor-pointer"
+          className="w-10 absolute top-0 -mt-24 cursor-pointer"
           onClick={handlingSignupModal}
         />
         <h1 className="text-lg my-10">Need more informations</h1>
