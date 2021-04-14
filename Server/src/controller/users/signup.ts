@@ -36,7 +36,7 @@ export default async (req: Request, res: Response) => {
         return err;
       });
     // Insert School Table
-    const result = await queryRunner.manager
+    const school = await queryRunner.manager
       .save(School, {
         Name: School_Name,
         Degree: Degree,
@@ -57,7 +57,7 @@ export default async (req: Request, res: Response) => {
         L_Name: L_Name,
         City: location.id,
         Birthday: Birthday,
-        School_id: result.id,
+        School_id: school.id,
       })
       .catch((err) => {
         console.log(err);
@@ -94,7 +94,7 @@ export default async (req: Request, res: Response) => {
   //         return err;
   //       });
 
-  //     const result = await transactionalEntityManager
+  //     const school = await transactionalEntityManager
   //       .save(School, {
   //         Name: School_Name,
   //         Degree: Degree,
@@ -114,7 +114,7 @@ export default async (req: Request, res: Response) => {
   //         L_Name: L_Name,
   //         City: location.id,
   //         Birthday: Birthday,
-  //         School_id: result.id,
+  //         School_id: school.id,
   //       })
   //       .catch((err) => {
   //         return err;

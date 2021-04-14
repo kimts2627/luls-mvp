@@ -15,22 +15,19 @@ export default class BulletIn extends BaseEntity {
     type: 'varchar',
     nullable: false,
   })
-  Title: string;
+  title: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Content: string;
-
-  @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  Username: string;
+  content: string;
 
   @Column()
   Content_Like: number;
+
+  @Column()
+  Submit_Check: boolean;
 
   @CreateDateColumn({
     name: 'created_at',
