@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import Main from "../components/home/Main";
@@ -16,7 +16,7 @@ const Home = () => {
         <title>We are LikeLion US</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-full mt-40 flex items-center flex-col">
+      <div className="w-full mt-40 flex items-center flex-col back transition-all duration-700">
         <Main />
       </div>
     </Layout>

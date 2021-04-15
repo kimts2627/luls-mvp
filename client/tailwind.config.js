@@ -34,6 +34,7 @@ module.exports = {
       height: {
         120: "30rem",
         staticFull: "100rem",
+        longFull: "150rem",
       },
       animation: {
         blink: "blink 0.7s infinite",

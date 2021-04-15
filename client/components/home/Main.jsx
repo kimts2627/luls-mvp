@@ -13,10 +13,10 @@ const Main = () => {
       <MainIntro />
       <MainOverview />
       <MainSchools />
-      <MainHallOfFame />
+      {/* <MainHallOfFame />
       <MainJoinAdmin />
       <MainJoinStudent />
-      <MainContactUs />
+      <MainContactUs /> */}
     </main>
   );
 };
