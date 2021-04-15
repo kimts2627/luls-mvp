@@ -84,17 +84,19 @@ const MyApp = ({ Component, pageProps }) => {
   };
 
   const handleAlert = () => {
-    if (window.state.idx !== 0) {
-      settingAlert("login");
-      setTimeout(() => {
-        settingAlert(null);
-      }, 4000);
+    if (window !== undefined) {
+      if (window.state.idx !== 0) {
+        settingAlert("login");
+        setTimeout(() => {
+          settingAlert(null);
+        }, 4000);
+      }
     }
   };
 
-  const loginReqToServer = async () => {
+  const loginReqToServer = () => {
     let token = window.localStorage.getItem("token");
-    await axios
+    axios
       .get("https://www.likelionustest.com/users/login", {
         withCredentials: true,
         headers: {
@@ -102,8 +104,8 @@ const MyApp = ({ Component, pageProps }) => {
         },
       })
       .then((res) => {
-        await handlingLogin();
-        await handlingUserInfo(res.data);
+        handlingLogin();
+        handlingUserInfo(res.data);
         handleAlert();
       })
       .catch((err) => {
