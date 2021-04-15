@@ -84,10 +84,12 @@ const MyApp = ({ Component, pageProps }) => {
   };
 
   const handleAlert = () => {
-    settingAlert("login");
-    setTimeout(() => {
-      settingAlert(null);
-    }, 4000);
+    if (window.state.idx !== 0) {
+      settingAlert("login");
+      setTimeout(() => {
+        settingAlert(null);
+      }, 4000);
+    }
   };
 
   const loginReqToServer = () => {
