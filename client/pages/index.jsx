@@ -3,42 +3,12 @@ import Head from "next/head";
 import Layout from "../components/layout";
 import Main from "../components/home/Main";
 import { useDispatch, useSelector } from "react-redux";
-import SigninModal from "../components/auth/SigninModal";
-import axios from "axios";
-import SignupModal from "../components/auth/SignupModal";
-import { handleSignupModal } from "../reducers/auth";
 
 const Home = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
   const isSignupModalOn = useSelector((state) => state.auth.isSignupModalOn);
-
-  const handlingSignupModal = useCallback(() => {
-    dispatch(handleSignupModal());
-  }, []);
-
-  useEffect(() => {
-    // if (window.localStorage.getItem("token") && !isSignupModalOn) {
-    //   //! login request to server
-    //   const token = window.localStorage.getItem("token");
-    //   console.log(token);
-    //   axios
-    //     .get("https://www.likelionustest.com/users/login", {
-    //       withCredentials: true,
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     })
-    //     .then(console.log)
-    //     .catch((err) => {
-    //       console.log(err.response);
-    //       if (err.response.data.message === "Login Failed") {
-    //         handlingSignupModal();
-    //       }
-    //     });
-    // }
-  }, []);
 
   return (
     <Layout>
@@ -52,20 +22,5 @@ const Home = () => {
     </Layout>
   );
 };
-
-// export async function getStaticProps() {
-//   const res = await axios.get("https://www.likelionustest.com/users/test");
-//   let data = await res.data;
-//   console.log(data);
-
-//   if (!data.message) {
-//     data = { message: "hello world" };
-//   }
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
 
 export default Home;

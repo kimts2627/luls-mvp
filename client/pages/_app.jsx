@@ -103,7 +103,6 @@ const MyApp = ({ Component, pageProps }) => {
         handlingLogin();
         handlingUserInfo(res.data);
         handleAlert();
-        // console.log(`login complete, welcome ${userInfo.L_Name}`);
       })
       .catch((err) => {
         if (!isSignupModalOn) {
@@ -124,6 +123,7 @@ const MyApp = ({ Component, pageProps }) => {
     if (router.asPath.slice(0, 6) === "/?code") {
       authCode = `${router.asPath.slice(7, router.asPath.indexOf("&"))}`;
       getToken();
+      router.push("/");
     }
   }, []);
 
