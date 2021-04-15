@@ -121,7 +121,7 @@ const Header = ({ headerSize }) => {
             <Link href="/notice">
               <a>Notice</a>
             </Link>
-            <Link href="/qa">
+            <Link href="/QA">
               <a>Q/A</a>
             </Link>
           </ul>
