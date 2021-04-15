@@ -92,9 +92,9 @@ const MyApp = ({ Component, pageProps }) => {
     }
   };
 
-  const loginReqToServer = () => {
+  const loginReqToServer = async () => {
     let token = window.localStorage.getItem("token");
-    axios
+    await axios
       .get("https://www.likelionustest.com/users/login", {
         withCredentials: true,
         headers: {
@@ -102,8 +102,8 @@ const MyApp = ({ Component, pageProps }) => {
         },
       })
       .then((res) => {
-        handlingLogin();
-        handlingUserInfo(res.data);
+        await handlingLogin();
+        await handlingUserInfo(res.data);
         handleAlert();
       })
       .catch((err) => {
