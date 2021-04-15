@@ -4,25 +4,21 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  JoinColumn,
-  OneToOne,
   PrimaryGeneratedColumn,
-  OneToMany,
+  Index,
 } from 'typeorm';
-import Member_BulletIn from './Member_BulletIn';
 
 @Entity()
 export default class BulletIn extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    type: 'varchar',
-    nullable: false,
-    length: 10,
-  })
-  category: string;
+  // @Column({
+  //   type: 'varchar',
+  //   nullable: false,
+  //   length: 10,
+  // })
+  // category: string;
 
   @Column({
     type: 'varchar',
@@ -41,6 +37,10 @@ export default class BulletIn extends BaseEntity {
 
   @Column()
   Submit_Check: boolean;
+
+  @Index()
+  @Column()
+  school: string;
 
   @CreateDateColumn({
     name: 'created_at',
