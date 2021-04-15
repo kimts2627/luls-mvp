@@ -114,11 +114,14 @@ const Header = ({ headerSize }) => {
               : "h-full"
           } w-full transition-all z-40 flex flex-row-reverse pr-6`}
         >
-          <ul className="w-32 text-right h-full flex items-center justify-between text-lg font-bold">
+          <ul className="w-44 text-right h-full flex items-center justify-between text-lg font-bold">
             <Link href="/">
               <a>Home</a>
             </Link>
-            <Link href="/QA">
+            <Link href="/notice">
+              <a>Notice</a>
+            </Link>
+            <Link href="/qa">
               <a>Q/A</a>
             </Link>
           </ul>
