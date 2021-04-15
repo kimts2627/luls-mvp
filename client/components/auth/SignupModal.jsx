@@ -51,6 +51,13 @@ const SignupModal = () => {
     }, 4000);
   };
 
+  const signupCancle = () => {
+    //* 추가 정보입력 캔슬 시 전체 로그인 과정 캔슬
+    handlingSignupModal();
+    window.localStorage.clear();
+    return alert("Please Login and Signup again");
+  };
+
   const sendSignupRequest = () => {
     for (let i in signUpInfo) {
       if (!signUpInfo[i]) {
@@ -96,7 +103,7 @@ const SignupModal = () => {
           src="/img/x.png"
           alt="back"
           className="w-10 absolute top-0 -mt-24 cursor-pointer"
-          onClick={handlingSignupModal}
+          onClick={signupCancle}
         />
         <h1 className="text-lg my-10">Need more informations</h1>
         <div className="w-full px-8">
