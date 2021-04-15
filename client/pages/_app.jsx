@@ -64,16 +64,15 @@ const MyApp = ({ Component, pageProps }) => {
 
     if (data) {
       console.log("Sucess");
-      //! redirect to main page & delete Authorization code
-      // router.push("/");
+      //! redirect to main page
       window.localStorage.clear();
       //! Set access token at localstorage
-      window.localStorage.setItem("token", data.access_token);
+      window.localStorage.setItem("ac-token", data.access_token);
       //! Set refresh token at cookie
-      cookieCutter.set("refresh", data.refresh_token);
+      window.localStorage.setItem("re-token", data.refresh_token);
       //! Login Request to server!!!
-      if (window.localStorage.getItem("token")) {
-        const token = window.localStorage.getItem("token");
+      if (window.localStorage.getItem("ac-token")) {
+        const token = window.localStorage.getItem("ac-token");
         console.log(token);
         loginReqToServer();
       }
@@ -84,18 +83,16 @@ const MyApp = ({ Component, pageProps }) => {
   };
 
   const handleAlert = () => {
-    if (window !== undefined) {
-      if (window.history.state.idx !== 0) {
-        settingAlert("login");
-        setTimeout(() => {
-          settingAlert(null);
-        }, 4000);
-      }
+    if (window.history.state.idx !== 0) {
+      settingAlert("login");
+      setTimeout(() => {
+        settingAlert(null);
+      }, 4000);
     }
   };
 
   const loginReqToServer = () => {
-    let token = window.localStorage.getItem("token");
+    let token = window.localStorage.getItem("ac-token");
     axios
       .get("https://www.likelionustest.com/users/login", {
         withCredentials: true,
@@ -133,7 +130,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   //! Login stablizer
   useEffect(() => {
-    if (window.localStorage.getItem("token") && !isAuth) {
+    if (window.localStorage.getItem("ac-token") && !isAuth) {
       loginReqToServer();
       console.log("login stablized");
     }

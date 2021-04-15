@@ -59,7 +59,7 @@ const SignupModal = () => {
       }
     }
     console.log(signUpInfo);
-    let token = window.localStorage.getItem("token");
+    let token = window.localStorage.getItem("ac-token");
     axios
       .post("https://www.likelionustest.com/users/signup", signUpInfo, {
         withCredentials: true,
