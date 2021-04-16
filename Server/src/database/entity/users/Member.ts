@@ -5,15 +5,12 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
   JoinColumn,
   OneToOne,
   OneToMany,
 } from 'typeorm';
-import School from './School';
-import Location from './Location';
-import Member_BulletIn from './Member_BulletIn';
-import BulletIn from './BulletIn';
+import { School, Location } from './';
+import Member_BulletIn from '../relations/Member_BulletIn';
 
 @Entity()
 export default class Member extends BaseEntity {

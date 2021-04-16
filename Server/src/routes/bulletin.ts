@@ -3,7 +3,7 @@ const router = express.Router();
 import { bulletinController } from '../controller';
 import { checkTokens, checkPermission } from '../middleware';
 
-// * GET /bulltein/Bulletin
+// * GET /bulltein/BulletinList
 router.get(
   '/BulletinList',
   checkTokens,
@@ -11,12 +11,15 @@ router.get(
   bulletinController.BulletIn_List
 );
 
-router.get('/BulletinList', bulletinController.BulletIn_List);
+// * GET /bulletin/BulletinList
+// router.get('/BulletinList', bulletinController.BulletIn_List);
 router.get(
   '/BulletinUserList',
   checkTokens,
   checkPermission,
   bulletinController.BulletIn_UserInfo
 );
+
+router.get('/BulletinReply', bulletinController.BulletIn_reply);
 
 module.exports = router;

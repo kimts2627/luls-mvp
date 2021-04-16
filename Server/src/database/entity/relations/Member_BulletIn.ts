@@ -3,26 +3,24 @@ import {
   Column,
   BaseEntity,
   ManyToOne,
-  PrimaryColumn,
   JoinColumn,
-  OneToMany,
   PrimaryGeneratedColumn,
   OneToOne,
 } from 'typeorm';
-import BulletIn from './BulletIn';
-import Member from './Member';
+import { BulletIn } from '../bulletin';
+import { Member } from '../users';
 
 @Entity()
 export default class Member_BulletIn extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    type: 'varchar',
-    nullable: false,
-    length: 10,
-  })
-  category: string;
+  // @Column({
+  //   type: 'varchar',
+  //   nullable: false,
+  //   length: 10,
+  // })
+  // category: string;
 
   @OneToOne((type) => BulletIn)
   @JoinColumn({ name: 'Bulletin_id' })

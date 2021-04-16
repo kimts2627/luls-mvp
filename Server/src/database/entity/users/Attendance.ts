@@ -2,9 +2,6 @@ import {
   Entity,
   BaseEntity,
   Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  PrimaryColumn,
   OneToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
@@ -28,7 +25,9 @@ export default class Attendance extends BaseEntity {
   })
   status: number;
 
-  @OneToOne(() => Member)
+  @OneToOne(() => Member, {
+    nullable: false,
+  })
   @JoinColumn({ name: 'member_id' })
   Member: Member;
 }

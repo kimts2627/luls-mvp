@@ -3,11 +3,15 @@ const router = express.Router();
 import { usersController } from '../controller';
 import { checkTokens, checkPermission } from '../middleware';
 
-// * POST /users/login
-router.get('/login', checkTokens, checkPermission, usersController.login);
-router.get('/googleCallback', usersController.googleCallback);
-router.get('/test', usersController.test);
-router.get('/userinfo', checkTokens, usersController.userinfo);
+// * GET /users/login
+router.get('/login', checkTokens, usersController.login);
+// * GET /users/signup
 router.post('/signup', checkTokens, checkPermission, usersController.signup);
+// * GET /users/googleCallback
+router.get('/googleCallback', usersController.googleCallback);
+// * GET /users/test
+router.get('/test', usersController.test);
+// * GET /users/userinfo
+router.get('/userinfo', checkTokens, usersController.userinfo);
 
 module.exports = router;
