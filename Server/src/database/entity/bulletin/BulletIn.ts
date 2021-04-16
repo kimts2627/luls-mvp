@@ -6,12 +6,19 @@ import {
   UpdateDateColumn,
   PrimaryGeneratedColumn,
   Index,
+  OneToMany,
+  JoinColumn,
 } from 'typeorm';
+import { Bulletin_Re } from '../relations';
 
 @Entity()
 export default class BulletIn extends BaseEntity {
+  // @PrimaryGeneratedColumn()
+  // id: number;
+  @OneToMany(() => Bulletin_Re, (bulletin_re) => bulletin_re.bulletin_id)
+  @JoinColumn({ name: 'id' })
   @PrimaryGeneratedColumn()
-  id: number;
+  id: BulletIn;
 
   // @Column({
   //   type: 'varchar',
@@ -23,6 +30,7 @@ export default class BulletIn extends BaseEntity {
   @Column({
     type: 'varchar',
     nullable: false,
+    length: 50,
   })
   title: string;
 
@@ -32,6 +40,13 @@ export default class BulletIn extends BaseEntity {
   })
   content: string;
 
+  @Column({
+    type: 'boolean',
+    default: false,
+    nullable: false,
+  })
+  visiable: boolean;
+
   @Column()
   Content_Like: number;
 
@@ -39,7 +54,11 @@ export default class BulletIn extends BaseEntity {
   Submit_Check: boolean;
 
   @Index()
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+    length: 20,
+  })
   school: string;
 
   @CreateDateColumn({

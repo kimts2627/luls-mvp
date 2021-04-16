@@ -3,17 +3,22 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Member } from '../users';
 
 @Entity()
 export default class BulletIn_Reply extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  member_id: number;
+  @ManyToOne((type) => Member)
+  @JoinColumn({ name: 'member_id' })
+  member_id: Member;
 
   @Column()
   content: string;
