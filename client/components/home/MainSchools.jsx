@@ -7,7 +7,7 @@ const MainSchools = () => {
     const back = document.querySelector(".back");
     console.log(window.scrollY, divRef.current.offsetTop);
     if (
-      Math.round(window.scrollY / 100) * 100 ===
+      Math.round(window.scrollY / 100) * 100 >=
       Math.round(divRef.current.offsetTop / 100) * 100
     ) {
       back.style.backgroundColor = "rgb(0, 0, 0)";
@@ -32,11 +32,11 @@ const MainSchools = () => {
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", throttle(schoolFocusEvent, 300), {
+    window.addEventListener("scroll", throttle(schoolFocusEvent, 100), {
       passive: true,
     });
     return () => {
-      window.addEventListener("scroll", throttle(schoolFocusEvent, 300), {
+      window.addEventListener("scroll", throttle(schoolFocusEvent, 100), {
         passive: true,
       });
     };

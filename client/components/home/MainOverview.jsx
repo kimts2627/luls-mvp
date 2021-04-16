@@ -11,7 +11,7 @@ const MainOverview = () => {
   ]);
 
   return (
-    <div className="relative bg-yellow-500 w-full max-w-screen-2xl h-staticFull">
+    <div className="relative w-full max-w-screen-2xl h-staticFull">
       <p className="text-center text-white text-3xl px-10">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         <br />

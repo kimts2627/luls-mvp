@@ -13,7 +13,7 @@ const Nav = ({ headerSize }) => {
           : headerSize === "normal"
           ? "mt-28"
           : "mt-0"
-      } transition-all z-20 flex justify-center bg-gray-100 shadow-inner`}
+      } transition-all z-20 flex justify-center bg-gray-100 shadow-sm`}
     >
       <div className="w-full h-full max-w-screen-2xl flex pl-6 items-center">
         <ul className="flex justify-start w-full">
