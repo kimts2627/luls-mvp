@@ -75,13 +75,13 @@ const MainIntro = () => {
             Lorem ipsum dolor sit amet
             <div className="w-full h-1 bg-yellow-500" />
           </h1>
-          <p className="text-center text-2xl mb-28">
+          <p className="text-center text-2xl mb-36">
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
             <br></br>
             nisi ut aliquip ex ea commodo consequat.<br></br>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </p>
-          <div className="w-full h-80 absolute z-0 mt-96 flex justify-between">
+          <div className="w-full h-80 absolute z-0 mt-96 flex justify-between opacity-70">
             <img src="/img/triangle.png" alt="" className="h-full ml-36" />
             <img src="/img/donut.png" alt="" className="h-full mr-40" />
           </div>
@@ -99,7 +99,7 @@ const MainIntro = () => {
               <img
                 src="/img/thumb1.jpeg"
                 alt=""
-                className="mr-4 cursor-pointer focus:shadow-lg"
+                className="mr-4 cursor-pointer hover:shadow-2xl"
                 onClick={() =>
                   setVideo(
                     "https://www.youtube.com/embed/FSvugctoYzs?controls=0"
@@ -110,7 +110,7 @@ const MainIntro = () => {
               <img
                 src="/img/thumb2.jpeg"
                 alt=""
-                className="mr-5 cursor-pointer"
+                className="mr-5 cursor-pointer hover:shadow-2xl"
                 onClick={() =>
                   setVideo(
                     "https://www.youtube.com/embed/8VvDzb7-P18?controls=0"
@@ -121,7 +121,7 @@ const MainIntro = () => {
               <img
                 src="/img/thumb3.jpeg"
                 alt=""
-                className="cursor-pointer"
+                className="cursor-pointer hover:shadow-2xl"
                 onClick={() =>
                   setVideo(
                     "https://www.youtube.com/embed/p1SU_MJCF7I?controls=0"
@@ -133,7 +133,6 @@ const MainIntro = () => {
           </div>
         </section>
       </div>
-      <div className="absolute w-screen h-80 bg-blue z-20"></div>
     </div>
   );
 };

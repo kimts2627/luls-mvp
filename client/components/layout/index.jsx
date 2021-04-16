@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Footer from "./Footer";
@@ -38,6 +39,10 @@ const Layout = ({ children }) => {
   }
   return (
     <div className="font-Lato">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+      </Head>
       <Header headerSize={headerSize} />
       <Nav headerSize={headerSize} />
       {children}
