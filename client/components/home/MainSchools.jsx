@@ -19,6 +19,18 @@ const MainSchools = () => {
     }
   };
 
+  function throttle(fn, delay) {
+    let timer;
+    return function () {
+      if (!timer) {
+        timer = setTimeout(() => {
+          timer = null;
+          fn.apply(this, arguments);
+        }, delay);
+      }
+    };
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", throttle(schoolFocusEvent, 300), {
       passive: true,
