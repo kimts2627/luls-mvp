@@ -20,9 +20,13 @@ const MainSchools = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", schoolFocusEvent);
+    window.addEventListener("scroll", throttle(schoolFocusEvent, 300), {
+      passive: true,
+    });
     return () => {
-      window.addEventListener("scroll", schoolFocusEvent);
+      window.addEventListener("scroll", throttle(schoolFocusEvent, 300), {
+        passive: true,
+      });
     };
   }, []);
   return (
