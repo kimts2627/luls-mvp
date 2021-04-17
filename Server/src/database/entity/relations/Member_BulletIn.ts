@@ -15,13 +15,6 @@ export default class Member_BulletIn extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column({
-  //   type: 'varchar',
-  //   nullable: false,
-  //   length: 10,
-  // })
-  // category: string;
-
   @OneToOne((type) => BulletIn)
   @JoinColumn({ name: 'Bulletin_id' })
   Bulletin_id: BulletIn;
@@ -29,7 +22,7 @@ export default class Member_BulletIn extends BaseEntity {
   @Column()
   Status: boolean;
 
-  @ManyToOne((type) => Member)
+  @ManyToOne((type) => Member, member => member.bulletin)
   @JoinColumn({ name: 'Members_Id' })
   Members_Id: Member;
 }

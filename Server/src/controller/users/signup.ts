@@ -49,13 +49,13 @@ export default async (req: Request, res: Response) => {
     const member = await queryRunner.manager
       .save(Member, {
         Name: School_Name,
-        Permission: permission,
+        permission: permission,
         Email: email,
         F_Name: F_Name,
         L_Name: L_Name,
-        City: location.id,
+        city: location.id,
         Birthday: Birthday,
-        School_id: school.id,
+        school: school.id,
       })
       .catch((err) => {
         console.log(err);
@@ -112,7 +112,7 @@ export default async (req: Request, res: Response) => {
   //         L_Name: L_Name,
   //         City: location.id,
   //         Birthday: Birthday,
-  //         School_id: school.id,
+  //         School: school.id,
   //       })
   //       .catch((err) => {
   //         return err;
