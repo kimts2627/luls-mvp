@@ -113,7 +113,7 @@ const UclaHome = () => {
         </main>
       </div>
       {noticeModal ? (
-        <div className="blackback fixed top-0 w-full h-full " />
+        <div className="blackback fixed top-0 w-full h-full z-10" />
       ) : null}
       <NoticeModal currentNotice={currentNotice} />
     </Layout>
