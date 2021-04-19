@@ -2,18 +2,44 @@ import axios from "axios";
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../../components/layout";
-import { handleNotice } from "../../../reducers/notice";
+import NoticeModal from "../../../components/univ/NoticeModal";
+import {
+  handleNotice,
+  handleNoticeModal,
+  handleCurrentNotice,
+} from "../../../reducers/notice";
 
 const SingleNotice = ({ notice }) => {
+  const dispatch = useDispatch();
+  const notices = useSelector((state) => state.notice.notices);
+  const noticeModal = useSelector((state) => state.notice.noticeModal);
+  const currentNotice = useSelector((state) => state.notice.currentNotice);
+
+  const handlingNoticeModal = useCallback(() => {
+    dispatch(handleNoticeModal());
+  }, []);
+
+  const setCurrentNotice = useCallback((currentNotice) => {
+    dispatch(handleCurrentNotice(currentNotice));
+  }, []);
+
+  const openNoticeModal = () => {
+    if (noticeModal) {
+      return;
+    } else {
+      setCurrentNotice(notice);
+      handlingNoticeModal();
+    }
+  };
+
   return (
-    <div className="bg-blue-50 w-full h-12 border-b border-gray-300 flex cursor-pointer">
-      <span className="w-32 bg-yellow-50 flex items-center">
-        {notice.school}
-      </span>
-      <span className="flex-1 bg-green-50 flex items-center">
-        {notice.title}
-      </span>
-      <span className="w-40 bg-red-50 flex items-center">
+    <div
+      className="bg-blue-50 w-full h-12 border-b border-gray-300 flex cursor-pointer"
+      onClick={openNoticeModal}
+    >
+      <span className="w-32 flex items-center">{notice.school}</span>
+      <span className="flex-1 flex items-center">{notice.title}</span>
+      <span className="w-40 flex items-center">
         {notice.createdAt.slice(0, 10)}
       </span>
     </div>
@@ -23,10 +49,12 @@ const SingleNotice = ({ notice }) => {
 const UclaHome = () => {
   const dispatch = useDispatch();
   const notices = useSelector((state) => state.notice.notices);
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  const currentNotice = useSelector((state) => state.notice.currentNotice);
 
   const handlingNotice = useCallback((notices) => {
     dispatch(handleNotice(notices));
-  });
+  }, []);
 
   useEffect(() => {
     axios
@@ -75,12 +103,17 @@ const UclaHome = () => {
                   : null}
               </div>
             </article>
-            <button className="absolute bottom-0 right-6 bg-yellow-400 rounded-md p-2 cursor-pointer mb-10">
-              New Notice
-            </button>
+            {userInfo !== null ? (
+              userInfo.permission === "admin" ? (
+                <button className="absolute bottom-0 right-6 bg-yellow-400 rounded-md p-2 cursor-pointer mb-10">
+                  New Notice
+                </button>
+              ) : null
+            ) : null}
           </section>
         </main>
       </div>
+      <NoticeModal currentNotice={currentNotice} />
     </Layout>
   );
 };
