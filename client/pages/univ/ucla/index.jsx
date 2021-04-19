@@ -18,16 +18,19 @@ const UclaHome = () => {
   const dispatch = useDispatch();
   const notices = useSelector((state) => state.notice.notices);
 
-  useEffect(async () => {
-    const res = await axios.get(
-      `https://likelionustest.com/bulletin/BulletinList?school=멋사대학교`,
-      {
+  useEffect(() => {
+    axios
+      .get("https://www.likelionustest.com/bulletin/list?school=멋사대학교", {
         withCredentials: true,
-      }
-    );
-    const data = await res.data;
-    console.log(data);
-  }, [notices]);
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }, []);
 
   return (
     <Layout>
