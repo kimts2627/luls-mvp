@@ -1,6 +1,6 @@
 import React from "react";
 
-const BerkeleyHomex = () => {
+const BerkeleyHome = () => {
   return <div>Hello React!</div>;
 };
 
