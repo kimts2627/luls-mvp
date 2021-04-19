@@ -4,12 +4,7 @@ import { bulletinController } from '../controller';
 import { checkTokens, checkPermission } from '../middleware';
 
 // * GET /bulltein/BulletinList
-router.get(
-  '/list',
-  checkTokens,
-  checkPermission,
-  bulletinController.BulletIn_List
-);
+router.get('/list', bulletinController.BulletIn_List);
 
 // * GET /bulletin/BulletinList
 // router.get('/BulletinList', bulletinController.BulletIn_List);
