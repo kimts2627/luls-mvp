@@ -4,12 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../../components/layout";
 import { handleNotice } from "../../../reducers/notice";
 
-const SingleNotice = () => {
+const SingleNotice = ({ notice }) => {
   return (
-    <div className="bg-blue-50 w-full h-12 border-b border-gray-300 flex">
-      <span className="w-32 bg-yellow-50 flex items-center"></span>
-      <span className="flex-1 bg-green-50 flex items-center"></span>
-      <span className="w-40 bg-red-50 flex items-center"></span>
+    <div className="bg-blue-50 w-full h-12 border-b border-gray-300 flex cursor-pointer">
+      <span className="w-32 bg-yellow-50 flex items-center">
+        {notice.school}
+      </span>
+      <span className="flex-1 bg-green-50 flex items-center">
+        {notice.title}
+      </span>
+      <span className="w-40 bg-red-50 flex items-center">
+        {notice.createdAt.slice(0, 10)}
+      </span>
     </div>
   );
 };
@@ -18,8 +24,8 @@ const UclaHome = () => {
   const dispatch = useDispatch();
   const notices = useSelector((state) => state.notice.notices);
 
-  const handlingNotice = useCallback((notice) => {
-    dispatch(handleNotice(notice));
+  const handlingNotice = useCallback((notices) => {
+    dispatch(handleNotice(notices));
   });
 
   useEffect(() => {

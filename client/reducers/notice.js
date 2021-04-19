@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case HANDLE_NOTICE:
       return Object.assign({}, state, {
-        notices: action.payload.notice,
+        notices: action.payload.notices,
       });
     default:
       return state;
