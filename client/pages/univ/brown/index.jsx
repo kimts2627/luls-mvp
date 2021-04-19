@@ -7,6 +7,7 @@ import {
   handleCurrentNotice,
   handleNoticeModal,
 } from "../../../reducers/notice";
+import NoticeModal from "../../../components/univ/NoticeModal";
 
 const SingleNotice = ({ notice }) => {
   const dispatch = useDispatch();
