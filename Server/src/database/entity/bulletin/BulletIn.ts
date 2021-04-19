@@ -10,7 +10,7 @@ import {
   JoinColumn,
   OneToOne,
 } from 'typeorm';
-import Bulletin_Re from '../relations/Bulletin_Re';
+import BulletIn_Re from '../relations/Bulletin_Re';
 import Member_BulletIn from '../relations/Member_BulletIn';
 
 @Entity()
@@ -18,8 +18,8 @@ export default class BulletIn extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => Bulletin_Re, (bulletin_re) => bulletin_re.bulletin_re_id)
-  bulletin_re: BulletIn[];
+  @OneToMany(() => BulletIn_Re, (bulletin_re) => bulletin_re.bulletin)
+  bulletin_re: BulletIn_Re[];
 
   @Column({
     type: 'varchar',
