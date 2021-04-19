@@ -8,21 +8,16 @@ import {
   JoinColumn,
   OneToOne,
   OneToMany,
+  Unique,
+  Generated,
 } from 'typeorm';
 import { School, Location } from './';
 import Member_BulletIn from '../relations/Member_BulletIn';
 
 @Entity()
 export default class Member extends BaseEntity {
-  // @PrimaryGeneratedColumn()
-  // id: number;
-  @OneToMany(
-    () => Member_BulletIn,
-    (member_bulletin) => member_bulletin.Members_Id
-  )
-  @JoinColumn({ name: 'id' })
   @PrimaryGeneratedColumn()
-  id: Member;
+  id: number;
 
   @Column({
     type: 'varchar',
@@ -82,6 +77,12 @@ export default class Member extends BaseEntity {
   })
   @JoinColumn({ name: 'City' })
   City: Location;
+
+  @OneToMany(
+    (type) => Member_BulletIn,
+    (member_bulletin) => member_bulletin.Member
+  )
+  bulletin!: Member[];
 
   static async insertInfo(data: object): Promise<Member | undefined> {
     await this.createQueryBuilder()

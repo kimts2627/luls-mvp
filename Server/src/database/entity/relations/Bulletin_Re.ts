@@ -7,7 +7,8 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { BulletIn_Reply, BulletIn } from '../bulletin';
+import BulletIn from '../bulletin/BulletIn';
+import BulletIn_Reply from '../bulletin/Bulletin_Reply';
 
 @Entity()
 export default class BulletIn_Re extends BaseEntity {
@@ -16,9 +17,9 @@ export default class BulletIn_Re extends BaseEntity {
 
   // @Column()
   // bulletin_id: number;
-  @ManyToOne((type) => BulletIn)
+  @ManyToOne((type) => BulletIn, (bulletin) => bulletin.bulletin_re)
   @JoinColumn({ name: 'bulletin_id' })
-  bulletin_id: BulletIn;
+  bulletin!: BulletIn;
 
   @Column()
   status: boolean;

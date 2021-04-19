@@ -9,7 +9,7 @@ export default async (req: Request, res: Response) => {
   const userinfo = await getManager()
     .createQueryBuilder(Member, 'member')
     // 게시글
-    .innerJoinAndSelect('member.id', 'member_bullet_in')
+    .innerJoinAndSelect('member.bulletin', 'member_bullet_in')
     .innerJoinAndSelect('member_bullet_in.Bulletin_id', 'bullet_in')
     // 댓글
     .leftJoinAndSelect('bullet_in.id', 'bulletin_re')

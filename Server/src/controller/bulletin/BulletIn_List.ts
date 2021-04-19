@@ -23,13 +23,9 @@ export default async (req: Request, res: Response) => {
     .createQueryBuilder(BulletIn, 'bulletin')
     .leftJoinAndSelect('bulletin.id', 'Bulletin_Re')
     .leftJoinAndSelect('Bulletin_Re.bulletin_re_id', 'bullet_in_reply')
-    // .innerJoinAndSelect(
-    //   BulletIn_Reply,
-    //   'bulletin_reply',
-    //   'bulletin_reply.id = Bulletin_Re.bulletin_re_id'
-    // )
     .where('bulletin.school = :school', { school: school })
-    .getOne();
+    .orderBy({ 'bulletin.id': 'ASC', 'bullet_in_reply.id': 'ASC' })
+    .getMany();
 
   console.log(bulletin);
   res.status(200).send(bulletin);
