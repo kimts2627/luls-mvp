@@ -48,6 +48,7 @@ const BerkeleyHome = () => {
   const dispatch = useDispatch();
   const notices = useSelector((state) => state.notice.notices);
   const userInfo = useSelector((state) => state.auth.userInfo);
+  const currentNotice = useSelector((state) => state.notice.currentNotice);
 
   const handlingNotice = useCallback((notices) => {
     dispatch(handleNotice(notices));
