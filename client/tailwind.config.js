@@ -1,18 +1,3 @@
-// module.exports = {
-//   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-//   darkMode: false, // or 'media' or 'class'
-//   theme: {
-//     extend: {
-//       boxShadow: {
-//         "3xl": "10px 0 30px -15px rgba(0, 0, 0, 0.3)",
-//       },
-//     },
-//   },
-//   variants: {
-//     extend: {},
-//   },
-//   plugins: [],
-// };
 module.exports = {
   purge: ["./components/**/*.{js,ts,jsx,tsx}", "./pages/**/*.{js,ts,jsx,tsx}"],
   darkMode: false,
@@ -34,6 +19,7 @@ module.exports = {
       height: {
         120: "30rem",
         staticFull: "100rem",
+        longFull: "150rem",
       },
       animation: {
         blink: "blink 0.7s infinite",

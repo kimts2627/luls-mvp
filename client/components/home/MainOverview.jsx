@@ -11,7 +11,7 @@ const MainOverview = () => {
   ]);
 
   return (
-    <div className="relative bg-yellow-500 w-full max-w-screen-2xl h-staticFull">
+    <div className="relative w-full max-w-screen-2xl h-staticFull">
       <p className="text-center text-white text-3xl px-10">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         <br />
@@ -39,7 +39,7 @@ const MainOverview = () => {
           </div>
         ))}
       </section>
-      <div className="absolute bottom-0 w-full h-80 bg-gradient-to-b from-yellow-500 to-black"></div>
+      <div className="absolute bottom-0 w-full h-120 bg-gradient-to-b from-white to-black"></div>
     </div>
   );
 };

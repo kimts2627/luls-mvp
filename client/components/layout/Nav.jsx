@@ -7,18 +7,18 @@ const Nav = ({ headerSize }) => {
 
   return (
     <nav
-      className={`fixed top-0 bg-gray-100 h-12 w-full ${
+      className={`fixed top-0 h-12 w-full ${
         router.pathname !== "/"
           ? "mt-0"
           : headerSize === "normal"
           ? "mt-28"
           : "mt-0"
-      } transition-all z-10 flex justify-center`}
+      } transition-all z-20 flex justify-center bg-gray-100 shadow-sm`}
     >
-      <div className="w-full h-full bg-gray-100 max-w-screen-2xl flex pl-6 items-center">
+      <div className="w-full h-full max-w-screen-2xl flex pl-6 items-center">
         <ul className="flex justify-start w-full">
           <li
-            className="cursor-pointer text-grey-800 mr-6"
+            className="cursor-pointer opacity-70 mr-6 hover:opacity-100 hover:border-r-8 border-yellow-700"
             onClick={() =>
               window.scrollTo({
                 top: 0,
@@ -30,7 +30,7 @@ const Nav = ({ headerSize }) => {
             Intro
           </li>
           <li
-            className="cursor-pointer text-grey-800 mr-6"
+            className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
                 top: 1350,
@@ -42,7 +42,7 @@ const Nav = ({ headerSize }) => {
             OverView
           </li>
           <li
-            className="cursor-pointer text-grey-800 mr-6"
+            className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
                 top: 2700,
@@ -54,7 +54,7 @@ const Nav = ({ headerSize }) => {
             Schools
           </li>
           <li
-            className="cursor-pointer text-grey-800 mr-6"
+            className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
                 top: 4000,
@@ -66,7 +66,7 @@ const Nav = ({ headerSize }) => {
             Hall of Fame
           </li>
           <li
-            className="cursor-pointer text-grey-800 mr-6"
+            className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
                 top: 5300,
@@ -78,7 +78,7 @@ const Nav = ({ headerSize }) => {
             Join as Admin
           </li>
           <li
-            className="cursor-pointer text-grey-800 mr-6"
+            className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
                 top: 6600,
@@ -90,7 +90,7 @@ const Nav = ({ headerSize }) => {
             Join as Student
           </li>
           <li
-            className="cursor-pointer text-grey-800 mr-6"
+            className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
                 top: 7900,

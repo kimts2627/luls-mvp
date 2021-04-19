@@ -1,4 +1,4 @@
-# [Position] <Type>: Title
+[Frontend] <d>: T
 
 # 제목은 최대 50 글자까지만 입력
 #[Position] : Client or Server ...
@@ -13,12 +13,11 @@
 # <Title>
 # 작업 내용 작성
 
-<Text>
+t
 
 # 본문은 위의 <Text>를 지우고 작성
 ######## 본문은 한 줄에 최대 72 글자까지만 입력 ########################### -> |
 
-<Footer>
 
 # 꼬릿말은  <Footer> 지우고 작성
 # Resolves : #issue, ...(해결한 이슈 , 생략 가능)

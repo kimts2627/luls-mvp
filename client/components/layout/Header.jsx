@@ -1,20 +1,53 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { handleLoginModal } from "../../reducers/auth";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleLoginModal,
+  handleLogout,
+  handleUserInfo,
+  setAlert,
+} from "../../reducers/auth";
+import AuthModal from "../auth/AuthModal";
 
 const Header = ({ headerSize }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const authAlert = useSelector((state) => state.auth.authAlert);
+
   const handlingLoginModal = useCallback(() => {
     dispatch(handleLoginModal());
   });
 
-  useEffect(() => {
-    console.log(headerSize);
-  }, [headerSize]);
+  const handlingLogout = useCallback(() => {
+    dispatch(handleLogout());
+  });
+
+  const handlingUserInfo = useCallback((userInfo) => {
+    dispatch(handleUserInfo(userInfo));
+  });
+
+  const settingAlert = useCallback((status) => {
+    dispatch(setAlert(status));
+  });
+
+  const handleAlert = () => {
+    settingAlert("logout");
+    setTimeout(() => {
+      settingAlert(null);
+    }, 4000);
+  };
+
+  const signOut = () => {
+    handlingLogout();
+    handlingUserInfo(null);
+    window.localStorage.clear();
+    //! 쿠키 삭제 요망
+    handleAlert();
+  };
+
   return (
     <header
       className={`fixed top-0 w-full ${
@@ -25,6 +58,7 @@ const Header = ({ headerSize }) => {
           : "h-20"
       } bg-white transition-all z-40 flex justify-center shadow-md`}
     >
+      <AuthModal status={authAlert} />
       <div className="w-full max-w-screen-2xl h-full">
         <div
           className={`${
@@ -40,12 +74,18 @@ const Header = ({ headerSize }) => {
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>
-            <a
-              className="cursor-pointer text-yellow-600"
-              onClick={handlingLoginModal}
-            >
-              SignIn
-            </a>
+            {isAuth ? (
+              <a className="cursor-pointer text-yellow-600" onClick={signOut}>
+                Signout
+              </a>
+            ) : (
+              <a
+                className="cursor-pointer text-yellow-600"
+                onClick={handlingLoginModal}
+              >
+                SignIn
+              </a>
+            )}
           </ul>
         </div>
         <div
@@ -74,9 +114,12 @@ const Header = ({ headerSize }) => {
               : "h-full"
           } w-full transition-all z-40 flex flex-row-reverse pr-6`}
         >
-          <ul className="w-32 text-right h-full flex items-center justify-between text-lg font-bold">
+          <ul className="w-44 text-right h-full flex items-center justify-between text-lg font-bold">
             <Link href="/">
               <a>Home</a>
+            </Link>
+            <Link href="/notice">
+              <a>Notice</a>
             </Link>
             <Link href="/QA">
               <a>Q/A</a>

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Footer from "./Footer";
@@ -7,7 +8,7 @@ import Nav from "./Nav";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  //* header의 크기를 결정하는 headerSize state, 해당 상태를 통해 실제 header와 부속들의 크기를 핸들링 함
+  //* header의 크기를 결정하는 headerSize state, 해당 상태를 통해 실제 header와 부속들의 크기를 핸들링 함수
   const [headerSize, handlingHeaderSize] = useState("normal");
 
   const isLoginModalOn = useSelector((state) => state.auth.isLoginModalOn);
@@ -38,6 +39,10 @@ const Layout = ({ children }) => {
   }
   return (
     <div className="font-Lato">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+      </Head>
       <Header headerSize={headerSize} />
       <Nav headerSize={headerSize} />
       {children}

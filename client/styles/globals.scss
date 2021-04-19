@@ -12,9 +12,14 @@ html {
   font-family: "Montserrat";
 }
 
-.Montserrat-medium {
+.Lato {
+  font-family: "Lato";
+  font-weight: 300;
+}
+
+.Montserrat-bold {
   font-family: "Montserrat";
-  font-weight: 500;
+  font-weight: 800;
 }
 
 .D2coding {
@@ -22,7 +27,8 @@ html {
 }
 
 .blackback {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
 }
 
 @font-face {
