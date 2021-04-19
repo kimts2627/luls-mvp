@@ -24,7 +24,7 @@ export default class Member extends BaseEntity {
     () => Member_BulletIn,
     (member_bulletin) => member_bulletin.Members_Id
   )
-  bulletin: Member_BulletIn;
+  bulletin: Member_BulletIn[];
 
   @Column({
     type: 'varchar',
@@ -84,12 +84,6 @@ export default class Member extends BaseEntity {
   })
   @JoinColumn({ name: 'city' })
   city: Location;
-
-  // @OneToMany(
-  //   (type) => Member_BulletIn,
-  //   (member_bulletin) => member_bulletin.Member
-  // )
-  // bulletin!: Member[];
 
   static async insertInfo(data: object): Promise<Member | undefined> {
     await this.createQueryBuilder()

@@ -5,7 +5,7 @@ import { checkTokens, checkPermission } from '../middleware';
 
 // * GET /bulltein/BulletinList
 router.get(
-  '/BulletinList',
+  '/list',
   checkTokens,
   checkPermission,
   bulletinController.BulletIn_List
@@ -14,7 +14,7 @@ router.get(
 // * GET /bulletin/BulletinList
 // router.get('/BulletinList', bulletinController.BulletIn_List);
 router.get(
-  '/BulletinUserList',
+  '/userlist',
   checkTokens,
   checkPermission,
   bulletinController.BulletIn_UserInfo
@@ -23,7 +23,7 @@ router.get(
 router.get('/BulletinReply', bulletinController.BulletIn_reply);
 
 router.post(
-  '/BulletinWrite',
+  '/write',
   checkTokens,
   checkPermission,
   bulletinController.BulletIn_Write

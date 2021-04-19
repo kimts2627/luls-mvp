@@ -10,7 +10,6 @@ import {
   JoinColumn,
   OneToOne,
 } from 'typeorm';
-// import { Bulletin_Re, Member_BulletIn } from '../relations';
 import Bulletin_Re from '../relations/Bulletin_Re';
 import Member_BulletIn from '../relations/Member_BulletIn';
 
@@ -45,12 +44,12 @@ export default class BulletIn extends BaseEntity {
   // @Column()
   // Content_Like: number;
 
-  @Column({
-    type: 'varchar',
-    length: 10,
-    default: 'not submit',
-  })
-  Submit_Check: string;
+  // @Column({
+  //   type: 'varchar',
+  //   length: 10,
+  //   default: 'not submit',
+  // })
+  // Submit_Check: string;
 
   @Index()
   @Column({

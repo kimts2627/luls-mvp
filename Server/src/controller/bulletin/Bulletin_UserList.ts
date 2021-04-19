@@ -19,5 +19,6 @@ export default async (req: Request, res: Response) => {
     .innerJoinAndSelect('member.city', 'Location')
     .where('member.Email = :Email', { Email: email })
     .getOne();
-  res.send(userinfo);
+
+  res.status(200).send(userinfo);
 };

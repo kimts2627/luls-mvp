@@ -11,9 +11,6 @@ export default async (req: Request, res: Response) => {
     .createQueryBuilder(Member, 'member')
     .innerJoinAndSelect('member.school', 'School')
     .innerJoinAndSelect('member.city', 'Location')
-    // .innerJoinAndSelect(School, 'school', 'school.id = member.School')
-    // .innerJoinAndSelect(Location, 'location', 'location.id = member.City')
-    // .innerJoinAndSelect('member.City', 'Location')
     .where('member.Email = :Email', { Email: email })
     .getOne();
   // 유저 정보가 있을 시

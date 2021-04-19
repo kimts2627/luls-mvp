@@ -78,7 +78,7 @@ export default async (req: Request, res: Response) => {
     await queryRunner.commitTransaction();
   } catch (err) {
     await queryRunner.rollbackTransaction();
-    res.status(400).send('땡');
+    res.status(400).send('Signup Failed');
   } finally {
     await queryRunner.release();
     res.status(201).send('Signup Success');
