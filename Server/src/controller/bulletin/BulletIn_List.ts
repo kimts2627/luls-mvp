@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getManager } from 'typeorm';
-import { BulletIn, Bulletin_Re, BulletIn_Reply } from '../../database/entity';
+// import { BulletIn, Bulletin_Re, BulletIn_Reply } from '../../database/entity';
+import { BulletIn } from '../../database/entity/bulletin';
 
 export default async (req: Request, res: Response) => {
   const { school } = req.body;

@@ -11,7 +11,8 @@ import {
   Unique,
   Generated,
 } from 'typeorm';
-import { School, Location } from './';
+import School from './School';
+import Location from './Location';
 import Member_BulletIn from '../relations/Member_BulletIn';
 
 @Entity()
@@ -84,11 +85,11 @@ export default class Member extends BaseEntity {
   @JoinColumn({ name: 'city' })
   city: Location;
 
-  @OneToMany(
-    (type) => Member_BulletIn,
-    (member_bulletin) => member_bulletin.Member
-  )
-  bulletin!: Member[];
+  // @OneToMany(
+  //   (type) => Member_BulletIn,
+  //   (member_bulletin) => member_bulletin.Member
+  // )
+  // bulletin!: Member[];
 
   static async insertInfo(data: object): Promise<Member | undefined> {
     await this.createQueryBuilder()

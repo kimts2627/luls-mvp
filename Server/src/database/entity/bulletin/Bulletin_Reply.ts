@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Member } from '../users';
+import Member from '../users/Member';
 
 @Entity()
 export default class BulletIn_Reply extends BaseEntity {

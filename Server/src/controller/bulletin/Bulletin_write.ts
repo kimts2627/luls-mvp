@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getConnection, getManager } from 'typeorm';
-import { BulletIn, Member } from '../../database/entity';
+import { Member } from '../../database/entity/users';
 import Member_BulletIn from '../../database/entity/relations/Member_BulletIn';
 
 export default async (req: Request, res: Response) => {
@@ -21,37 +21,37 @@ export default async (req: Request, res: Response) => {
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
-    try {
-      // Insert Location Table
-      const bulletin = await queryRunner.manager
-        .save(BulletIn, {
-          title: title,
-          content: content,
-          school: userinfo.shcool,
-        })
-        .catch((err) => {
-          console.log(err);
-          return err;
-        });
-      console.log(userinfo.id);
-      await queryRunner.manager
-        .save(Member_BulletIn, {
-          Bulletin_id: bulletin.id,
-          Members_Id: userinfo.id,
-          Status: false,
-        })
-        .catch((err) => {
-          console.log(err);
-          return err;
-        });
+    // try {
+    // Insert Location Table
+    //   const bulletin = await queryRunner.manager
+    //     .save(BulletIn, {
+    //       title: title,
+    //       content: content,
+    //       school: userinfo.school,
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //       return err;
+    //     });
+    //   console.log(userinfo.id);
+    //   await queryRunner.manager
+    //     .save(Member_BulletIn, {
+    //       Bulletin_id: bulletin.id,
+    //       Members_Id: userinfo.id,
+    //       Status: false,
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //       return err;
+    //     });
 
-      await queryRunner.commitTransaction();
-    } catch (err) {
-      await queryRunner.rollbackTransaction();
-      res.status(400).send('땡');
-    } finally {
-      await queryRunner.release();
-      res.status(201).send('Signup Success');
-    }
+    //   await queryRunner.commitTransaction();
+    // } catch (err) {
+    //   await queryRunner.rollbackTransaction();
+    //   res.status(400).send('땡');
+    // } finally {
+    //   await queryRunner.release();
+    //   res.status(201).send('Signup Success');
+    // }
   }
 };

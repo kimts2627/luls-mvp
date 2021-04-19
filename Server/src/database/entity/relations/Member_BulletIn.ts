@@ -24,5 +24,5 @@ export default class Member_BulletIn extends BaseEntity {
 
   @ManyToOne((type) => Member, (member) => member.bulletin)
   @JoinColumn({ name: 'member_id' })
-  Member!: Member;
+  Members_Id: Member;
 }

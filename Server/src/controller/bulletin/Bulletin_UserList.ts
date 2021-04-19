@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getManager } from 'typeorm';
-import { Member, Member_BulletIn, BulletIn } from '../../database/entity';
+import { Member } from '../../database/entity/users';
 
 export default async (req: Request, res: Response) => {
   const { email } = res.locals;

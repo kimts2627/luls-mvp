@@ -10,7 +10,9 @@ import {
   JoinColumn,
   OneToOne,
 } from 'typeorm';
-import { Bulletin_Re, Member_BulletIn } from '../relations';
+// import { Bulletin_Re, Member_BulletIn } from '../relations';
+import Bulletin_Re from '../relations/Bulletin_Re';
+import Member_BulletIn from '../relations/Member_BulletIn';
 
 @Entity()
 export default class BulletIn extends BaseEntity {
@@ -40,11 +42,15 @@ export default class BulletIn extends BaseEntity {
   })
   visible: boolean;
 
-  @Column()
-  Content_Like: number;
+  // @Column()
+  // Content_Like: number;
 
-  @Column()
-  Submit_Check: boolean;
+  @Column({
+    type: 'varchar',
+    length: 10,
+    default: 'not submit',
+  })
+  Submit_Check: string;
 
   @Index()
   @Column({
@@ -60,8 +66,8 @@ export default class BulletIn extends BaseEntity {
   )
   bulletin: Member_BulletIn;
 
-  @OneToMany((type) => Bulletin_Re, (Bulletin_Re) => Bulletin_Re.bulletin)
-  bulletin_re!: BulletIn[];
+  // @OneToMany((type) => Bulletin_Re, (Bulletin_Re) => Bulletin_Re.bulletin)
+  // bulletin_re!: BulletIn[];
 
   @CreateDateColumn({
     name: 'created_at',
