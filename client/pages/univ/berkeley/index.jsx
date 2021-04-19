@@ -94,7 +94,7 @@ const BerkeleyHome = () => {
                 <h2 className="flex-1 border-r border-gray-500 mr-2">Title.</h2>
                 <h2 className="w-36">Date.</h2>
               </header>
-              <div className="w-full p-1 overflow-y-scroll">
+              <div className="w-full p-1 overflow-y-scroll h-full">
                 {notices
                   ? notices.map((notice) => (
                       <SingleNotice key={notice.id} notice={notice} />
