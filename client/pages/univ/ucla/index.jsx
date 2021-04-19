@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../../components/layout";
 import { handleNotice } from "../../../reducers/notice";
+import qs from "qs";
 
 const SingleNotice = () => {
   return (
@@ -19,8 +20,12 @@ const UclaHome = () => {
   const notices = useSelector((state) => state.notice.notices);
 
   useEffect(() => {
+    const query = qs.stringify({
+      school: "멋사대학교",
+    });
+
     axios
-      .get("https://www.likelionustest.com/bulletin/list?school=멋사대학교", {
+      .get(`https://www.likelionustest.com/bulletin/list?${query}`, {
         withCredentials: true,
       })
       .then((res) => res.data)
