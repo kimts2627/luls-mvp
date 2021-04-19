@@ -111,6 +111,9 @@ const BrownHome = () => {
           </section>
         </main>
       </div>
+      {noticeModal ? (
+        <div className="blackback fixed top-0 w-full h-full " />
+      ) : null}
       <NoticeModal currentNotice={currentNotice} />
     </Layout>
   );
