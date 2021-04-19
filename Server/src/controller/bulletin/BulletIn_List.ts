@@ -4,7 +4,7 @@ import { getManager } from 'typeorm';
 import { BulletIn } from '../../database/entity/bulletin';
 
 export default async (req: Request, res: Response) => {
-  const { school } = req.body;
+  const { school } = req.query;
   //전체 목록 조회
   /**
    * School에 따라 조회되게 할 예정
