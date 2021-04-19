@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 
 const MainSchools = () => {
   const divRef = useRef();
@@ -41,12 +42,31 @@ const MainSchools = () => {
       });
     };
   }, []);
+
   return (
     <div
       className="bg-black w-full max-w-screen-2xl h-longFull text-9xl flex items-center justify-center text-white"
       ref={divRef}
     >
-      Schools!
+      <section className="w-full h-120 flex justify-between items-center overflow-hidden">
+        <div className="flex justify-between items-center w-auto">
+          <Link href="/univ/ucla">
+            <div className="w-1/4 cursor-pointer">
+              <img src="/img/logo/ucla.png" alt="" className="w-full" />
+            </div>
+          </Link>
+          <Link href="/univ/brown">
+            <div className="w-1/4 cursor-pointer">
+              <img src="/img/logo/brown.png" alt="" className="w-full" />
+            </div>
+          </Link>
+          <Link href="/univ/berkeley">
+            <div className="w-1/4 cursor-pointer">
+              <img src="/img/logo/berkeley.png" alt="" className="w-full" />
+            </div>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };

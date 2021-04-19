@@ -39,7 +39,7 @@ const MainOverview = () => {
           </div>
         ))}
       </section>
-      <div className="absolute bottom-0 w-full h-120 bg-gradient-to-b from-yellow-500 to-black"></div>
+      <div className="absolute bottom-0 w-full h-120 bg-gradient-to-b from-white to-black"></div>
     </div>
   );
 };
