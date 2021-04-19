@@ -9,7 +9,7 @@ export default async (req: Request, res: Response) => {
 
   const userinfo = await getManager()
     .createQueryBuilder(Member, 'member')
-    .innerJoinAndSelect('member.School_id', 'School')
+    .innerJoinAndSelect('member.school', 'School')
     .innerJoinAndSelect('member.City', 'Location')
     .where('member.Email = :Email', { Email: email })
     .getOne();
@@ -27,7 +27,7 @@ export default async (req: Request, res: Response) => {
         .save(BulletIn, {
           title: title,
           content: content,
-          school: userinfo.School_id.Name,
+          school: userinfo.shcool,
         })
         .catch((err) => {
           console.log(err);

@@ -19,12 +19,18 @@ export default class Member extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @OneToMany(
+    () => Member_BulletIn,
+    (member_bulletin) => member_bulletin.Members_Id
+  )
+  bulletin: Member_BulletIn;
+
   @Column({
     type: 'varchar',
     nullable: false,
     length: 10,
   })
-  Permission: string;
+  permission: string;
 
   @Column({
     type: 'varchar',
@@ -69,14 +75,14 @@ export default class Member extends BaseEntity {
     onDelete: 'CASCADE',
     nullable: false,
   })
-  @JoinColumn({ name: 'School_id' })
-  School_id: School;
+  @JoinColumn({ name: 'school' })
+  school: School;
 
   @OneToOne((type) => Location, {
     nullable: false,
   })
-  @JoinColumn({ name: 'City' })
-  City: Location;
+  @JoinColumn({ name: 'city' })
+  city: Location;
 
   @OneToMany(
     (type) => Member_BulletIn,
@@ -94,16 +100,16 @@ export default class Member extends BaseEntity {
     return;
   }
 
-  // static async changeInfo(
-  //   id: number,
-  //   data: object
-  // ): Promise<Member | undefined> {
-  //   await this.createQueryBuilder()
-  //     .update(Member)
-  //     .set(data)
-  //     .where('id = :id', { id })
-  //     .execute();
+  static async changeInfo(
+    id: number,
+    data: object
+  ): Promise<Member | undefined> {
+    await this.createQueryBuilder()
+      .update(Member)
+      .set(data)
+      .where('id = :id', { id })
+      .execute();
 
-  //   return this.findOne({ id });
-  // }
+    return this.findOne({ id });
+  }
 }

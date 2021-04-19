@@ -15,8 +15,6 @@ export default class BulletIn_Re extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column()
-  // bulletin_id: number;
   @ManyToOne((type) => BulletIn, (bulletin) => bulletin.bulletin_re)
   @JoinColumn({ name: 'bulletin_id' })
   bulletin!: BulletIn;
@@ -27,10 +25,4 @@ export default class BulletIn_Re extends BaseEntity {
   @OneToOne((type) => BulletIn_Reply)
   @JoinColumn({ name: 'bulletin_re_id' })
   bulletin_re_id: BulletIn_Reply;
-
-  // @OneToOne((type) => Member_BulletIn, {
-  //   primary: true,
-  // })
-  // @JoinColumn({ name: 'id' })
-  // id: Member_BulletIn;
 }

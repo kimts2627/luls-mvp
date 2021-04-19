@@ -16,10 +16,9 @@ import { Bulletin_Re, Member_BulletIn } from '../relations';
 export default class BulletIn extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
-  // @OneToMany(() => Bulletin_Re, (bulletin_re) => bulletin_re.bulletin_id)
-  // @JoinColumn({ name: 'id' })
-  // @PrimaryGeneratedColumn()
-  // id: BulletIn;
+
+  @OneToMany(() => Bulletin_Re, (bulletin_re) => bulletin_re.bulletin_re_id)
+  bulletin_re: BulletIn[];
 
   @Column({
     type: 'varchar',
@@ -60,6 +59,7 @@ export default class BulletIn extends BaseEntity {
     (member_bulletin) => member_bulletin.Bulletin_id
   )
   bulletin: Member_BulletIn;
+
   @OneToMany((type) => Bulletin_Re, (Bulletin_Re) => Bulletin_Re.bulletin)
   bulletin_re!: BulletIn[];
 
@@ -72,10 +72,4 @@ export default class BulletIn extends BaseEntity {
     name: 'updated_at',
   })
   updatedAt: Date;
-
-  // @OneToOne((type) => Member_BulletIn, {
-  //   primary: true,
-  // })
-  // @JoinColumn({ name: 'id' })
-  // id: Member_BulletIn;
 }
