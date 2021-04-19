@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getManager } from 'typeorm';
-import { BulletIn, Bulletin_Re, BulletIn_Reply } from '../../database/entity';
+// import { BulletIn, Bulletin_Re, BulletIn_Reply } from '../../database/entity';
+import { BulletIn } from '../../database/entity/bulletin';
 
 export default async (req: Request, res: Response) => {
   const { school } = req.body;
@@ -19,17 +20,14 @@ export default async (req: Request, res: Response) => {
   //   .where('bulletin.school = :school', { school: school })
   //   .getMany();
 
+  // 특정 학교 게시글 및 댓글 목록
   const bulletin = await getManager()
     .createQueryBuilder(BulletIn, 'bulletin')
-    .leftJoinAndSelect('bulletin.id', 'Bulletin_Re')
+    .leftJoinAndSelect('bulletin.bulletin_re', 'Bulletin_Re')
     .leftJoinAndSelect('Bulletin_Re.bulletin_re_id', 'bullet_in_reply')
-    // .innerJoinAndSelect(
-    //   BulletIn_Reply,
-    //   'bulletin_reply',
-    //   'bulletin_reply.id = Bulletin_Re.bulletin_re_id'
-    // )
     .where('bulletin.school = :school', { school: school })
-    .getOne();
+    .orderBy({ 'bulletin.id': 'ASC', 'bullet_in_reply.id': 'ASC' })
+    .getMany();
 
   console.log(bulletin);
   res.status(200).send(bulletin);

@@ -22,4 +22,13 @@ router.get(
 
 router.get('/BulletinReply', bulletinController.BulletIn_reply);
 
+router.post(
+  '/BulletinWrite',
+  checkTokens,
+  checkPermission,
+  bulletinController.BulletIn_Write
+);
+
+router.get('/test', bulletinController.test);
+
 module.exports = router;

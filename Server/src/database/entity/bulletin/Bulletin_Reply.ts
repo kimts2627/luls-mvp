@@ -9,16 +9,15 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Member } from '../users';
+import Member from '../users/Member';
 
 @Entity()
 export default class BulletIn_Reply extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne((type) => Member)
-  @JoinColumn({ name: 'member_id' })
-  member_id: Member;
+  @ManyToOne((type) => Member, (member) => member.id)
+  member: Member;
 
   @Column()
   content: string;

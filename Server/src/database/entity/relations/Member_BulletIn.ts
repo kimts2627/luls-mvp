@@ -7,29 +7,22 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
 } from 'typeorm';
-import { BulletIn } from '../bulletin';
-import { Member } from '../users';
+import BulletIn from '../bulletin/BulletIn';
+import Member from '../users/Member';
 
 @Entity()
 export default class Member_BulletIn extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column({
-  //   type: 'varchar',
-  //   nullable: false,
-  //   length: 10,
-  // })
-  // category: string;
-
-  @OneToOne((type) => BulletIn)
+  @OneToOne((type) => BulletIn, (bulletin) => bulletin.bulletin)
   @JoinColumn({ name: 'Bulletin_id' })
   Bulletin_id: BulletIn;
 
   @Column()
   Status: boolean;
 
-  @ManyToOne((type) => Member)
-  @JoinColumn({ name: 'Members_Id' })
+  @ManyToOne((type) => Member, (member) => member.bulletin)
+  @JoinColumn({ name: 'member_id' })
   Members_Id: Member;
 }

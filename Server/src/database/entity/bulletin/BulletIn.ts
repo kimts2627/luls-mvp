@@ -8,24 +8,19 @@ import {
   Index,
   OneToMany,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
-import { Bulletin_Re } from '../relations';
+// import { Bulletin_Re, Member_BulletIn } from '../relations';
+import Bulletin_Re from '../relations/Bulletin_Re';
+import Member_BulletIn from '../relations/Member_BulletIn';
 
 @Entity()
 export default class BulletIn extends BaseEntity {
-  // @PrimaryGeneratedColumn()
-  // id: number;
-  @OneToMany(() => Bulletin_Re, (bulletin_re) => bulletin_re.bulletin_id)
-  @JoinColumn({ name: 'id' })
   @PrimaryGeneratedColumn()
-  id: BulletIn;
+  id: number;
 
-  // @Column({
-  //   type: 'varchar',
-  //   nullable: false,
-  //   length: 10,
-  // })
-  // category: string;
+  @OneToMany(() => Bulletin_Re, (bulletin_re) => bulletin_re.bulletin_re_id)
+  bulletin_re: BulletIn[];
 
   @Column({
     type: 'varchar',
@@ -45,13 +40,17 @@ export default class BulletIn extends BaseEntity {
     default: false,
     nullable: false,
   })
-  visiable: boolean;
+  visible: boolean;
 
-  @Column()
-  Content_Like: number;
+  // @Column()
+  // Content_Like: number;
 
-  @Column()
-  Submit_Check: boolean;
+  @Column({
+    type: 'varchar',
+    length: 10,
+    default: 'not submit',
+  })
+  Submit_Check: string;
 
   @Index()
   @Column({
@@ -60,6 +59,15 @@ export default class BulletIn extends BaseEntity {
     length: 20,
   })
   school: string;
+
+  @OneToOne(
+    (type) => Member_BulletIn,
+    (member_bulletin) => member_bulletin.Bulletin_id
+  )
+  bulletin: Member_BulletIn;
+
+  // @OneToMany((type) => Bulletin_Re, (Bulletin_Re) => Bulletin_Re.bulletin)
+  // bulletin_re!: BulletIn[];
 
   @CreateDateColumn({
     name: 'created_at',
@@ -70,10 +78,4 @@ export default class BulletIn extends BaseEntity {
     name: 'updated_at',
   })
   updatedAt: Date;
-
-  // @OneToOne((type) => Member_BulletIn, {
-  //   primary: true,
-  // })
-  // @JoinColumn({ name: 'id' })
-  // id: Member_BulletIn;
 }
