@@ -5,6 +5,7 @@ import { BulletIn } from '../../database/entity/bulletin';
 
 export default async (req: Request, res: Response) => {
   const { school } = req.query;
+  console.log(school);
   //전체 목록 조회
   /**
    * School에 따라 조회되게 할 예정
@@ -26,9 +27,9 @@ export default async (req: Request, res: Response) => {
     .leftJoinAndSelect('bulletin.bulletin_re', 'Bulletin_Re')
     .leftJoinAndSelect('Bulletin_Re.bulletin_re_id', 'bullet_in_reply')
     .where('bulletin.school = :school', { school: school })
-    .orderBy({ 'bulletin.id': 'ASC', 'bullet_in_reply.id': 'ASC' })
+    .orderBy({ 'bulletin.school': 'ASC', 'bullet_in_reply.id': 'ASC' })
     .getMany();
 
   console.log(bulletin);
-  res.status(200).send(bulletin);
+  res.status(200).send({ bulletin: bulletin });
 };

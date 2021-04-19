@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { getConnection, getManager } from 'typeorm';
+import { getManager, getConnection } from 'typeorm';
+import Bulletin_Re from '../../database/entity/relations/Bulletin_Re';
+import BulletIn_Reply from '../../database/entity/bulletin/Bulletin_Reply';
 import { Member } from '../../database/entity/users';
-import BulletIn from '../../database/entity/bulletin/BulletIn';
-import Member_BulletIn from '../../database/entity/relations/Member_BulletIn';
 
 export default async (req: Request, res: Response) => {
   const { email } = res.locals;
-  const { title, content } = req.body;
+  const { id, content } = req.body;
 
   const userinfo = await getManager()
     .createQueryBuilder(Member, 'member')
@@ -24,15 +24,14 @@ export default async (req: Request, res: Response) => {
 
     try {
       // Insert Location Table
-      const bulletin = await queryRunner.manager.save(BulletIn, {
-        title: title || null,
-        content: content || null,
-        school: userinfo.school.Name || null,
+      const bulletin_reply = await queryRunner.manager.save(BulletIn_Reply, {
+        member: userinfo,
+        content: content,
       });
 
-      await queryRunner.manager.save(Member_BulletIn, {
-        Bulletin_id: bulletin || null,
-        Members_Id: userinfo || null,
+      await queryRunner.manager.save(Bulletin_Re, {
+        bulletin: id,
+        bulletin_re_id: bulletin_reply,
         Status: false,
       });
 
