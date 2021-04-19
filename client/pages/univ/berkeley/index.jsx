@@ -32,7 +32,7 @@ const SingleNotice = ({ notice }) => {
 
   return (
     <div
-      className="bg-blue-50 w-full h-12 border-b border-gray-300 flex cursor-pointer"
+      className="w-full h-12 border-b border-gray-300 flex cursor-pointer"
       onClick={openNoticeModal}
     >
       <span className="w-32 flex items-center">{notice.school}</span>
@@ -67,7 +67,7 @@ const BerkeleyHome = () => {
       .catch((err) => {
         console.log(err.response);
       });
-  }, [notices]);
+  }, []);
 
   return (
     <Layout>

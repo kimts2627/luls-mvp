@@ -11,9 +11,7 @@ import {
 
 const SingleNotice = ({ notice }) => {
   const dispatch = useDispatch();
-  const notices = useSelector((state) => state.notice.notices);
   const noticeModal = useSelector((state) => state.notice.noticeModal);
-  const currentNotice = useSelector((state) => state.notice.currentNotice);
 
   const handlingNoticeModal = useCallback(() => {
     dispatch(handleNoticeModal());
@@ -34,7 +32,7 @@ const SingleNotice = ({ notice }) => {
 
   return (
     <div
-      className="bg-blue-50 w-full h-12 border-b border-gray-300 flex cursor-pointer"
+      className="w-full h-12 border-b border-gray-300 flex cursor-pointer"
       onClick={openNoticeModal}
     >
       <span className="w-32 flex items-center">{notice.school}</span>
@@ -51,6 +49,7 @@ const UclaHome = () => {
   const notices = useSelector((state) => state.notice.notices);
   const userInfo = useSelector((state) => state.auth.userInfo);
   const currentNotice = useSelector((state) => state.notice.currentNotice);
+  const noticeModal = useSelector((state) => state.notice.noticeModal);
 
   const handlingNotice = useCallback((notices) => {
     dispatch(handleNotice(notices));
@@ -69,7 +68,7 @@ const UclaHome = () => {
       .catch((err) => {
         console.log(err.response);
       });
-  }, [notices]);
+  }, []);
 
   return (
     <Layout>
@@ -113,6 +112,7 @@ const UclaHome = () => {
           </section>
         </main>
       </div>
+      {noticeModal ? <div className='blackback fixed top-0 w-full h-full '/>}
       <NoticeModal currentNotice={currentNotice} />
     </Layout>
   );

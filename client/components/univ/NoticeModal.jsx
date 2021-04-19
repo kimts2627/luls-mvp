@@ -16,12 +16,7 @@ const NoticeModal = ({ currentNotice }) => {
         noticeModal ? "left-0" : "left-full"
       } flex transition-all duration-300`}
     >
-      <div
-        className={`w-1/2 h-screen duration-500 ${
-          noticeModal ? "blackback" : null
-        }`}
-        onClick={handlingNoticeModal}
-      />
+      <div className={`w-1/2 h-screen`} onClick={handlingNoticeModal} />
       <aside className="w-1/2 h-screen bg-yellow-400">
         {currentNotice ? currentNotice.content : "no data"}
       </aside>
