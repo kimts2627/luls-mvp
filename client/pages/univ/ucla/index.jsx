@@ -1,9 +1,8 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../../components/layout";
 import { handleNotice } from "../../../reducers/notice";
-import qs from "qs";
 
 const SingleNotice = () => {
   return (
@@ -19,23 +18,23 @@ const UclaHome = () => {
   const dispatch = useDispatch();
   const notices = useSelector((state) => state.notice.notices);
 
-  useEffect(() => {
-    const query = qs.stringify({
-      school: "멋사대학교",
-    });
+  const handlingNotice = useCallback((notice) => {
+    dispatch(handleNotice(notice));
+  });
 
+  useEffect(() => {
     axios
-      .get(`https://www.likelionustest.com/bulletin/list?${query}`, {
+      .get("https://www.likelionustest.com/bulletin/list?school=멋사대학교", {
         withCredentials: true,
       })
       .then((res) => res.data)
       .then((data) => {
-        console.log(data);
+        handlingNotice(data);
       })
       .catch((err) => {
         console.log(err.response);
       });
-  }, []);
+  }, [notices]);
 
   return (
     <Layout>
@@ -62,8 +61,11 @@ const UclaHome = () => {
                 <h2 className="w-36">Date.</h2>
               </header>
               <div className="w-full p-1">
-                {/* {notices ? notices.map((notice) => <SingleNotice />) : null} */}
-                <SingleNotice />
+                {notices
+                  ? notices.map((notice) => (
+                      <SingleNotice key={notice.id} notice={notice} />
+                    ))
+                  : null}
               </div>
             </article>
             <button className="absolute bottom-0 right-6 bg-yellow-400 rounded-md p-2 cursor-pointer mb-10">
