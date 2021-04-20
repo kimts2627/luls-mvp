@@ -32,12 +32,14 @@ const SingleNotice = ({ notice }) => {
 
   return (
     <div
-      className="w-full h-12 border-b border-gray-300 flex cursor-pointer"
+      className={`w-full h-12 border-b border-gray-300 flex cursor-pointer ${
+        notice.school === "admin" ? "bg-yellow-50" : null
+      }`}
       onClick={openNoticeModal}
     >
-      <span className="w-32 flex items-center">{notice.school}</span>
-      <span className="flex-1 flex items-center">{notice.title}</span>
-      <span className="w-40 flex items-center">
+      <span className="w-32 flex items-center pl-2">{notice.school}</span>
+      <span className="flex-1 flex items-center pl-2">{notice.title}</span>
+      <span className="w-40 flex items-center pl-3">
         {notice.createdAt.slice(0, 10)}
       </span>
     </div>
