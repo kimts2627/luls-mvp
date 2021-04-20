@@ -90,18 +90,16 @@ const UclaHome = () => {
             <h1 className="text-3xl mb-14 Montserrat text-yellow-500">
               Notice.
             </h1>
-            <article className="w-full h-120 max-h-120 shadow-md rounded-md">
+            <article className="w-full h-120 max-h-120 shadow-md rounded-md flex flex-col">
               <header className="w-full h-12 bg-gray-100 flex items-center p-2 shadow-md">
                 <h2 className="w-32 border-r border-gray-500 mr-2">Univ.</h2>
                 <h2 className="flex-1 border-r border-gray-500 mr-2">Title.</h2>
                 <h2 className="w-36">Date.</h2>
               </header>
-              <div className="w-full p-1 overflow-y-scroll h-full">
-                {notices
-                  ? notices.map((notice) => (
-                      <SingleNotice key={notice.id} notice={notice} />
-                    ))
-                  : null}
+              <div className="w-full p-1 overflow-y-scroll">
+                {notices.map((notice) => (
+                  <SingleNotice key={notice.id} notice={notice} />
+                ))}
               </div>
             </article>
             {userInfo !== null ? (

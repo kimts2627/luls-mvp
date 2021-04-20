@@ -46,7 +46,9 @@ const SingleNotice = ({ notice }) => {
 
 const BrownHome = () => {
   const dispatch = useDispatch();
-  const notices = useSelector((state) => state.notice.notices);
+  const notices = useSelector((state) => state.notice.notices) || [
+    { id: 0, school: "local", title: "local", createdAt: "00:00" },
+  ];
   const userInfo = useSelector((state) => state.auth.userInfo);
   const currentNotice = useSelector((state) => state.notice.currentNotice);
   const noticeModal = useSelector((state) => state.notice.noticeModal);
@@ -88,13 +90,13 @@ const BrownHome = () => {
             <h1 className="text-3xl mb-14 Montserrat text-yellow-500">
               Notice.
             </h1>
-            <article className="w-full h-120 max-h-120 shadow-md rounded-md">
+            <article className="w-full h-120 max-h-120 shadow-md rounded-md flex flex-col">
               <header className="w-full h-12 bg-gray-100 flex items-center p-2 shadow-md">
                 <h2 className="w-32 border-r border-gray-500 mr-2">Univ.</h2>
                 <h2 className="flex-1 border-r border-gray-500 mr-2">Title.</h2>
                 <h2 className="w-36">Date.</h2>
               </header>
-              <div className="w-full p-1 overflow-y-scroll h-full">
+              <div className="w-full p-1 overflow-y-scroll">
                 {notices
                   ? notices.map((notice) => (
                       <SingleNotice key={notice.id} notice={notice} />

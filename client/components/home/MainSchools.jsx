@@ -37,7 +37,7 @@ const MainSchools = () => {
       passive: true,
     });
     return () => {
-      window.addEventListener("scroll", throttle(schoolFocusEvent, 100), {
+      window.removeEventListener("scroll", throttle(schoolFocusEvent, 100), {
         passive: true,
       });
     };
