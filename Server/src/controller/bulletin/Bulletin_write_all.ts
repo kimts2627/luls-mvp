@@ -5,8 +5,8 @@ import { BulletIn } from '../../database/entity/bulletin';
 import { Member } from '../../database/entity/users';
 
 export default async (req: Request, res: Response) => {
-  // const { email } = res.locals;
-  const { email, title, content } = req.body;
+  const { email } = res.locals;
+  const { title, content } = req.body;
 
   const userinfo = await getManager()
     .createQueryBuilder(Member, 'member')
