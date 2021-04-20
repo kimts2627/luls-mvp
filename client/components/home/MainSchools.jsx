@@ -79,60 +79,23 @@ const MainSchools = () => {
           />
         </div>
         <div className="flex justify-evenly items-center w-full z-10">
-          <Link href="/univ/ucla">
-            <div
-              className="w-44 cursor-pointer transition-all duration-200"
-              onMouseOver={(e) => showBackground(e)}
-              onMouseOut={(e) => hideBackground(e)}
-            >
-              <img src="/img/logo/ucla.png" alt="" className="w-full" />
-            </div>
-          </Link>
-          <Link href="/univ/brown">
-            <div
-              className="w-28 cursor-pointer transition-all duration-200"
-              onMouseOver={(e) => showBackground(e)}
-              onMouseOut={(e) => hideBackground(e)}
-            >
-              <img src="/img/logo/brown.png" alt="" className="w-full" />
-            </div>
-          </Link>
-          <Link href="/univ/berkeley">
-            <div
-              className="w-44 cursor-pointer transition-all duration-200"
-              onMouseOver={(e) => showBackground(e)}
-              onMouseOut={(e) => hideBackground(e)}
-            >
-              <img src="/img/logo/berkeley.png" alt="" className="w-full" />
-            </div>
-          </Link>
-          <Link href="/univ/ucla">
-            <div
-              className="w-44 cursor-pointer transition-all duration-200"
-              onMouseOver={(e) => showBackground(e)}
-              onMouseOut={(e) => hideBackground(e)}
-            >
-              <img src="/img/logo/ucla.png" alt="" className="w-full" />
-            </div>
-          </Link>
-          <Link href="/univ/brown">
-            <div
-              className="w-28 cursor-pointer transition-all duration-200"
-              onMouseOver={(e) => showBackground(e)}
-              onMouseOut={(e) => hideBackground(e)}
-            >
-              <img src="/img/logo/brown.png" alt="" className="w-full" />
-            </div>
-          </Link>
-          <Link href="/univ/berkeley">
-            <div
-              className="w-44 cursor-pointer transition-all duration-200"
-              onMouseOver={(e) => showBackground(e)}
-              onMouseOut={(e) => hideBackground(e)}
-            >
-              <img src="/img/logo/berkeley.png" alt="" className="w-full" />
-            </div>
-          </Link>
+          {["ucla", "brown", "berkeley", "ucla", "brown", "berkeley"].map(
+            (univ) => (
+              <Link href={`/univ/${univ}`}>
+                <div
+                  className="w-44 cursor-pointer transition-all duration-200"
+                  onMouseOver={(e) => showBackground(e)}
+                  onMouseOut={(e) => hideBackground(e)}
+                >
+                  <img
+                    src={`/img/logo/${univ}.png`}
+                    alt=""
+                    className="w-full"
+                  />
+                </div>
+              </Link>
+            )
+          )}
         </div>
       </section>
       <h3 className="text-2xl text-yellow-400 animate-blink">
