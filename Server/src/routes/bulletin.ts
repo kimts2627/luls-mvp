@@ -20,7 +20,7 @@ router.get(
 // 작성자 권한 확인 후 리다이렉트를 위한 엔드포인트
 // router.post('/write', checkTokens, redirectNotice);
 // 작성자 권한 테스트용
-router.post('/write', redirectNotice);
+router.post('/write', checkTokens, redirectNotice);
 // 작성자 권한이 일반 멤버일때
 router.post('/write_common', bulletinController.BulletIn_Write);
 // 작성자 권한이 admin, 혹은 super_admin일때
