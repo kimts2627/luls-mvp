@@ -11,9 +11,7 @@ const NoticeModal = ({ currentNotice }) => {
   }, []);
 
   return (
-    <aside className="w-120 h-150 bg-white rounded-md shadow-md">
-      {currentNotice.content}
-    </aside>
+    <aside className="w-120 h-150 bg-white rounded-md shadow-md">testing</aside>
   );
 };
 
