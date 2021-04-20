@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import { getManager, getConnection } from 'typeorm';
-// import { Member, Location, School, Attendance } from '../../database/entity';
+import { getConnection } from 'typeorm';
 import Member from '../../database/entity/users/Member';
 import Location from '../../database/entity/users/Location';
 import School from '../../database/entity/users/School';

@@ -7,7 +7,6 @@ import {
   PrimaryGeneratedColumn,
   Index,
   OneToMany,
-  JoinColumn,
   OneToOne,
 } from 'typeorm';
 import BulletIn_Re from '../relations/Bulletin_Re';

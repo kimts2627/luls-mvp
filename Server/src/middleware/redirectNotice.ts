@@ -4,7 +4,7 @@ import { getManager } from 'typeorm';
 import { Member } from '../database/entity/users';
 
 export default async (req: Request, res: Response) => {
-  const { email } = req.body;
+  const { email } = res.locals;
   console.log(email);
   const userinfo = await getManager()
     .createQueryBuilder(Member, 'member')
