@@ -2,7 +2,6 @@ require('dotenv').config();
 import { getManager } from 'typeorm';
 import { Member, School, Location } from '../../database/entity';
 import { Request, Response } from 'express';
-import { redisCheck } from '../../utils/redisCheck';
 
 export default async (req: Request, res: Response) => {
   const email = res.locals.email;

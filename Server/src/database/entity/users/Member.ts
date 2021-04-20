@@ -8,8 +8,6 @@ import {
   JoinColumn,
   OneToOne,
   OneToMany,
-  Unique,
-  Generated,
 } from 'typeorm';
 import School from './School';
 import Location from './Location';

@@ -1,25 +1,39 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import logger from 'morgan';
 import { createConnection } from 'typeorm';
 import 'dotenv/config';
+import ratelimit from 'express-rate-limit';
 import redis from 'redis';
 import { redisCheck } from './utils/redisCheck';
 const usersRouter = require('./routes/user');
 const bulletinRouter = require('./routes/bulletin');
+const app = express();
+const PORT = 3006;
+const limiter = ratelimit({
+  windowMs: 1 * 60 * 1000,
+  max: 100,
+  delayMs: 0,
+  handler(req: Request, res: Response) {
+    res.status(this.statusCode).json({
+      code: this.statusCode,
+      message:
+        '너무 많은 요청을 보냈습니다. 잠시 후 다시 시도해 주시기 바랍니다.',
+    });
+  },
+});
 
 createConnection()
   .then(() => console.log('typeorm connection complete'))
   .catch((error) => console.log('TypeORM connection error: ', error));
-const app = express();
-// const redisClient = redis.createClient();
 
-const PORT = 3006;
+// const redisClient = redis.createClient();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(limiter);
 
 app.use(
   cors({

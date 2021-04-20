@@ -20,8 +20,10 @@ export default async (
   // }
   if (email === 'likelion.net') {
     res.locals.permission = 'admin';
+    next();
   } else if (email === 'gmail.com') {
     res.locals.permission = 'student';
+    next();
   } else {
     res.status(400).send('저희 유저가 아닙니다');
   }
