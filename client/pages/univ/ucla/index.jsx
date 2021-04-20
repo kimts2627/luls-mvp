@@ -65,7 +65,7 @@ const UclaHome = () => {
       .then((res) => res.data)
       .then((data) => {
         console.log(data);
-        handlingNotice(data);
+        handlingNotice(data.bulletin);
       })
       .catch((err) => {
         console.log(err.response);
