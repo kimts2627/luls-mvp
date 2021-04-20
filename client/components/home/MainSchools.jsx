@@ -83,7 +83,9 @@ const MainSchools = () => {
             (univ) => (
               <Link href={`/univ/${univ}`}>
                 <div
-                  className="w-44 cursor-pointer transition-all duration-200"
+                  className={`${
+                    univ === "brown" ? "w-36" : "w-44"
+                  } cursor-pointer transition-all duration-200`}
                   onMouseOver={(e) => showBackground(e)}
                   onMouseOut={(e) => hideBackground(e)}
                 >
