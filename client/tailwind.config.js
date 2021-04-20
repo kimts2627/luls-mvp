@@ -23,7 +23,7 @@ module.exports = {
         longFull: "150rem",
       },
       animation: {
-        blink: "blink 0.7s infinite",
+        blink: "blink 2s infinite",
         fadein: "fadein 1s linear forwards",
       },
       keyframes: {

@@ -16,7 +16,7 @@ const Home = () => {
         <title>We are LikeLion US</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-full mt-40 flex items-center flex-col back transition-all duration-700">
+      <div className="w-full mt-40 flex items-center flex-col back transition-all duration-500">
         <Main />
       </div>
     </Layout>
