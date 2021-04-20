@@ -48,7 +48,7 @@ const MainSchools = () => {
     backRef.current.style.opacity = "0.6";
     e.currentTarget.style.transform = "scale(1.1)";
     let src = e.currentTarget.children[0].src;
-    console.log(src.slice(31, src.length - 4));
+    console.log(src.slice(36, src.length - 4));
     backRef.current.src = `/img/${src.slice(31, src.length - 4)}-campus.jpeg`;
   };
 

@@ -17,7 +17,7 @@ const NoticePostModal = () => {
   };
 
   const postNewNotice = () => {
-    const token = window.localStorage.getItem("ac_token");
+    let token = window.localStorage.getItem("ac-token");
     for (let i in inputValues) {
       if (!inputValues[i]) {
         throw new Error("Fill all sections..");
