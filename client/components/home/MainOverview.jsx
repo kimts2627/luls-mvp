@@ -12,18 +12,6 @@ const MainOverview = () => {
 
   return (
     <div className="relative w-full max-w-screen-2xl h-staticFull">
-      <p className="text-center text-white text-3xl px-10">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        <br />
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        <br />
-        <br />
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-        ut aliquip ex ea commodo consequat.
-        <br />
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur.
-      </p>
       <section className="bg-red-100 w-full h-1/2 mt-32 flex flex-wrap">
         {courses.map((course) => (
           <div

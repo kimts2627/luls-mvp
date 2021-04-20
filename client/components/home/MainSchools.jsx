@@ -5,17 +5,19 @@ const MainSchools = () => {
   const divRef = useRef();
 
   const schoolFocusEvent = () => {
-    const back = document.querySelector(".back");
-    if (
-      Math.round(window.scrollY / 100) * 100 >=
-      Math.round(divRef.current.offsetTop / 100) * 100
-    ) {
-      back.style.backgroundColor = "rgb(0, 0, 0)";
-    } else if (
-      Math.round(window.scrollY / 100) * 100 <
-      Math.round(divRef.current.offsetTop / 100) * 100
-    ) {
-      back.style.backgroundColor = "rgb(255, 255, 255)";
+    if (divRef) {
+      const back = document.querySelector(".back");
+      if (
+        Math.round(window.scrollY / 100) * 100 >=
+        Math.round(divRef.current.offsetTop / 100) * 100
+      ) {
+        back.style.backgroundColor = "rgb(0, 0, 0)";
+      } else if (
+        Math.round(window.scrollY / 100) * 100 <
+        Math.round(divRef.current.offsetTop / 100) * 100
+      ) {
+        back.style.backgroundColor = "rgb(255, 255, 255)";
+      }
     }
   };
 

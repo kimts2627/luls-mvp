@@ -71,8 +71,8 @@ const MainIntro = () => {
       <div className="w-full h-staticFull z-10">
         <NewsBar />
         <section className="w-full h-auto flex flex-col justify-center items-center bg-gradient-to-b from-gray-50 to-white">
-          <h1 className="text-4xl Lato mt-44 mb-12">
-            Lorem ipsum dolor sit amet
+          <h1 className="text-4xl mt-44 mb-12 Montserrat">
+            Forge your creativity into an inpiration for all
             <div className="w-full h-1 bg-yellow-500" />
           </h1>
           <p className="text-center text-2xl mb-36">
