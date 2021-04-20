@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getManager } from 'typeorm';
+import { Brackets, getManager } from 'typeorm';
 // import { BulletIn, Bulletin_Re, BulletIn_Reply } from '../../database/entity';
 import { BulletIn } from '../../database/entity/bulletin';
 
@@ -27,7 +27,16 @@ export default async (req: Request, res: Response) => {
     .leftJoinAndSelect('bulletin.bulletin_re', 'Bulletin_Re')
     .leftJoinAndSelect('Bulletin_Re.bulletin_re_id', 'bullet_in_reply')
     .where('bulletin.school = :school', { school: school })
-    .orderBy({ 'bulletin.school': 'ASC', 'bullet_in_reply.id': 'ASC' })
+    .orWhere(
+      new Brackets((qb) => {
+        qb.where("bulletin.school = 'admin'");
+      })
+    )
+    .orderBy({
+      'bulletin.school': 'ASC',
+      'bulletin.id': 'ASC',
+      'bullet_in_reply.id': 'ASC',
+    })
     .getMany();
 
   console.log(bulletin);
