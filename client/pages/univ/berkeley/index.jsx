@@ -49,7 +49,13 @@ const SingleNotice = ({ notice }) => {
 const BerkeleyHome = () => {
   const dispatch = useDispatch();
   const notices = useSelector((state) => state.notice.notices) || [
-    { id: 0, school: "local", title: "local", createdAt: "00:00" },
+    {
+      id: 0,
+      school: "admin",
+      title: "local",
+      content: "testing",
+      createdAt: "00:00",
+    },
   ];
   const userInfo = useSelector((state) => state.auth.userInfo);
   const currentNotice = useSelector((state) => state.notice.currentNotice);
