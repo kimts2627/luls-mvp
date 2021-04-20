@@ -33,12 +33,11 @@ export default async (req: Request, res: Response) => {
       })
     )
     .orderBy({
-      'bulletin.school': 'DESC',
+      'bulletin.school': 'ASC',
       'bulletin.id': 'DESC',
       'bullet_in_reply.id': 'DESC',
     })
     .getMany();
 
-  console.log(bulletin);
   res.status(200).send({ bulletin: bulletin });
 };
