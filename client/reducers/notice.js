@@ -1,5 +1,6 @@
 export const HANDLE_NOTICE = "notice/HANDLE_NOTICE";
 export const HANDLE_NOTICE_MODAL = "notice/HANDLE_NOTICE_MODAL";
+export const HANDLE_NOTICE_POST_MODAL = "notice/HANDLE_NOTICE_POST_MODAL";
 export const HANDLE_CURRENT_NOTICE = "notice/HANDLE_CURRENT_NOTICE";
 
 export const handleNotice = (notices) => ({
@@ -13,6 +14,10 @@ export const handleNoticeModal = () => ({
   type: HANDLE_NOTICE_MODAL,
 });
 
+export const handleNoticePostModal = () => ({
+  type: HANDLE_NOTICE_POST_MODAL,
+});
+
 export const handleCurrentNotice = (currentNotice) => ({
   type: HANDLE_CURRENT_NOTICE,
   payload: {
@@ -23,6 +28,7 @@ export const handleCurrentNotice = (currentNotice) => ({
 export const initialState = {
   notices: null,
   noticeModal: false,
+  noticePostModal: false,
   currentNotice: null,
 };
 
@@ -34,6 +40,10 @@ const reducer = (state = initialState, action) => {
       });
     case HANDLE_NOTICE_MODAL:
       return Object.assign({}, state, { noticeModal: !state.noticeModal });
+    case HANDLE_NOTICE_POST_MODAL:
+      return Object.assign({}, state, {
+        noticePostModal: !state.noticePostModal,
+      });
     case HANDLE_CURRENT_NOTICE:
       return Object.assign({}, state, {
         currentNotice: action.payload.currentNotice,

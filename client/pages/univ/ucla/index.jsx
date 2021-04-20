@@ -3,10 +3,12 @@ import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../../components/layout";
 import NoticeModal from "../../../components/univ/NoticeModal";
+import NoticePostModal from "../../../components/univ/NoticePostModal";
 import {
   handleNotice,
   handleNoticeModal,
   handleCurrentNotice,
+  handleNoticePostModal,
 } from "../../../reducers/notice";
 
 const SingleNotice = ({ notice }) => {
@@ -54,9 +56,18 @@ const UclaHome = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const currentNotice = useSelector((state) => state.notice.currentNotice);
   const noticeModal = useSelector((state) => state.notice.noticeModal);
+  const noticePostModal = useSelector((state) => state.notice.noticePostModal);
 
   const handlingNotice = useCallback((notices) => {
     dispatch(handleNotice(notices));
+  }, []);
+
+  const handlingNoticePostModal = useCallback(() => {
+    dispatch(handleNoticePostModal());
+  }, []);
+
+  const handlingNoticeModal = useCallback(() => {
+    dispatch(handleNoticeModal());
   }, []);
 
   useEffect(() => {
@@ -106,18 +117,39 @@ const UclaHome = () => {
             </article>
             {userInfo !== null ? (
               userInfo.permission === "admin" ? (
-                <button className="absolute bottom-0 right-6 bg-yellow-400 rounded-md p-2 cursor-pointer mb-10">
+                <button
+                  className="absolute bottom-0 right-6 bg-yellow-400 rounded-md p-2 cursor-pointer mb-10"
+                  onClick={handlingNoticePostModal}
+                >
                   New Notice
                 </button>
               ) : null
             ) : null}
+            <button
+              className="absolute bottom-0 right-6 bg-yellow-400 rounded-md p-2 cursor-pointer mb-10"
+              onClick={handlingNoticePostModal}
+            >
+              New Notice
+            </button>
           </section>
         </main>
       </div>
-      {noticeModal ? (
+      {noticeModal || noticePostModal ? (
         <div className="blackback fixed top-0 w-full h-full z-10" />
       ) : null}
-      <NoticeModal currentNotice={currentNotice} />
+      {noticeModal ? (
+        <div
+          className="fixed top-0 w-full h-full z-20 flex justify-center items-center"
+          onClick={handlingNoticeModal}
+        >
+          <NoticeModal currentNotice={currentNotice} />
+        </div>
+      ) : null}
+      {noticePostModal ? (
+        <div>
+          <NoticePostModal />
+        </div>
+      ) : null}
     </Layout>
   );
 };
