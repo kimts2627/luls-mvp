@@ -6,7 +6,6 @@ const MainSchools = () => {
 
   const schoolFocusEvent = () => {
     const back = document.querySelector(".back");
-    console.log(window.scrollY, divRef.current.offsetTop);
     if (
       Math.round(window.scrollY / 100) * 100 >=
       Math.round(divRef.current.offsetTop / 100) * 100
@@ -20,7 +19,7 @@ const MainSchools = () => {
     }
   };
 
-  function throttle(fn, delay) {
+  const throttle = (fn, delay) => {
     let timer;
     return function () {
       if (!timer) {
@@ -30,7 +29,7 @@ const MainSchools = () => {
         }, delay);
       }
     };
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", throttle(schoolFocusEvent, 100), {

@@ -59,13 +59,13 @@ const BrownHome = () => {
 
   useEffect(() => {
     axios
-      .get("https://www.likelionustest.com/bulletin/list?school=멋사대학교", {
+      .get("https://www.likelionustest.com/bulletin/list?school=서울대학교", {
         withCredentials: true,
       })
       .then((res) => res.data)
       .then((data) => {
         console.log(data);
-        handlingNotice(data);
+        handlingNotice(data.bulletin);
       })
       .catch((err) => {
         console.log(err.response);
