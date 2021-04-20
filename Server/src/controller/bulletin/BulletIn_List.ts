@@ -33,9 +33,9 @@ export default async (req: Request, res: Response) => {
       })
     )
     .orderBy({
-      'bulletin.school': 'ASC',
-      'bulletin.id': 'ASC',
-      'bullet_in_reply.id': 'ASC',
+      'bulletin.school': 'DESC',
+      'bulletin.id': 'DESC',
+      'bullet_in_reply.id': 'DESC',
     })
     .getMany();
 
