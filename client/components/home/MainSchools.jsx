@@ -7,14 +7,19 @@ const MainSchools = () => {
   const schoolFocusEvent = () => {
     if (divRef) {
       const back = document.querySelector(".back");
+      const fame = document.querySelector(".fame");
       if (
         Math.round(window.scrollY / 100) * 100 >=
-        Math.round(divRef.current.offsetTop / 100) * 100
+          Math.round(divRef.current.offsetTop / 100) * 100 &&
+        Math.round(window.scrollY / 100) * 100 <
+          Math.round((fame.offsetTop + fame.offsetHeight / 2) / 100) * 100
       ) {
         back.style.backgroundColor = "rgb(0, 0, 0)";
       } else if (
         Math.round(window.scrollY / 100) * 100 <
-        Math.round(divRef.current.offsetTop / 100) * 100
+          Math.round(divRef.current.offsetTop / 100) * 100 ||
+        Math.round(window.scrollY / 100) * 100 >=
+          Math.round((fame.offsetTop + fame.offsetHeight / 2) / 100) * 100
       ) {
         back.style.backgroundColor = "rgb(255, 255, 255)";
       }
@@ -82,8 +87,8 @@ const MainSchools = () => {
         </div>
         <div className="flex justify-evenly items-center w-full z-10">
           {["ucla", "brown", "berkeley", "ucla", "brown", "berkeley"].map(
-            (univ) => (
-              <Link href={`/univ/${univ}`}>
+            (univ, index) => (
+              <Link href={`/univ/${univ}`} key={univ + index}>
                 <div
                   className={`${
                     univ === "brown" ? "w-32" : "w-44"

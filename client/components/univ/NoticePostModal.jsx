@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleNoticePostModal } from "../../reducers/notice";
+import CommonEditor from "./CommonEditor";
 
 const NoticePostModal = () => {
   const dispatch = useDispatch();
@@ -52,12 +53,7 @@ const NoticePostModal = () => {
           placeholder="title"
           onChange={(e) => handleChange(e)}
         />
-        <input
-          type="text"
-          placeholder="content"
-          onChange={(e) => handleChange(e)}
-          className="w-80 h-80"
-        />
+        <CommonEditor />
         <input type="button" value="Post" onClick={postNewNotice} />
       </aside>
       <div className={`w-1/2 h-screen`} onClick={handlingNoticePostModal} />

@@ -91,9 +91,9 @@ const MainIntro = () => {
               height="500"
               src={currentVideo}
               title="YouTube video player"
-              frameborder=""
+              frameBorder=""
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             />
             <div className="flex justify-between w-72 h-auto mt-8">
               <img

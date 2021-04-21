@@ -28,10 +28,10 @@ const Main = () => {
       </div>
       <MainOverview />
       <MainSchools />
-      {/* <MainHallOfFame />
+      <MainHallOfFame />
       <MainJoinAdmin />
       <MainJoinStudent />
-      <MainContactUs /> */}
+      <MainContactUs />
     </main>
   );
 };
