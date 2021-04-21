@@ -15,12 +15,16 @@ module.exports = {
       },
       width: {
         120: "30rem",
+        longFull: "150rem",
       },
       height: {
         120: "30rem",
         150: "48rem",
         staticFull: "100rem",
         longFull: "150rem",
+      },
+      inset: {
+        120: "30rem",
       },
       animation: {
         blink: "blink 2s infinite",

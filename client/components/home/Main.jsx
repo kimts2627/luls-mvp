@@ -9,7 +9,7 @@ import MainSchools from "./MainSchools";
 
 const Main = () => {
   return (
-    <main className="w-full flex flex-col items-center">
+    <main className="w-full flex flex-col items-center z-10">
       <MainIntro />
       <div className="relative w-screen h-96 bg-gray-500 shadow-inner z-0 flex flex-col items-center justify-center">
         <h1 className="Montserrat text-white mb-10 text-3xl">

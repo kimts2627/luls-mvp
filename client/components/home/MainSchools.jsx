@@ -5,7 +5,7 @@ const MainSchools = () => {
   const divRef = useRef();
 
   const schoolFocusEvent = () => {
-    if (divRef) {
+    if (divRef !== null) {
       const back = document.querySelector(".back");
       const fame = document.querySelector(".fame");
       if (
@@ -15,6 +15,7 @@ const MainSchools = () => {
           Math.round((fame.offsetTop + fame.offsetHeight / 2) / 100) * 100
       ) {
         back.style.backgroundColor = "rgb(0, 0, 0)";
+        // handleToys("on");
       } else if (
         Math.round(window.scrollY / 100) * 100 <
           Math.round(divRef.current.offsetTop / 100) * 100 ||
@@ -22,9 +23,22 @@ const MainSchools = () => {
           Math.round((fame.offsetTop + fame.offsetHeight / 2) / 100) * 100
       ) {
         back.style.backgroundColor = "rgb(255, 255, 255)";
+        // handleToys("off");
       }
     }
   };
+
+  // const handleToys = (command) => {
+  //   const toys = document.querySelectorAll(".toy");
+  //   console.log(toys);
+  //   if (command === "on") {
+  //     for (let i = 0; i < toys.length; i++) {
+  //       toys[i].style.opacity = "0.8";
+  //     }
+  //   } else if (command === "off") {
+  //     i.style.opacity = "0";
+  //   }
+  // };
 
   const throttle = (fn, delay) => {
     let timer;
@@ -66,7 +80,7 @@ const MainSchools = () => {
 
   return (
     <div
-      className="bg-black w-full max-w-screen-2xl h-staticFull text-9xl flex flex-col items-center justify-center text-white"
+      className="relative bg-black w-full max-w-screen-2xl h-staticFull text-9xl flex flex-col items-center justify-center text-white school"
       ref={divRef}
     >
       <h1 className="text-3xl mt-96">
@@ -110,6 +124,7 @@ const MainSchools = () => {
       <h3 className="text-2xl text-yellow-400 animate-blink">
         Check out Likelions each universities
       </h3>
+      <img src="/img/lion.png" alt="" className="absolute -top-16 w-20" />
     </div>
   );
 };

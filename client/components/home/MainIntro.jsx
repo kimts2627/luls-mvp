@@ -82,8 +82,8 @@ const MainIntro = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </p>
           <div className="w-full h-80 absolute z-0 mt-96 flex justify-between opacity-70">
-            <img src="/img/triangle.png" alt="" className="h-full ml-36" />
-            <img src="/img/donut.png" alt="" className="h-full mr-40" />
+            <img src="/img/triangle-bk.png" alt="" className="h-full ml-36" />
+            <img src="/img/donut-or.png" alt="" className="h-full mr-40" />
           </div>
           <div className="z-10">
             <iframe
