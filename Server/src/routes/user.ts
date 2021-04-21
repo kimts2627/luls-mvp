@@ -14,4 +14,6 @@ router.get('/test', usersController.test);
 // * GET /users/userinfo
 router.get('/userinfo', checkTokens, usersController.userinfo);
 
+router.get('/attendance', usersController.attendance);
+
 module.exports = router;

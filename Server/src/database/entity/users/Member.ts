@@ -12,17 +12,12 @@ import {
 import School from './School';
 import Location from './Location';
 import Member_BulletIn from '../relations/Member_BulletIn';
+import mem_att from '../relations/mem_att';
 
 @Entity()
 export default class Member extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @OneToMany(
-    () => Member_BulletIn,
-    (member_bulletin) => member_bulletin.Members_Id
-  )
-  bulletin: Member_BulletIn[];
 
   @Column({
     type: 'varchar',
@@ -82,6 +77,15 @@ export default class Member extends BaseEntity {
   })
   @JoinColumn({ name: 'city' })
   city: Location;
+
+  @OneToMany(
+    () => Member_BulletIn,
+    (member_bulletin) => member_bulletin.Members_Id
+  )
+  bulletin: Member_BulletIn[];
+
+  @OneToMany(() => mem_att, (mem_att) => mem_att.Member)
+  mem_att: mem_att[];
 
   static async insertInfo(data: object): Promise<Member | undefined> {
     await this.createQueryBuilder()

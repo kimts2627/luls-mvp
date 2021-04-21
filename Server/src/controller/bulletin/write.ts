@@ -11,7 +11,7 @@ export default async (req: Request, res: Response) => {
   const userinfo = await getManager()
     .createQueryBuilder(Member, 'member')
     .innerJoinAndSelect('member.school', 'School')
-    .innerJoinAndSelect('member.city', 'Location')
+    // .innerJoinAndSelect('member.city', 'Location')
     .where('member.Email = :Email', { Email: email })
     .getOne();
 

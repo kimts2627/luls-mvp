@@ -12,8 +12,8 @@ export default async (req: Request, res: Response) => {
     .innerJoinAndSelect('member.bulletin', 'member_bullet_in')
     .innerJoinAndSelect('member_bullet_in.Bulletin_id', 'bullet_in')
     // 댓글
-    .leftJoinAndSelect('bullet_in.bulletin_re', 'bulletin_re')
-    .leftJoinAndSelect('bulletin_re.bulletin_re_id', 'bulletin_reply')
+    .leftJoinAndSelect('bullet_in.bulletin_re', 'bulletin_reply')
+    // .leftJoinAndSelect('bulletin_re.bulletin_re_id', 'bulletin_reply')
     // 학교 및 거주지 정보
     .innerJoinAndSelect('member.school', 'School')
     .innerJoinAndSelect('member.city', 'Location')
