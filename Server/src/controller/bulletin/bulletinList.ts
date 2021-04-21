@@ -23,8 +23,8 @@ export default async (req: Request, res: Response) => {
   // 특정 학교 게시글 및 댓글 목록
   const bulletin = await getManager()
     .createQueryBuilder(BulletIn, 'bulletin')
-    .leftJoinAndSelect('bulletin.bulletin_re', 'Bulletin_Re')
-    .leftJoinAndSelect('Bulletin_Re.bulletin_re_id', 'bullet_in_reply')
+    // .leftJoinAndSelect('bulletin.bulletin_re', 'Bulletin_Re')
+    .leftJoinAndSelect('bulletin.bulletin_re', 'bullet_in_reply')
     .where('bulletin.school = :school', { school: school })
     .orWhere(
       new Brackets((qb) => {

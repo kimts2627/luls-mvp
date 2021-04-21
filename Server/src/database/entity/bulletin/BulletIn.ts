@@ -9,6 +9,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
+import { BulletIn_Reply } from '..';
 import BulletIn_Re from '../relations/Bulletin_Re';
 import Member_BulletIn from '../relations/Member_BulletIn';
 
@@ -17,8 +18,8 @@ export default class BulletIn extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => BulletIn_Re, (bulletin_re) => bulletin_re.bulletin)
-  bulletin_re: BulletIn_Re[];
+  @OneToMany(() => BulletIn_Reply, (bulletin_re) => bulletin_re.bulletin)
+  bulletin_re: BulletIn_Reply[];
 
   @Column({
     type: 'varchar',
@@ -35,7 +36,7 @@ export default class BulletIn extends BaseEntity {
 
   @Column({
     type: 'boolean',
-    default: false,
+    default: true,
     nullable: false,
   })
   visible: boolean;
