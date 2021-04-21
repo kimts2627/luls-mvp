@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { getConnection, getManager } from 'typeorm';
+import { Member_BulletIn } from '../../database/entity/relations';
+import { BulletIn } from '../../database/entity/bulletin';
 import { Member } from '../../database/entity/users';
-import BulletIn from '../../database/entity/bulletin/BulletIn';
-import Member_BulletIn from '../../database/entity/relations/Member_BulletIn';
 
 export default async (req: Request, res: Response) => {
   const { email } = res.locals;
+  console.log(email);
   const { title, content } = req.body;
 
   const userinfo = await getManager()

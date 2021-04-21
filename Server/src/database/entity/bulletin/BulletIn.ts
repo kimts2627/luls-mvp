@@ -23,12 +23,12 @@ export default class BulletIn extends BaseEntity {
   @Column({
     type: 'varchar',
     nullable: false,
-    length: 50,
+    length: '30',
   })
   title: string;
 
   @Column({
-    type: 'varchar',
+    type: 'text',
     nullable: false,
   })
   content: string;

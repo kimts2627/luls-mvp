@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import { bulletinController } from '../controller';
-import { checkTokens, checkPermission, redirectNotice } from '../middleware';
+import { checkTokens, checkPermission } from '../middleware';
 
 // * GET /bulltein/BulletinList
 router.get('/list', bulletinController.BulletIn_List);
@@ -14,17 +14,9 @@ router.get(
   checkPermission,
   bulletinController.BulletIn_UserInfo
 );
-// 유저 확인 후 게시글 작성
-// router.post('/write', checkTokens, bulletinController.BulletIn_Write);
 
-// 작성자 권한 확인 후 리다이렉트를 위한 엔드포인트
-// router.post('/write', checkTokens, redirectNotice);
-// 작성자 권한 테스트용
-router.post('/write', checkTokens, redirectNotice);
-// 작성자 권한이 일반 멤버일때
-router.post('/write_common', bulletinController.BulletIn_Write);
-// 작성자 권한이 admin, 혹은 super_admin일때
-router.post('/write_admin', bulletinController.BulletIn_Write_all);
+// 작성자 권한에 따라 공지사항 or 게시글 작성
+router.post('/write', checkTokens, bulletinController.BulletIn_Write);
 
 router.post('/write_re', checkTokens, bulletinController.BulletIn_re_wirte);
 
