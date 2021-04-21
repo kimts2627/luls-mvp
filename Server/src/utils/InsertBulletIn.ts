@@ -1,3 +1,4 @@
+import escapeHtml from 'escape-html';
 import { getConnection } from 'typeorm';
 import { Member_BulletIn } from '../database/entity/relations';
 import { BulletIn } from '../database/entity/bulletin';
@@ -14,12 +15,12 @@ export const InsertBulletin: Function = async (options: arg) => {
 
   await queryRunner.connect();
   await queryRunner.startTransaction();
-
+  console.log(options.content);
   try {
     // Insert Location Table
     const bulletin = await queryRunner.manager.save(BulletIn, {
       title: options.title || null,
-      content: options.content || null,
+      content: escapeHtml(options.content) || null,
       school: options.userinfo.school.Name || null,
     });
 
@@ -35,10 +36,8 @@ export const InsertBulletin: Function = async (options: arg) => {
     console.log(err);
     await queryRunner.rollbackTransaction();
     throw { message: 'Write Failed' };
+  } finally {
+    await queryRunner.release();
+    return { message: 'Write Success' };
   }
-  //    finally {
-  //     console.log('2');
-  //     await queryRunner.release();
-  //     return { message: 'Write Success' };
-  //   }
 };
