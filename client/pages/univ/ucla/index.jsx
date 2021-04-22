@@ -136,12 +136,6 @@ const UclaHome = () => {
                 </button>
               ) : null
             ) : null}
-            <button
-              className="absolute bottom-0 right-6 bg-yellow-400 rounded-md p-2 cursor-pointer mb-10"
-              onClick={handlingNoticePostModal}
-            >
-              New Notice
-            </button>
           </section>
         </main>
       </div>
