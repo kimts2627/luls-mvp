@@ -21,11 +21,12 @@ export default class Attendance extends BaseEntity {
   })
   att_date: Date;
 
-  // @Column({
-  //   type: 'int',
-  //   nullable: true,
-  // })
-  // status: number;
+  @Column({
+    type: 'int',
+    nullable: true,
+    default: 0,
+  })
+  status: number;
 
   @OneToMany(() => mem_att, (mem_att) => mem_att.att)
   Member: mem_att;
