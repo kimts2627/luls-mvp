@@ -1,4 +1,4 @@
 import att_list from './att_list';
-// import my_att from './my_att';
+import my_att from './my_att';
 
-export { att_list };
+export { att_list, my_att };
