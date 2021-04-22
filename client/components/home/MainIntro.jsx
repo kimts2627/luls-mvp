@@ -1,8 +1,10 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Terminal from "./Terminal";
 
 const NewsBar = () => {
   const [currentNews, setNews] = useState(0);
+  const router = useRouter();
 
   const newses = [
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit consecte",
@@ -17,14 +19,16 @@ const NewsBar = () => {
   ];
 
   useEffect(() => {
-    if (currentNews === 2) {
-      setTimeout(() => {
-        setNews(0);
-      }, 5000);
-    } else {
-      setTimeout(() => {
-        setNews(currentNews + 1);
-      }, 5000);
+    if (router.pathname === "/") {
+      if (currentNews === 2) {
+        setTimeout(() => {
+          setNews(0);
+        }, 5000);
+      } else {
+        setTimeout(() => {
+          setNews(currentNews + 1);
+        }, 5000);
+      }
     }
   }, [currentNews]);
   return (
@@ -54,7 +58,7 @@ const MainIntro = () => {
     }
   }, [currentVideo]);
   return (
-    <div className="relative w-full max-w-screen-2xl h-auto flex flex-col">
+    <div className="relative w-full max-w-screen-2xl h-auto flex flex-col intro">
       {/* <Terminal /> */}
       <div className="relative flex justify-center items-center h-120 overflow-hidden">
         <img
@@ -71,8 +75,8 @@ const MainIntro = () => {
       <div className="w-full h-staticFull z-10">
         <NewsBar />
         <section className="w-full h-auto flex flex-col justify-center items-center bg-gradient-to-b from-gray-50 to-white">
-          <h1 className="text-4xl Lato mt-44 mb-12">
-            Lorem ipsum dolor sit amet
+          <h1 className="text-4xl mt-44 mb-12 Montserrat">
+            Forge your creativity into an inpiration for all
             <div className="w-full h-1 bg-yellow-500" />
           </h1>
           <p className="text-center text-2xl mb-36">
@@ -82,8 +86,8 @@ const MainIntro = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </p>
           <div className="w-full h-80 absolute z-0 mt-96 flex justify-between opacity-70">
-            <img src="/img/triangle.png" alt="" className="h-full ml-36" />
-            <img src="/img/donut.png" alt="" className="h-full mr-40" />
+            <img src="/img/triangle-bk.png" alt="" className="h-full ml-36" />
+            <img src="/img/donut-or.png" alt="" className="h-full mr-40" />
           </div>
           <div className="z-10">
             <iframe
@@ -91,9 +95,9 @@ const MainIntro = () => {
               height="500"
               src={currentVideo}
               title="YouTube video player"
-              frameborder=""
+              frameBorder=""
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             />
             <div className="flex justify-between w-72 h-auto mt-8">
               <img

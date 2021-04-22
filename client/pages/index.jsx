@@ -3,6 +3,7 @@ import Head from "next/head";
 import Layout from "../components/layout";
 import Main from "../components/home/Main";
 import { useDispatch, useSelector } from "react-redux";
+import ToyProps from "../components/home/ToyProps";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,9 @@ const Home = () => {
         <title>We are LikeLion US</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-full mt-40 flex items-center flex-col back transition-all duration-700">
+      <div className="w-full mt-40 flex items-center flex-col back transition-all duration-500">
         <Main />
+        {/* <ToyProps /> */}
       </div>
     </Layout>
   );
