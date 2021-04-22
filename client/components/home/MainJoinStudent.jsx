@@ -73,7 +73,7 @@ const MainJoinStudent = () => {
 
   return (
     <div
-      className="relative w-full max-w-screen-2xl h-150 mt-60 mb-44 flex items-center justify-center"
+      className="relative w-full max-w-screen-2xl h-150 mt-60 mb-44 flex items-center justify-center student"
       ref={divRef}
     >
       <img

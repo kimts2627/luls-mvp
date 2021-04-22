@@ -45,7 +45,7 @@ const MainContactUs = () => {
   // }, []);
 
   return (
-    <div className="relative w-full max-w-screen-2xl h-150 flex flex-col items-center justify-evenly">
+    <div className="relative w-full max-w-screen-2xl h-150 flex flex-col items-center justify-evenly contact">
       <div className="border-b-4 border-yellow-500 z-10">
         <h1 className="text-5xl">Contact Us</h1>
       </div>

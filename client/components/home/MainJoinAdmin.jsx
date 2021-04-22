@@ -78,7 +78,7 @@ const MainJoinAdmin = () => {
 
   return (
     <div
-      className="relative w-full max-w-screen-2xl h-150 flex items-center justify-center"
+      className="relative w-full max-w-screen-2xl h-150 flex items-center justify-center admin"
       ref={divRef}
     >
       <img

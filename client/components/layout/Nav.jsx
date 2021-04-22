@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 const Nav = ({ headerSize }) => {
   const router = useRouter();
+
+  const [positions, setPositions] = useState({
+    school: 0,
+    fame: 0,
+    admin: 0,
+    student: 0,
+    contact: 0,
+  });
+
+  useEffect(() => {
+    setPositions({
+      school: document.querySelector(".school").offsetTop - 200,
+      fame: document.querySelector(".fame").offsetTop - 200,
+      admin: document.querySelector(".admin").offsetTop - 200,
+      student: document.querySelector(".student").offsetTop - 200,
+      contact: document.querySelector(".contact").offsetTop - 200,
+    });
+  }, []);
 
   return (
     <nav
@@ -29,7 +47,7 @@ const Nav = ({ headerSize }) => {
           >
             Intro
           </li>
-          <li
+          {/* <li
             className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
@@ -40,12 +58,12 @@ const Nav = ({ headerSize }) => {
             }
           >
             OverView
-          </li>
+          </li> */}
           <li
             className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
-                top: 2700,
+                top: positions.school || 0,
                 left: 0,
                 behavior: "smooth",
               })
@@ -57,7 +75,7 @@ const Nav = ({ headerSize }) => {
             className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
-                top: 4000,
+                top: positions.fame || 0,
                 left: 0,
                 behavior: "smooth",
               })
@@ -69,7 +87,7 @@ const Nav = ({ headerSize }) => {
             className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
-                top: 5300,
+                top: positions.admin || 0,
                 left: 0,
                 behavior: "smooth",
               })
@@ -81,7 +99,7 @@ const Nav = ({ headerSize }) => {
             className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
-                top: 6600,
+                top: positions.student || 0,
                 left: 0,
                 behavior: "smooth",
               })
@@ -93,7 +111,7 @@ const Nav = ({ headerSize }) => {
             className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>
               window.scrollTo({
-                top: 7900,
+                top: positions.contact || 0,
                 left: 0,
                 behavior: "smooth",
               })

@@ -54,7 +54,7 @@ const MainIntro = () => {
     }
   }, [currentVideo]);
   return (
-    <div className="relative w-full max-w-screen-2xl h-auto flex flex-col">
+    <div className="relative w-full max-w-screen-2xl h-auto flex flex-col intro">
       {/* <Terminal /> */}
       <div className="relative flex justify-center items-center h-120 overflow-hidden">
         <img
