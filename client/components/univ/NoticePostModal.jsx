@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleNoticePostModal } from "../../reducers/notice";
 import CommonEditor from "./CommonEditor";
@@ -8,7 +8,8 @@ const NoticePostModal = () => {
   const dispatch = useDispatch();
   const noticePostModal = useSelector((state) => state.notice.noticePostModal);
   const [inputValues, setValues] = useState({ title: "", content: "" });
-
+  const [isWindow, setIsWindow] = useState(false);
+  const windowRef = useRef();
   const handlingNoticePostModal = useCallback(() => {
     dispatch(handleNoticePostModal());
   }, []);
@@ -41,11 +42,18 @@ const NoticePostModal = () => {
       });
   };
 
+  useEffect(() => {
+    if (windowRef.current) {
+      setIsWindow(true);
+    }
+  }, []);
+
   return (
     <aside
       className={`fixed w-full z-20 top-28 ${
         noticePostModal ? "right-0" : "right-full"
       } flex transition-all duration-300`}
+      ref={windowRef}
     >
       <aside className="w-1/2 h-screen bg-yellow-400">
         <input
@@ -53,7 +61,7 @@ const NoticePostModal = () => {
           placeholder="title"
           onChange={(e) => handleChange(e)}
         />
-        <CommonEditor />
+        {isWindow && <CommonEditor />}
         <input type="button" value="Post" onClick={postNewNotice} />
       </aside>
       <div className={`w-1/2 h-screen`} onClick={handlingNoticePostModal} />

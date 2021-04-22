@@ -33,20 +33,23 @@ const CommonEditor = () => {
 
   return (
     <div className="z-20 h-120 bg-white">
-      <Editor
-        previewStyle="vertical"
-        height="500px"
-        initialEditType="markdown"
-        usageStatistics={false}
-        // plugins={[
-        //   chart,
-        //   codeSyntaxHighlight,
-        //   colorSyntax,
-        //   tableMergedCell,
-        //   uml,
-        // ]}
-        ref={editorRef}
-      />
+      {typeof window !== "undefined" && (
+        <Editor
+          previewStyle="vertical"
+          height="500px"
+          initialEditType="markdown"
+          usageStatistics={false}
+          // plugins={[
+          //   chart,
+          //   codeSyntaxHighlight,
+          //   colorSyntax,
+          //   tableMergedCell,
+          //   uml,
+          // ]}
+          ref={editorRef}
+        />
+      )}
+
       <button onClick={undefined}>save</button>
       <button onClick={undefined}>load</button>
     </div>
