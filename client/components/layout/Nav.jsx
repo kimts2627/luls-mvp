@@ -14,13 +14,15 @@ const Nav = ({ headerSize }) => {
   });
 
   useEffect(() => {
-    setPositions({
-      school: document.querySelector(".school").offsetTop - 200,
-      fame: document.querySelector(".fame").offsetTop - 200,
-      admin: document.querySelector(".admin").offsetTop - 200,
-      student: document.querySelector(".student").offsetTop - 200,
-      contact: document.querySelector(".contact").offsetTop - 200,
-    });
+    if (router.pathname === "/") {
+      setPositions({
+        school: document.querySelector(".school").offsetTop - 200,
+        fame: document.querySelector(".fame").offsetTop - 200,
+        admin: document.querySelector(".admin").offsetTop - 200,
+        student: document.querySelector(".student").offsetTop - 200,
+        contact: document.querySelector(".contact").offsetTop - 200,
+      });
+    }
   }, []);
 
   return (

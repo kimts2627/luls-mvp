@@ -102,8 +102,13 @@ const UclaHome = () => {
           <img src="/img/logo/ucla.png" alt="" className="h-full" />
         </div>
         <main className="relative w-full max-w-screen-xl h-full">
-          <section className="h-120 bg-red-50 w-full flex items-center justify-center text-8xl mt-10">
-            Who we are?
+          <section className="h-120 w-full flex items-center justify-center text-4xl text-center mt-10 flex flex-col">
+            <div className="w-full h-1/3"></div>
+            nisi ut aliquip ex ea commodo consequat.<br></br>
+            Lorem ipsum dolor sit amet,
+            <span className="text-yellow-500">consectetur adipiscing</span>elit
+            nisi ut aliquip ex ea commodo consequat.<br></br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </section>
           <section className="h-2/3 w-full p-5">
             <h1 className="text-3xl mb-14 Montserrat text-yellow-500">

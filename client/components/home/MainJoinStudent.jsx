@@ -6,7 +6,7 @@ const MainJoinStudent = () => {
   const descRef = useRef();
 
   const studentEvent = () => {
-    if (divRef !== null) {
+    if (divRef.current !== null) {
       if (
         Math.round(window.scrollY / 100) * 100 >=
         Math.round((divRef.current.offsetTop - 500) / 100) * 100
@@ -21,24 +21,12 @@ const MainJoinStudent = () => {
     }
   };
 
-  const throttle = (fn, delay) => {
-    let timer;
-    return function () {
-      if (!timer) {
-        timer = setTimeout(() => {
-          timer = null;
-          fn.apply(this, arguments);
-        }, delay);
-      }
-    };
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", throttle(studentEvent, 100), {
+    window.addEventListener("scroll", studentEvent, {
       passive: true,
     });
     return () => {
-      window.removeEventListener("scroll", throttle(studentEvent, 100), {
+      window.removeEventListener("scroll", studentEvent, {
         passive: true,
       });
     };
@@ -50,20 +38,22 @@ const MainJoinStudent = () => {
   let bkDeg = 6;
 
   const rotateProps = (e) => {
-    if (e.wheelDelta >= 0) {
-      bkDeg = bkDeg + 1;
-    } else {
-      bkDeg = bkDeg - 1;
+    if (bkRegRef.current !== null) {
+      if (e.wheelDelta >= 0) {
+        bkDeg = bkDeg + 1;
+      } else {
+        bkDeg = bkDeg - 1;
+      }
+      bkRegRef.current.style.transform = `rotate(${bkDeg}deg)`;
     }
-    bkRegRef.current.style.transform = `rotate(${bkDeg}deg)`;
   };
 
   useEffect(() => {
-    window.addEventListener("mousewheel", throttle(rotateProps, 100), {
+    window.addEventListener("mousewheel", rotateProps, {
       passive: true,
     });
     return () => {
-      window.removeEventListener("mousewheel", throttle(rotateProps, 100), {
+      window.removeEventListener("mousewheel", rotateProps, {
         passive: true,
       });
     };

@@ -5,7 +5,7 @@ const MainSchools = () => {
   const divRef = useRef();
 
   const schoolFocusEvent = () => {
-    if (divRef !== null) {
+    if (divRef.current !== null) {
       const back = document.querySelector(".back");
       const fame = document.querySelector(".fame");
       if (
@@ -15,7 +15,6 @@ const MainSchools = () => {
           Math.round((fame.offsetTop + fame.offsetHeight / 2) / 100) * 100
       ) {
         back.style.backgroundColor = "rgb(0, 0, 0)";
-        // handleToys("on");
       } else if (
         Math.round(window.scrollY / 100) * 100 <
           Math.round(divRef.current.offsetTop / 100) * 100 ||
@@ -23,7 +22,6 @@ const MainSchools = () => {
           Math.round((fame.offsetTop + fame.offsetHeight / 2) / 100) * 100
       ) {
         back.style.backgroundColor = "rgb(255, 255, 255)";
-        // handleToys("off");
       }
     }
   };
@@ -40,24 +38,12 @@ const MainSchools = () => {
   //   }
   // };
 
-  const throttle = (fn, delay) => {
-    let timer;
-    return function () {
-      if (!timer) {
-        timer = setTimeout(() => {
-          timer = null;
-          fn.apply(this, arguments);
-        }, delay);
-      }
-    };
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", throttle(schoolFocusEvent, 100), {
+    window.addEventListener("scroll", schoolFocusEvent, {
       passive: true,
     });
     return () => {
-      window.removeEventListener("scroll", throttle(schoolFocusEvent, 100), {
+      window.removeEventListener("scroll", schoolFocusEvent, {
         passive: true,
       });
     };

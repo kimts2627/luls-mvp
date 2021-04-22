@@ -6,7 +6,7 @@ const MainJoinAdmin = () => {
   const descRef = useRef();
 
   const adminEvent = () => {
-    if (divRef !== null) {
+    if (divRef.current !== null) {
       if (
         Math.round(window.scrollY / 100) * 100 >=
         Math.round((divRef.current.offsetTop - 500) / 100) * 100
@@ -21,24 +21,12 @@ const MainJoinAdmin = () => {
     }
   };
 
-  const throttle = (fn, delay) => {
-    let timer;
-    return function () {
-      if (!timer) {
-        timer = setTimeout(() => {
-          timer = null;
-          fn.apply(this, arguments);
-        }, delay);
-      }
-    };
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", throttle(adminEvent, 100), {
+    window.addEventListener("scroll", adminEvent, {
       passive: true,
     });
     return () => {
-      window.removeEventListener("scroll", throttle(adminEvent, 100), {
+      window.removeEventListener("scroll", adminEvent, {
         passive: true,
       });
     };
@@ -52,23 +40,25 @@ const MainJoinAdmin = () => {
   let bkDeg = 6;
 
   const rotateProps = (e) => {
-    if (e.wheelDelta >= 0) {
-      orDeg = orDeg - 1;
-      bkDeg = bkDeg + 1;
-    } else {
-      orDeg = orDeg + 1;
-      bkDeg = bkDeg - 1;
+    if (orRegRef.current && bkRegRef.current) {
+      if (e.wheelDelta >= 0) {
+        orDeg = orDeg - 1;
+        bkDeg = bkDeg + 1;
+      } else {
+        orDeg = orDeg + 1;
+        bkDeg = bkDeg - 1;
+      }
+      orRegRef.current.style.transform = `rotate(${orDeg}deg)`;
+      bkRegRef.current.style.transform = `rotate(${bkDeg}deg)`;
     }
-    orRegRef.current.style.transform = `rotate(${orDeg}deg)`;
-    bkRegRef.current.style.transform = `rotate(${bkDeg}deg)`;
   };
 
   useEffect(() => {
-    window.addEventListener("mousewheel", throttle(rotateProps, 100), {
+    window.addEventListener("mousewheel", rotateProps, {
       passive: true,
     });
     return () => {
-      window.removeEventListener("mousewheel", throttle(rotateProps, 100), {
+      window.removeEventListener("mousewheel", rotateProps, {
         passive: true,
       });
     };

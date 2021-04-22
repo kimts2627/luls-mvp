@@ -1,8 +1,10 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Terminal from "./Terminal";
 
 const NewsBar = () => {
   const [currentNews, setNews] = useState(0);
+  const router = useRouter();
 
   const newses = [
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit consecte",
@@ -17,14 +19,16 @@ const NewsBar = () => {
   ];
 
   useEffect(() => {
-    if (currentNews === 2) {
-      setTimeout(() => {
-        setNews(0);
-      }, 5000);
-    } else {
-      setTimeout(() => {
-        setNews(currentNews + 1);
-      }, 5000);
+    if (router.pathname === "/") {
+      if (currentNews === 2) {
+        setTimeout(() => {
+          setNews(0);
+        }, 5000);
+      } else {
+        setTimeout(() => {
+          setNews(currentNews + 1);
+        }, 5000);
+      }
     }
   }, [currentNews]);
   return (
