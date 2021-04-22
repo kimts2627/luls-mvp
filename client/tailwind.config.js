@@ -40,6 +40,9 @@ module.exports = {
           "100%": { opacity: "0.6" },
         },
       },
+      duration: {
+        "3s": { "transition-duration": "3000ms" },
+      },
     },
   },
   variants: {},

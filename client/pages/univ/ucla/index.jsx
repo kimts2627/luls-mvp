@@ -136,22 +136,28 @@ const UclaHome = () => {
                 </button>
               ) : null
             ) : null}
+            <button
+              className="absolute bottom-0 right-6 bg-yellow-400 rounded-md p-2 cursor-pointer mb-10"
+              onClick={handlingNoticePostModal}
+            >
+              New Notice
+            </button>
           </section>
         </main>
       </div>
       {noticeModal || noticePostModal ? (
-        <div className="blackback fixed top-0 w-full h-full z-10" />
+        <div
+          className="blackback fixed top-0 w-full h-full z-10"
+          onClick={noticeModal ? handlingNoticeModal : handlingNoticePostModal}
+        />
       ) : null}
       {noticeModal ? (
-        <div
-          className="fixed top-0 w-full h-full z-20 flex justify-center items-center"
-          onClick={handlingNoticeModal}
-        >
+        <div className="fixed top-0 w-full h-full z-20 flex justify-center items-center">
           <NoticeModal currentNotice={currentNotice} />
         </div>
       ) : null}
       {noticePostModal ? (
-        <div>
+        <div className="fixed top-0 w-full h-full z-20 flex justify-center items-center">
           <NoticePostModal />
         </div>
       ) : null}

@@ -2,14 +2,14 @@ import axios from "axios";
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleNoticePostModal } from "../../reducers/notice";
-import CommonEditor from "./CommonEditor";
+// import CommonEditor from "./CommonEditor";
 
 const NoticePostModal = () => {
   const dispatch = useDispatch();
   const noticePostModal = useSelector((state) => state.notice.noticePostModal);
   const [inputValues, setValues] = useState({ title: "", content: "" });
-  const [isWindow, setIsWindow] = useState(false);
-  const windowRef = useRef();
+  // const [isWindow, setIsWindow] = useState(false);
+  // const windowRef = useRef();
   const handlingNoticePostModal = useCallback(() => {
     dispatch(handleNoticePostModal());
   }, []);
@@ -42,29 +42,38 @@ const NoticePostModal = () => {
       });
   };
 
-  useEffect(() => {
-    if (windowRef.current) {
-      setIsWindow(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (windowRef.current) {
+  //     setIsWindow(true);
+  //   }
+  // }, []);
 
   return (
     <aside
-      className={`fixed w-full z-20 top-28 ${
-        noticePostModal ? "right-0" : "right-full"
-      } flex transition-all duration-300`}
-      ref={windowRef}
+      className="relative w-120 h-150 bg-white rounded-md shadow-md mt-28 p-8"
+      // ref={windowRef}
     >
-      <aside className="w-1/2 h-screen bg-yellow-400">
+      <div className="w-full h-full bg-white">
         <input
           type="text"
           placeholder="title"
           onChange={(e) => handleChange(e)}
+          className="w-full h-16 text-4xl border-b-2 border-yellow-500 p-4"
         />
-        {isWindow && <CommonEditor />}
-        <input type="button" value="Post" onClick={postNewNotice} />
-      </aside>
-      <div className={`w-1/2 h-screen`} onClick={handlingNoticePostModal} />
+        {/* {isWindow && <CommonEditor />} */}
+        <input
+          type="text"
+          placeholder="content"
+          onChange={(e) => handleChange(e)}
+          className="w-full bg-gray-50 shadow-inner h-120 text-xl mt-10 mb-10 p-4 align-text-top"
+        />
+        <input
+          type="button"
+          value="Post"
+          onClick={postNewNotice}
+          className="relative left-1/2 w-32 -ml-16 rounded-md h-10 bg-yellow-400"
+        />
+      </div>
     </aside>
   );
 };

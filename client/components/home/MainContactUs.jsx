@@ -1,51 +1,27 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const MainContactUs = () => {
-  const startRef = useRef();
-  // let currentScroll = 0;
+  const starRef = useRef();
+  const divRef = useRef();
 
-  // useEffect(() => {
-  //   window.addEventListener("mousewheel", (e) => {
-  //     let style = startRef.current.style;
-  //     if (e.wheelDelta > 0) {
-  //       console.log("up");
-  //       startRef.current.style.top = `${
-  //         startRef.current.style.top.slice(
-  //           0,
-  //           startRef.current.style.top.length - 2
-  //         ) - 0.5
-  //       }px`;
-  //     } else if (e.wheelDelta < 0) {
-  //       console.log("down");
-  //       startRef.current.style.top = `${
-  //         startRef.current.style.top.slice(
-  //           0,
-  //           startRef.current.style.top.length - 2
-  //         ) + 0.5
-  //       }px`;
-  //     }
-  //   });
-
-  //   return () => {
-  //     window.removeEventListener("scroll", () => {
-  //       let style = startRef.current.style;
-  //       if (window.scrollY > currentScroll) {
-  //         style.marginTop = `${
-  //           style.marginTop.slice(0, style.marginTop.length - 2) - 1
-  //         }px`;
-  //         setScroll(window.scrollY);
-  //       } else if (window.scrollY < currentScroll) {
-  //         style.marginTop = `${
-  //           style.marginTop.slice(0, style.marginTop.length - 2) + 1
-  //         }px`;
-  //         setScroll(window.scrollY);
-  //       }
-  //     });
-  //   };
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (starRef.current !== null && divRef.current !== null) {
+        if (
+          Math.round(window.scrollY / 100) * 100 >=
+          Math.round((divRef.current.offsetTop - 500) / 100) * 100
+        ) {
+          starRef.current.style.marginBottom = "1000px";
+        }
+      }
+    });
+  }, []);
 
   return (
-    <div className="relative w-full max-w-screen-2xl h-150 flex flex-col items-center justify-evenly contact">
+    <div
+      className="relative w-full max-w-screen-2xl h-150 flex flex-col items-center justify-evenly contact"
+      ref={divRef}
+    >
       <div className="border-b-4 border-yellow-500 z-10">
         <h1 className="text-5xl">Contact Us</h1>
       </div>
@@ -72,8 +48,8 @@ const MainContactUs = () => {
         </div>
       </section>
       <div
-        className="absolute top-0 w-full h-120 transition-all"
-        ref={startRef}
+        className="absolute top-0 w-full h-120 transition-all duration-1000"
+        ref={starRef}
       >
         <img
           src="/img/triangle-or.png"
@@ -98,7 +74,7 @@ const MainContactUs = () => {
         <img
           src="/img/reg-or.png"
           alt=""
-          className="absolute bottom-36 right-20 w-2 transform rotate-12"
+          className="absolute bottom-36 right-20 w-2 transform rotate-45"
         />
         <img
           src="/img/reg-bk.png"
@@ -108,12 +84,12 @@ const MainContactUs = () => {
         <img
           src="/img/reg-bk.png"
           alt=""
-          className="absolute top-36 left-24 w-6 transform rotate-12"
+          className="absolute top-36 left-24 w-8 transform rotate-0"
         />
         <img
           src="/img/reg-or.png"
           alt=""
-          className="absolute top-0 left-96 w-6 transform rotate-12"
+          className="absolute top-0 left-96 w-6 transform rotate-45"
         />
         <img
           src="/img/donut-or.png"
