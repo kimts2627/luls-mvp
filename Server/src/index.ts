@@ -9,6 +9,7 @@ import redis from 'redis';
 import { redisCheck } from './utils/redisCheck';
 const usersRouter = require('./routes/user');
 const bulletinRouter = require('./routes/bulletin');
+const attRouter = require('./routes/attendance');
 const app = express();
 const PORT = 3006;
 const limiter = ratelimit({
@@ -67,6 +68,7 @@ app.get('/test', (req, res) => {
   redisCheck('Seokjae', 'Access_Token');
 });
 
+app.use('/att', attRouter);
 app.use('/users', usersRouter);
 app.use('/bulletin', bulletinRouter);
 // app.get('/redis', (req, res) => {

@@ -5,8 +5,10 @@ import {
   OneToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
 } from 'typeorm';
-import Member from './Member';
+import mem_att from '../relations/mem_att';
 
 @Entity()
 export default class Attendance extends BaseEntity {
@@ -22,12 +24,10 @@ export default class Attendance extends BaseEntity {
   @Column({
     type: 'int',
     nullable: true,
+    default: 0,
   })
   status: number;
 
-  @OneToOne(() => Member, {
-    nullable: false,
-  })
-  @JoinColumn({ name: 'member_id' })
-  Member: Member;
+  @OneToMany(() => mem_att, (mem_att) => mem_att.att)
+  Member: mem_att;
 }
