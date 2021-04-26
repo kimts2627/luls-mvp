@@ -14,8 +14,15 @@ const NoticeModal = ({ currentNotice }) => {
     console.log(currentNotice);
   }, []);
 
+  const ignoreBubbling = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <aside className=" relative w-120 h-150 bg-white rounded-md shadow-md mt-28 p-8">
+    <aside
+      className=" relative w-120 h-150 bg-white rounded-md shadow-md mt-28 p-8"
+      onClick={(e) => ignoreBubbling(e)}
+    >
       <h1 className="text-5xl w-full mb-4 overflow-hidden">
         {currentNotice && currentNotice.title}
       </h1>
@@ -25,7 +32,7 @@ const NoticeModal = ({ currentNotice }) => {
         <h2 className="ml-10">{currentNotice && currentNotice.createdAt}</h2>
       </div>
       <p className="w-full h-120 shadow-inner bg-gray-50 mt-24 p-4">
-        {currentNotice && currentNotice.content}
+        {currentNotice.content}
       </p>
       <img
         src="/img/x.png"

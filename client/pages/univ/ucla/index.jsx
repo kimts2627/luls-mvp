@@ -145,19 +145,19 @@ const UclaHome = () => {
           </section>
         </main>
       </div>
-      {noticeModal || noticePostModal ? (
-        <div
-          className="blackback fixed top-0 w-full h-full z-10"
-          onClick={noticeModal ? handlingNoticeModal : handlingNoticePostModal}
-        />
-      ) : null}
       {noticeModal ? (
-        <div className="fixed top-0 w-full h-full z-20 flex justify-center items-center">
+        <div
+          className="fixed top-0 w-full h-full z-20 flex justify-center items-center blackback"
+          onClick={handlingNoticeModal}
+        >
           <NoticeModal currentNotice={currentNotice} />
         </div>
       ) : null}
       {noticePostModal ? (
-        <div className="fixed top-0 w-full h-full z-20 flex justify-center items-center">
+        <div
+          className="fixed top-0 w-full h-full z-20 flex justify-center items-center"
+          onClick={handlingNoticePostModal}
+        >
           <NoticePostModal />
         </div>
       ) : null}

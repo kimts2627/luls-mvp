@@ -42,6 +42,10 @@ const NoticePostModal = () => {
       });
   };
 
+  const ignoreBubbling = (e) => {
+    e.stopPropagation();
+  };
+
   // useEffect(() => {
   //   if (windowRef.current) {
   //     setIsWindow(true);
@@ -51,7 +55,7 @@ const NoticePostModal = () => {
   return (
     <aside
       className="relative w-120 h-150 bg-white rounded-md shadow-md mt-28 p-8"
-      // ref={windowRef}
+      onClick={(e) => ignoreBubbling(e)}
     >
       <div className="w-full h-full bg-white">
         <input
@@ -74,6 +78,12 @@ const NoticePostModal = () => {
           className="relative left-1/2 w-32 -ml-16 rounded-md h-10 bg-yellow-400"
         />
       </div>
+      <img
+        src="/img/x.png"
+        alt=""
+        className="absolute top-4 right-4 w-6 cursor-pointer"
+        onClick={handlingNoticePostModal}
+      />
     </aside>
   );
 };
