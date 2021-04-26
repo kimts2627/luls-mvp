@@ -88,7 +88,7 @@ const MainSchools = () => {
         <div className="flex justify-evenly items-center w-full z-10">
           {["ucla", "brown", "berkeley", "ucla", "brown", "berkeley"].map(
             (univ, index) => (
-              <Link href={`/univ/${univ}`} key={univ + index}>
+              <Link href={`/univ/ucla`} key={univ + index}>
                 <div
                   className={`${
                     univ === "brown" ? "w-32" : "w-44"
