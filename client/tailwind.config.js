@@ -29,6 +29,7 @@ module.exports = {
       animation: {
         blink: "blink 2s infinite",
         fadein: "fadein 1s linear forwards",
+        rotate: "rotate 1s infinite linear",
       },
       keyframes: {
         blink: {
@@ -38,6 +39,10 @@ module.exports = {
         fadein: {
           "0%": { opacity: "0" },
           "100%": { opacity: "0.6" },
+        },
+        rotate: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(359deg)" },
         },
       },
       duration: {

@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import Layout from "../../components/layout";
 import Head from "next/head";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { handleCurrentTask } from "../../reducers/task";
 
-const SingleTask = () => {
+const SingleTask = ({ post }) => {
+  const router = useRouter();
+
+  const dispatch = useDispatch();
+
+  const handlingCurrentTask = useCallback((post) => {
+    dispatch(handleCurrentTask(post));
+  }, []);
+
   return (
-    <div className="w-full h-16 bg-white shadow-md border mb-2 cursor-pointer"></div>
+    <Link href="/task/post/[id]" as={`/task/post/${post.title}`}>
+      <div
+        className="w-full h-16 bg-white shadow-md border mb-2 cursor-pointer flex justify-evenly"
+        onClick={() => handlingCurrentTask(post)}
+      >
+        <h1>{post.name}</h1>
+        <h2>{post.createdAt}</h2>
+        <h2>{post.content}</h2>
+      </div>
+    </Link>
   );
 };
 
@@ -13,6 +33,44 @@ const Tasks = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const { permission, F_Name, L_Name } = userInfo;
   const name = `${F_Name} ${L_Name}`;
+
+  const posts = [
+    {
+      id: 1,
+      name: "kimtaesu",
+      title: "1",
+      content: "testing...",
+      createdAt: "2020-20-20",
+    },
+    {
+      id: 2,
+      name: "parktaesu",
+      title: "2",
+      content: "testing!!",
+      createdAt: "2020-20-20",
+    },
+    {
+      id: 3,
+      name: "ohtaesu",
+      title: "3",
+      content: "testing333",
+      createdAt: "2020-23-20",
+    },
+    {
+      id: 4,
+      name: "shimtaesu",
+      title: "4",
+      content: "testing44",
+      createdAt: "2020-44-20",
+    },
+    {
+      id: 5,
+      name: "jungtaesu",
+      title: "5",
+      content: "testing55",
+      createdAt: "2020-55-20",
+    },
+  ];
 
   return (
     <Layout>
@@ -26,19 +84,16 @@ const Tasks = () => {
             <p className="text-xl">Meot-sa univ.</p>
           </div>
           <section className="bg-white w-full h-150 p-4 pt-7">
-            <SingleTask />
-            <SingleTask />
-            <SingleTask />
-            <SingleTask />
-            <SingleTask />
-            <SingleTask />
-            <SingleTask />
-            <SingleTask />
-            <SingleTask />
-            <SingleTask />
+            {posts.map((post) => (
+              <SingleTask post={post} key={post.id} />
+            ))}
           </section>
-          <span></span>
           <button className="border border-red-500">new post</button>
+          <span>
+            <span>{"<"}</span>
+            {}
+            <span>{">"}</span>
+          </span>
         </div>
       </div>
     </Layout>
