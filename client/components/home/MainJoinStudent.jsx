@@ -40,9 +40,9 @@ const MainJoinStudent = () => {
   const rotateProps = (e) => {
     if (bkRegRef.current !== null) {
       if (e.wheelDelta >= 0) {
-        bkDeg = bkDeg + 1;
+        bkDeg = bkDeg + 0.1;
       } else {
-        bkDeg = bkDeg - 1;
+        bkDeg = bkDeg - 0.1;
       }
       bkRegRef.current.style.transform = `rotate(${bkDeg}deg)`;
     }

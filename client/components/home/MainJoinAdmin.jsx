@@ -42,11 +42,11 @@ const MainJoinAdmin = () => {
   const rotateProps = (e) => {
     if (orRegRef.current && bkRegRef.current) {
       if (e.wheelDelta >= 0) {
-        orDeg = orDeg - 1;
-        bkDeg = bkDeg + 1;
+        orDeg = orDeg - 0.1;
+        bkDeg = bkDeg + 0.1;
       } else {
-        orDeg = orDeg + 1;
-        bkDeg = bkDeg - 1;
+        orDeg = orDeg + 0.1;
+        bkDeg = bkDeg - 0.1;
       }
       orRegRef.current.style.transform = `rotate(${orDeg}deg)`;
       bkRegRef.current.style.transform = `rotate(${bkDeg}deg)`;
