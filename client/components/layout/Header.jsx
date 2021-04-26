@@ -118,8 +118,8 @@ const Header = ({ headerSize }) => {
             <Link href="/">
               <a>Home</a>
             </Link>
-            <Link href="/notice">
-              <a>Notice</a>
+            <Link href="/task">
+              <a>Tasks</a>
             </Link>
             <Link href="/QA">
               <a>Q/A</a>
