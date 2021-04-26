@@ -59,7 +59,7 @@ export const initialState = {
     State: "",
     Birthday: "",
   },
-  userInfo: null,
+  userInfo: {},
 };
 
 const reducer = (state = initialState, action) => {
