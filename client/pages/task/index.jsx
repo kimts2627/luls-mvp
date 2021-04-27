@@ -86,7 +86,7 @@ const Tasks = () => {
             <span>{"<"}</span>
             <button
               className="cursor-pointer w-8"
-              onClick={(e) => router.push("/task?page=2")}
+              onClick={(e) => router.push("/task?page=1")}
             >
               1
             </button>
