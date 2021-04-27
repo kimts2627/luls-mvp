@@ -52,8 +52,8 @@ const Tasks = () => {
         }
       )
       .then((res) => {
-        console.log(res.data);
-        setPosts(res.data);
+        console.log(res.data.bulletin);
+        setPosts(res.data.bulletin);
         setLoading(false);
       });
   }, [router.query.page]);
