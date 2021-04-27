@@ -71,6 +71,7 @@ const PostTask = () => {
                         return;
                       }
                     }
+                    console.log(currentVal);
                     setVal({ ...currentVal, tag: currentVal.tag.push(tag.id) });
                   }}
                 >
