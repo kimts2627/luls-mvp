@@ -17,7 +17,7 @@ const SingleTask = ({ post }) => {
   }, []);
 
   return (
-    <Link href="/task/post/[id]" as={`/task/post/${post.title}`}>
+    <Link href={`/task/post/${post.id}`}>
       <div
         className="w-full h-16 bg-white shadow-md border mb-2 cursor-pointer flex justify-evenly"
         onClick={() => handlingCurrentTask(post)}
@@ -75,7 +75,7 @@ const Tasks = () => {
   ];
 
   useEffect(() => {
-    let token = window.localStorage.getItem("ac_token");
+    let token = window.localStorage.getItem("ac-token");
     axios
       .get("https://likelionustest.com/bulletin/hwlist", {
         withCredentials: true,
@@ -94,7 +94,7 @@ const Tasks = () => {
       <div className="w-full h-staticFull flex items-center justify-center mt-28">
         <div className="relative w-full max-w-screen-lg h-full bg-red-100 p-16">
           <span className="absolute top-5 right-5">
-            <h2>{`Welcome, ${permission} ${name}!`}</h2>
+            <h2 className="text-xl">{`Welcome, ${permission} ${name}!`}</h2>
           </span>
           <div className="text-center mb-16">
             <h1 className="text-5xl">Task List</h1>
