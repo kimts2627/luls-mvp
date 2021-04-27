@@ -21,6 +21,7 @@ const PostTask = () => {
   const [tagList, setTagList] = useState([]);
 
   useEffect(() => {
+    let token = window.localStorage.getItem("ac-token");
     axios
       .get("https://likelionustest.com/bulletin/taglist", {
         withCredentials: true,
@@ -35,12 +36,12 @@ const PostTask = () => {
   }, []);
 
   const submitTaskPost = () => {
+    let token = window.localStorage.getItem("ac-token");
     for (let i in currentVal) {
       if (!currentVal[i]) {
         throw new Error("Fill all sections");
       }
     }
-    let token = window.localStorage.getItem("ac-token");
     axios
       .post("https://likelionustest.com/bulletin/write", currentVal, {
         withCredentials: true,
