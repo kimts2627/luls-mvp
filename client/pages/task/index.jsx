@@ -87,12 +87,12 @@ const Tasks = () => {
             <h1 className="text-5xl">Task List</h1>
             <p className="text-xl">Meot-sa univ.</p>
           </div>
-          <div>
-            <h1>Tags</h1>
+          <div className="flex">
+            <h1 className="Montserrat text-lg">Tags</h1>
             {tags.map((tag) => (
               <div
                 key={tag.name}
-                className="mx-2"
+                className="mx-2 cursor-pointer border"
                 onClick={() => router.push(`/task?tag=${tag.name}&page=1`)}
               >
                 {tag.name}
