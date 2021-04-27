@@ -33,8 +33,8 @@ const SingleTask = ({ post }) => {
 
 const Tasks = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
-  const { permission, F_Name, L_Name } = userInfo;
-  const name = `${F_Name} ${L_Name}`;
+  const { permission, f_name, l_name } = userInfo;
+  const name = `${f_name} ${l_name}`;
   const [taskPosts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [postsNum, setPostsNum] = useState([]);
@@ -87,7 +87,7 @@ const Tasks = () => {
           </div>
           <section className="bg-white w-full h-150 p-4 pt-7">
             {isLoading ? (
-              <div className="animate-rotate">LOADING</div>
+              <div className="">LOADING</div>
             ) : (
               taskPosts.map((post) => <SingleTask post={post} key={post.id} />)
             )}
@@ -111,7 +111,7 @@ const Tasks = () => {
               {"<"}
             </span>
             {isLoading ? (
-              <div className="animate-rotate">LOADING</div>
+              <div className="">LOADING</div>
             ) : (
               postsNum.map((page) => (
                 <button
