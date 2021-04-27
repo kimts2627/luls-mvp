@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { handleCurrentTask } from "../../reducers/task";
 import axios from "axios";
+import postcssConfig from "../../postcss.config";
 
 const SingleTask = ({ post }) => {
   const router = useRouter();
@@ -16,10 +17,21 @@ const SingleTask = ({ post }) => {
     dispatch(handleCurrentTask(post));
   }, []);
 
+  const returnButtonColor = () => {
+    switch (post.submit_check) {
+      case "pass":
+        return "bg-red-100";
+      case "fail":
+        return "bg-green-100";
+      default:
+        return "bg-white";
+    }
+  };
+
   return (
     <Link href={`/task/post/${post.id}`}>
       <div
-        className="w-full h-16 bg-white shadow-md border mb-2 cursor-pointer flex justify-evenly"
+        className={`w-full h-16 shadow-md border mb-2 cursor-pointer flex justify-evenly ${returnButtonColor}`}
         onClick={() => handlingCurrentTask(post)}
       >
         <h1>
