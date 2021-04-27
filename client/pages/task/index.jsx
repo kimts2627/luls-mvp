@@ -23,6 +23,7 @@ const SingleTask = ({ post }) => {
         onClick={() => handlingCurrentTask(post)}
       >
         <h1>{post.name}</h1>
+        <h1>{post.title}</h1>
         <h2>{post.createdAt}</h2>
         <h2>{post.content}</h2>
       </div>
@@ -35,59 +36,25 @@ const Tasks = () => {
   const { permission, F_Name, L_Name } = userInfo;
   const name = `${F_Name} ${L_Name}`;
   const [taskPosts, setPosts] = useState([]);
-
-  const posts = [
-    {
-      id: 1,
-      name: "kimtaesu",
-      title: "1",
-      content: "testing...",
-      createdAt: "2020-20-20",
-    },
-    {
-      id: 2,
-      name: "parktaesu",
-      title: "2",
-      content: "testing!!",
-      createdAt: "2020-20-20",
-    },
-    {
-      id: 3,
-      name: "ohtaesu",
-      title: "3",
-      content: "testing333",
-      createdAt: "2020-23-20",
-    },
-    {
-      id: 4,
-      name: "shimtaesu",
-      title: "4",
-      content: "testing44",
-      createdAt: "2020-44-20",
-    },
-    {
-      id: 5,
-      name: "jungtaesu",
-      title: "5",
-      content: "testing55",
-      createdAt: "2020-55-20",
-    },
-  ];
+  const router = useRouter();
 
   useEffect(() => {
     let token = window.localStorage.getItem("ac-token");
     axios
-      .get("https://likelionustest.com/bulletin/hwlist", {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `https://likelionustest.com/bulletin/hwlist?school=멋사대학교&page=${router.query.page}`,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setPosts(res.data);
       });
-  }, []);
+  }, [router.query.page]);
 
   return (
     <Layout>
@@ -101,14 +68,30 @@ const Tasks = () => {
             <p className="text-xl">Meot-sa univ.</p>
           </div>
           <section className="bg-white w-full h-150 p-4 pt-7">
-            {posts.map((post) => (
+            {taskPosts.map((post) => (
               <SingleTask post={post} key={post.id} />
             ))}
           </section>
-          <button className="border border-red-500">new post</button>
+          <button
+            className="border border-red-500"
+            onClick={() => router.push("/task/post")}
+          >
+            new post
+          </button>
           <span>
             <span>{"<"}</span>
-            {}
+            <button
+              className="cursor-pointer w-8"
+              onClick={(e) => (router.query.page = e.target.textContent)}
+            >
+              1
+            </button>
+            <button
+              className="cursor-pointer w-12"
+              onClick={(e) => (router.query.page = e.target.textContent)}
+            >
+              2
+            </button>
             <span>{">"}</span>
           </span>
         </div>

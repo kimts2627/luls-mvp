@@ -40,11 +40,14 @@ const Header = ({ headerSize }) => {
     }, 4000);
   };
 
+  //! SignOut
   const signOut = () => {
     handlingLogout();
     handlingUserInfo(null);
     window.localStorage.clear();
-    //! 쿠키 삭제 요망
+    if (router.pathname !== "/") {
+      router.push("/");
+    }
     handleAlert();
   };
 
