@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Layout from "../../components/layout";
 import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { handleCurrentTask } from "../../reducers/task";
+import axios from "axios";
 
 const SingleTask = ({ post }) => {
   const router = useRouter();
@@ -33,6 +34,7 @@ const Tasks = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const { permission, F_Name, L_Name } = userInfo;
   const name = `${F_Name} ${L_Name}`;
+  const [taskPosts, setPosts] = useState([]);
 
   const posts = [
     {
@@ -71,6 +73,21 @@ const Tasks = () => {
       createdAt: "2020-55-20",
     },
   ];
+
+  useEffect(() => {
+    let token = window.localStorage.getItem("ac_token");
+    axios
+      .get("https://likelionustest.com/bulletin/hwlist", {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setPosts(res.data);
+      });
+  }, []);
 
   return (
     <Layout>
