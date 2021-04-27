@@ -9,7 +9,7 @@ const PostTask = () => {
   const [currentVal, setVal] = useState({
     title: "",
     content: "",
-    tag: "",
+    tag: [],
   });
 
   const userInfo = useSelector((state) => state.auth.userInfo);
@@ -66,7 +66,12 @@ const PostTask = () => {
                   key={tag.id}
                   className="border-2 rounded-lg"
                   onClick={() => {
-                    setVal({ ...currentVal, tag: tag.id });
+                    for (let i of currentVal.tag) {
+                      if (i.id === tag.id) {
+                        return;
+                      }
+                    }
+                    setVal({ ...currentVal, tag: currentVal.tag.push(tag.id) });
                   }}
                 >
                   {tag.name}
