@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Posts = () => {
   const currentTaskPost = useSelector((state) => state.task.currentTaskPost);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     // axios.get('https://likelionustest.com/bulletin/', {

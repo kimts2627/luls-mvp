@@ -37,6 +37,7 @@ const Tasks = () => {
   const name = `${F_Name} ${L_Name}`;
   const [taskPosts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [postsNum, setPostsNum] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -54,6 +55,15 @@ const Tasks = () => {
       .then((res) => {
         console.log(res.data.bulletin);
         setPosts(res.data.bulletin);
+        let postsArr = [];
+        for (let i = 0; i < Math.ceil(res.data.page / 10); i++) {
+          if (postsArr.length === 0) {
+            postsArr.push(0);
+          } else {
+            postsArr.push(postsArr[postsArr.length - 1] + 1);
+          }
+        }
+        setPostsNum(postsArr);
         setLoading(false);
       });
   }, [router.query.page]);
@@ -84,18 +94,19 @@ const Tasks = () => {
           </button>
           <span>
             <span>{"<"}</span>
-            <button
-              className="cursor-pointer w-8"
-              onClick={(e) => router.push("/task?page=1")}
-            >
-              1
-            </button>
-            <button
-              className="cursor-pointer w-12"
-              onClick={(e) => router.push("/task?page=2")}
-            >
-              2
-            </button>
+            {isLoading ? (
+              <div className="animate-rotate">LOADING</div>
+            ) : (
+              postsNum.map((page) => (
+                <button
+                  key={page}
+                  className="cursor-pointer w-8"
+                  onClick={(e) => router.push(`/task?page=${page}`)}
+                >
+                  {page}
+                </button>
+              ))
+            )}
             <span>{">"}</span>
           </span>
         </div>
