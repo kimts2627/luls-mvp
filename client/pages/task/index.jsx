@@ -38,6 +38,7 @@ const Tasks = () => {
   const [taskPosts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [postsNum, setPostsNum] = useState([]);
+  const [tags, setTags] = useState([]);
   const router = useRouter();
   const numRef = useRef();
 
@@ -45,7 +46,7 @@ const Tasks = () => {
     let token = window.localStorage.getItem("ac-token");
     axios
       .get(
-        `https://likelionustest.com/bulletin/hwlist?school=멋사대학교&page=${router.query.page}`,
+        `https://likelionustest.com/bulletin/hwlist?school=멋사대학교&page=${router.query.page}&tag=${router.query.tag}`,
         {
           withCredentials: true,
           headers: {
@@ -65,6 +66,7 @@ const Tasks = () => {
           }
         }
         setPostsNum(postsArr);
+        setTags(res.data.tag);
         setLoading(false);
         if (numRef.current.textContent === Number(router.query.page)) {
           numRef.current.style.borderBottom = "1px solid black";
@@ -72,7 +74,7 @@ const Tasks = () => {
           numRef.current.style.borderBottom = "none";
         }
       });
-  }, [router.query.page]);
+  }, [router.query]);
 
   return (
     <Layout>
@@ -84,6 +86,18 @@ const Tasks = () => {
           <div className="text-center mb-16">
             <h1 className="text-5xl">Task List</h1>
             <p className="text-xl">Meot-sa univ.</p>
+          </div>
+          <div>
+            <h1>Tags</h1>
+            {tags.map((tag) => (
+              <div
+                key={tag.name}
+                className="mx-2"
+                onClick={() => router.push(`/task?tag=${tag.name}&page=1`)}
+              >
+                {tag.name}
+              </div>
+            ))}
           </div>
           <section className="bg-white w-full h-150 p-4 pt-7">
             {isLoading ? (
