@@ -36,6 +36,7 @@ const Tasks = () => {
   const { permission, F_Name, L_Name } = userInfo;
   const name = `${F_Name} ${L_Name}`;
   const [taskPosts, setPosts] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -53,6 +54,7 @@ const Tasks = () => {
       .then((res) => {
         console.log(res.data);
         setPosts(res.data);
+        setLoading(false);
       });
   }, [router.query.page]);
 
@@ -68,9 +70,11 @@ const Tasks = () => {
             <p className="text-xl">Meot-sa univ.</p>
           </div>
           <section className="bg-white w-full h-150 p-4 pt-7">
-            {taskPosts.map((post) => (
-              <SingleTask post={post} key={post.id} />
-            ))}
+            {isLoading ? (
+              <div className="animate-rotate">LOADING</div>
+            ) : (
+              taskPosts.map((post) => <SingleTask post={post} key={post.id} />)
+            )}
           </section>
           <button
             className="border border-red-500"
