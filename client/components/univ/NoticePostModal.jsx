@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleNoticePostModal } from "../../reducers/notice";
@@ -8,8 +9,8 @@ const NoticePostModal = () => {
   const dispatch = useDispatch();
   const noticePostModal = useSelector((state) => state.notice.noticePostModal);
   const [inputValues, setValues] = useState({ title: "", content: "" });
-  // const [isWindow, setIsWindow] = useState(false);
-  // const windowRef = useRef();
+  const router = useRouter();
+
   const handlingNoticePostModal = useCallback(() => {
     dispatch(handleNoticePostModal());
   }, []);
@@ -36,6 +37,7 @@ const NoticePostModal = () => {
       .then((res) => {
         console.log(res.data.message);
         handlingNoticePostModal();
+        router.push("univ/ucla");
       })
       .catch((err) => {
         console.log(err.response);
@@ -45,12 +47,6 @@ const NoticePostModal = () => {
   const ignoreBubbling = (e) => {
     e.stopPropagation();
   };
-
-  // useEffect(() => {
-  //   if (windowRef.current) {
-  //     setIsWindow(true);
-  //   }
-  // }, []);
 
   return (
     <aside
