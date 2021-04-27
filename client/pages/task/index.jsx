@@ -31,7 +31,7 @@ const SingleTask = ({ post }) => {
   return (
     <Link href={`/task/post/${post.id}`}>
       <div
-        className={`w-full h-16 shadow-md border mb-2 cursor-pointer flex justify-evenly ${returnButtonColor}`}
+        className={`w-full h-16 shadow-md border mb-2 cursor-pointer flex justify-evenly ${returnButtonColor()}`}
         onClick={() => handlingCurrentTask(post)}
       >
         <h1>
