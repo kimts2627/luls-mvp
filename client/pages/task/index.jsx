@@ -23,7 +23,9 @@ const SingleTask = ({ post }) => {
         onClick={() => handlingCurrentTask(post)}
       >
         <h1>
-          {post.bulletin.Members_Id.f_name + post.bulletin.Members_Id.l_name}
+          {post.bulletin !== null
+            ? post.bulletin.Members_Id.f_name + post.bulletin.Members_Id.l_name
+            : "null"}
         </h1>
         <h1>{post.title}</h1>
         <h2>{post.createdAt}</h2>
