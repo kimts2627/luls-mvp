@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Layout from "../../components/layout";
 import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,6 +39,7 @@ const Tasks = () => {
   const [isLoading, setLoading] = useState(true);
   const [postsNum, setPostsNum] = useState([]);
   const router = useRouter();
+  const numRef = useRef();
 
   useEffect(() => {
     let token = window.localStorage.getItem("ac-token");
@@ -65,6 +66,11 @@ const Tasks = () => {
         }
         setPostsNum(postsArr);
         setLoading(false);
+        if (numRef.current.textContent === Number(router.query.page)) {
+          numRef.current.style.borderBottom = "1px solid black";
+        } else {
+          numRef.current.style.borderBottom = "none";
+        }
       });
   }, [router.query.page]);
 
@@ -92,8 +98,18 @@ const Tasks = () => {
           >
             new post
           </button>
-          <span>
-            <span>{"<"}</span>
+          <span className="ml-24">
+            <span
+              onClick={() =>
+                router.push(
+                  router.query.page === 1
+                    ? `/task?page=1`
+                    : `/task?page=${router.query.page - 1}`
+                )
+              }
+            >
+              {"<"}
+            </span>
             {isLoading ? (
               <div className="animate-rotate">LOADING</div>
             ) : (
@@ -101,13 +117,24 @@ const Tasks = () => {
                 <button
                   key={page}
                   className="cursor-pointer w-8"
-                  onClick={(e) => router.push(`/task?page=${page}`)}
+                  ref={numRef}
+                  onClick={() => router.push(`/task?page=${page}`)}
                 >
                   {page}
                 </button>
               ))
             )}
-            <span>{">"}</span>
+            <span
+              onClick={() =>
+                router.push(
+                  router.query.page === postsNum[postsNum.length - 1]
+                    ? `/task?page=${postsNum[postsNum.length - 1]}`
+                    : `/task?page=${router.query.page + 1}`
+                )
+              }
+            >
+              {"<"}
+            </span>
           </span>
         </div>
       </div>
