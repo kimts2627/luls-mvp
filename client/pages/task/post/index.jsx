@@ -55,6 +55,19 @@ const PostTask = () => {
       });
   };
 
+  const setTag = (tag) => {
+    if (currentVal.tag.length !== 0) {
+      for (let i of currentVal.tag) {
+        if (i.id === tag.id) {
+          console.log("tag exist");
+          return;
+        }
+      }
+    }
+    console.log(currentVal);
+    setVal({ ...currentVal, tag: currentVal.tag.push(tag.id) });
+  };
+
   return (
     <Layout>
       <div className="w-full mt-28 h-staticFull flex justify-center items-center">
@@ -65,15 +78,7 @@ const PostTask = () => {
                 <button
                   key={tag.id}
                   className="border-2 rounded-lg"
-                  onClick={() => {
-                    for (let i of currentVal.tag) {
-                      if (i.id === tag.id) {
-                        return;
-                      }
-                    }
-                    console.log(currentVal);
-                    setVal({ ...currentVal, tag: currentVal.tag.push(tag.id) });
-                  }}
+                  onClick={() => setTag(tag)}
                 >
                   {tag.name}
                 </button>
