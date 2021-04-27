@@ -29,25 +29,27 @@ const PostTask = () => {
 
   return (
     <Layout>
-      <div className="w-full h-full fixed top-0 flex justify-center items-center blackback">
-        <section className="relative w-120 h-150 mt-28 bg-white rounded-lg">
-          <input
-            type="text"
-            placeholder="title"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="text"
-            placeholder="content"
-            onChange={(e) => handleChange(e)}
-          />
-          <button className="bg-gray-200">POST NEW!</button>
-          <button
-            className="absolute bottom-0 bg-gray-200 right-1/2"
-            onClick={() => router.back()}
-          >
-            Back to list
-          </button>
+      <div className="w-full mt-28 h-staticFull flex justify-center items-center">
+        <section className="w-full max-w-screen-xl h-full bg-blue-50 rounded-lg flex items-center justify-center">
+          <div className="w-1/2 h-1/2 relative flex flex-col justify-evenly">
+            <input
+              type="text"
+              placeholder="title"
+              onChange={(e) => handleChange(e)}
+            />
+            <input
+              type="text"
+              placeholder="content"
+              onChange={(e) => handleChange(e)}
+            />
+            <button className="bg-gray-200">POST NEW!</button>
+            <button
+              className="absolute bottom-0 bg-gray-200"
+              onClick={() => router.back()}
+            >
+              Back to list
+            </button>
+          </div>
         </section>
       </div>
     </Layout>

@@ -25,7 +25,6 @@ const SingleTask = ({ post }) => {
         <h1>{post.name}</h1>
         <h1>{post.title}</h1>
         <h2>{post.createdAt}</h2>
-        <h2>{post.content}</h2>
       </div>
     </Link>
   );
