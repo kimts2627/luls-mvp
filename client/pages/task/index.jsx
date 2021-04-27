@@ -58,7 +58,7 @@ const Tasks = () => {
         let postsArr = [];
         for (let i = 0; i < Math.ceil(res.data.page / 10); i++) {
           if (postsArr.length === 0) {
-            postsArr.push(0);
+            postsArr.push(1);
           } else {
             postsArr.push(postsArr[postsArr.length - 1] + 1);
           }
