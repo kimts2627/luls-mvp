@@ -86,13 +86,13 @@ const Tasks = () => {
             <span>{"<"}</span>
             <button
               className="cursor-pointer w-8"
-              onClick={(e) => (router.query.page = e.target.textContent)}
+              onClick={(e) => router.push("/task?page=2")}
             >
               1
             </button>
             <button
               className="cursor-pointer w-12"
-              onClick={(e) => (router.query.page = e.target.textContent)}
+              onClick={(e) => router.push("/task?page=2")}
             >
               2
             </button>
