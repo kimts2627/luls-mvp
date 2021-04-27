@@ -102,9 +102,9 @@ const Tasks = () => {
             <span
               onClick={() =>
                 router.push(
-                  router.query.page === 1
+                  router.query.page === "1"
                     ? `/task?page=1`
-                    : `/task?page=${router.query.page - 1}`
+                    : `/task?page=${Number(router.query.page) - 1}`
                 )
               }
             >
@@ -127,13 +127,13 @@ const Tasks = () => {
             <span
               onClick={() =>
                 router.push(
-                  router.query.page === postsNum[postsNum.length - 1]
+                  router.query.page === String(postsNum[postsNum.length - 1])
                     ? `/task?page=${postsNum[postsNum.length - 1]}`
-                    : `/task?page=${router.query.page + 1}`
+                    : `/task?page=${Number(router.query.page) + 1}`
                 )
               }
             >
-              {"<"}
+              {">"}
             </span>
           </span>
         </div>
