@@ -65,7 +65,8 @@ const PostTask = () => {
       }
     }
     console.log(currentVal);
-    setVal({ ...currentVal, tag: currentVal.tag.push(tag.id) });
+    let tags = [...currentVal.tag];
+    setVal({ ...currentVal, tag: tags.push(tag.id) });
   };
 
   return (
