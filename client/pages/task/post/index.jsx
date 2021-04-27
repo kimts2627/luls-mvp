@@ -78,11 +78,11 @@ const PostTask = () => {
             <div>
               {tagList.map((thisTag) => (
                 <button
-                  key={tag.id}
+                  key={thisTag.id}
                   className="border-2 rounded-lg"
                   onClick={() => setTag(thisTag)}
                 >
-                  {tag.name}
+                  {thisTag.name}
                 </button>
               ))}
             </div>
