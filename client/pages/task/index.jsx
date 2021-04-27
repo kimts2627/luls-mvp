@@ -22,7 +22,9 @@ const SingleTask = ({ post }) => {
         className="w-full h-16 bg-white shadow-md border mb-2 cursor-pointer flex justify-evenly"
         onClick={() => handlingCurrentTask(post)}
       >
-        <h1>{post.name}</h1>
+        <h1>
+          {post.bulletin.Members_Id.f_name + post.bulletin.Members_Id.l_name}
+        </h1>
         <h1>{post.title}</h1>
         <h2>{post.createdAt}</h2>
       </div>
