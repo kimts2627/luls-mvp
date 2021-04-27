@@ -55,18 +55,19 @@ const PostTask = () => {
       });
   };
 
-  const setTag = (tag) => {
+  const setTag = (thisTag) => {
     if (currentVal.tag.length !== 0) {
       for (let i of currentVal.tag) {
-        if (i.id === tag.id) {
+        if (i.id === thisTag.id) {
           console.log("tag exist");
           return;
         }
       }
     }
     console.log(currentVal);
-    let tags = [...currentVal.tag];
-    setVal({ ...currentVal, tag: tags.push(tag.id) });
+    let copyVal = { ...currentVal };
+    copyVal.tag.push(thisTag.id);
+    setVal(copyVal);
   };
 
   return (
@@ -75,11 +76,11 @@ const PostTask = () => {
         <section className="w-full max-w-screen-xl h-full bg-blue-50 rounded-lg flex items-center justify-center">
           <div className="w-1/2 h-1/2 relative flex flex-col justify-evenly">
             <div>
-              {tagList.map((tag) => (
+              {tagList.map((thisTag) => (
                 <button
                   key={tag.id}
                   className="border-2 rounded-lg"
-                  onClick={() => setTag(tag)}
+                  onClick={() => setTag(thisTag)}
                 >
                   {tag.name}
                 </button>
