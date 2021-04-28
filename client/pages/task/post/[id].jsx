@@ -72,7 +72,7 @@ const Posts = () => {
           </div>
         ) : (
           <div className="w-1/2 h-screen text-4xl flex flex-col justify-center items-center">
-            <div className="absolute bg-red-100 w-full h-1/4">
+            <div className="absolute w-full h-1/4">
               <button className="absolute top-24 left-48 text-9xl">
                 {"<"}
               </button>
