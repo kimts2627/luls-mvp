@@ -19,9 +19,9 @@ const SingleTask = ({ post }) => {
 
   const returnButtonColor = () => {
     switch (post.submit_check) {
-      case "pass":
-        return "bg-red-100";
       case "fail":
+        return "bg-red-100";
+      case "pass":
         return "bg-green-100";
       default:
         return "bg-white";

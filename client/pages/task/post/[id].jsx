@@ -52,6 +52,9 @@ const Posts = () => {
       .then((res) => res.data)
       .then((data) => {
         console.log(data);
+      })
+      .catch((err) => {
+        console.log(err.response);
         getCurrentTask();
       });
   };
