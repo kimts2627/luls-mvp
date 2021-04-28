@@ -83,7 +83,7 @@ const Posts = () => {
             <div className="relative bg-white shadow-xl w-full h-1/2 flex flex-col justify-evenly items-center">
               {permission === "student" && school.name === "멋사대학교" ? (
                 <button
-                  className="rounded-lg border-4 bg-white p-2"
+                  className="absolute bottom-10 left-10 rounded-lg border-4 bg-white p-2"
                   onClick={undefined}
                 >
                   Edit
