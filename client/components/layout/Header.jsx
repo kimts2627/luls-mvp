@@ -42,12 +42,12 @@ const Header = ({ headerSize }) => {
 
   //! SignOut
   const signOut = () => {
-    handlingLogout();
-    handlingUserInfo(null);
-    window.localStorage.clear();
     if (router.pathname !== "/") {
       router.push("/");
     }
+    handlingLogout();
+    handlingUserInfo({});
+    window.localStorage.clear();
     handleAlert();
   };
 

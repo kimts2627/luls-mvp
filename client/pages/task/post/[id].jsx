@@ -72,6 +72,14 @@ const Posts = () => {
           </div>
         ) : (
           <div className="w-1/2 h-screen text-4xl flex flex-col justify-center items-center">
+            <div className="absolute bg-red-100 w-full h-1/4">
+              <button className="absolute top-24 left-48 text-9xl">
+                {"<"}
+              </button>
+              <button className="absolute top-24 right-48 text-9xl">
+                {">"}
+              </button>
+            </div>
             <div className="relative bg-white shadow-xl w-full h-1/2 flex flex-col justify-evenly items-center">
               <h1 className="absolute left-5 top-5 text-xl">
                 {currentTaskPost.id}
@@ -86,9 +94,9 @@ const Posts = () => {
                   <button
                     className={`rounded-lg border-4 ${
                       currentTaskPost.submit_check === "pass"
-                        ? "border-green-500"
+                        ? "bg-green-500"
                         : ""
-                    } p-2 bg-gray-100 focus:outline-none`}
+                    } p-2 focus:outline-none`}
                     onClick={() => modifyTaskStatus("pass")}
                   >
                     Pass
@@ -96,9 +104,9 @@ const Posts = () => {
                   <button
                     className={`rounded-lg border-4 ${
                       currentTaskPost.submit_check === "fail"
-                        ? "border-red-500"
+                        ? "bg-red-500"
                         : ""
-                    } p-2 bg-gray-100 focus:outline-none`}
+                    } p-2 focus:outline-none`}
                     onClick={() => modifyTaskStatus("fail")}
                   >
                     Fail
