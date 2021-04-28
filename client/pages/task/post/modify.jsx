@@ -10,9 +10,11 @@ const ModifyTask = () => {
   const contentRef = useRef();
   const modifyTaskinfo = useSelector((state) => state.task.modifyTaskinfo);
   const [currentVal, setVal] = useState({
-    title: "",
-    content: "",
     id: "",
+    content: {
+      title: "",
+      content: "",
+    },
   });
 
   useEffect(() => {
@@ -24,7 +26,9 @@ const ModifyTask = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
 
   const handleChange = (e) => {
-    setVal({ ...currentVal, [e.target.placeholder]: e.target.value });
+    let modifiedContent = { ...currentVal.content };
+    modifiedContent[e.target.placeholder] = e.target.value;
+    setVal({ ...currentVal, modifiedContent });
   };
 
   const modifyRequest = () => {

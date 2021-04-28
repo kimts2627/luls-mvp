@@ -96,8 +96,11 @@ const Posts = (props) => {
     const { id, title, content } = currentTaskPost;
     setModifyTaskInfo({
       id: id,
-      title: title,
-      content: content,
+      content: {
+        title: title,
+        content: content,
+        submit_check: "0",
+      },
     });
     router.push("/task/post/modify");
   };
