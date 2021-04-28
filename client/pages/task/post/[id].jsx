@@ -137,4 +137,15 @@ const Posts = () => {
   );
 };
 
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: "124" } },
+      { params: { id: "125" } },
+      { params: { id: "126" } },
+    ],
+    fallback: false,
+  };
+}
+
 export default Posts;
