@@ -25,7 +25,7 @@ const SingleTask = ({ post }) => {
   };
 
   return (
-    <Link href={`/task/post/${post.id}`} as={`/task/post/${post.id}`}>
+    <Link href={`/task/post/${post.id}`}>
       <a>
         <div
           className={`w-full h-16 shadow-md border mb-2 cursor-pointer flex justify-evenly ${returnButtonColor()}`}
