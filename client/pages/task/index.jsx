@@ -29,7 +29,7 @@ const SingleTask = ({ post }) => {
   };
 
   return (
-    <Link href={`/task/post/${post.id}`}>
+    <a href={`/task/post/${post.id}`}>
       <div
         className={`w-full h-16 shadow-md border mb-2 cursor-pointer flex justify-evenly ${returnButtonColor()}`}
         onClick={() => handlingCurrentTask(post)}
@@ -42,7 +42,7 @@ const SingleTask = ({ post }) => {
         <h1>{post.title}</h1>
         <h2>{post.createdAt}</h2>
       </div>
-    </Link>
+    </a>
   );
 };
 

@@ -121,4 +121,8 @@ const Posts = () => {
   );
 };
 
+Posts.getInitailProps = async (ctx) => {
+  console.log("aaa");
+};
+
 export default Posts;
