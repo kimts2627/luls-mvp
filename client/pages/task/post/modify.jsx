@@ -19,8 +19,8 @@ const ModifyTask = () => {
 
   useEffect(() => {
     setVal({ ...modifyTaskinfo });
-    titleRef.current.value = modifyTaskinfo.title;
-    contentRef.current.value = modifyTaskinfo.content;
+    titleRef.current.value = modifyTaskinfo.content.title;
+    contentRef.current.value = modifyTaskinfo.content.content;
   }, []);
 
   const userInfo = useSelector((state) => state.auth.userInfo);
@@ -28,7 +28,7 @@ const ModifyTask = () => {
   const handleChange = (e) => {
     let modifiedContent = { ...currentVal.content };
     modifiedContent[e.target.placeholder] = e.target.value;
-    setVal({ ...currentVal, modifiedContent });
+    setVal({ ...currentVal, content: { ...modifiedContent } });
   };
 
   const modifyRequest = () => {
