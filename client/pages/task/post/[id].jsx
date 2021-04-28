@@ -111,9 +111,7 @@ const Posts = () => {
                   </button>
                   <button
                     className={`rounded-lg border-4 ${
-                      currentTaskPost.submit_check === "pass"
-                        ? "bg-green-500"
-                        : ""
+                      currentTaskPost.submit_check === "0" ? "bg-gray-50" : ""
                     } p-2 focus:outline-none`}
                     onClick={() => modifyTaskStatus("0")}
                   >
