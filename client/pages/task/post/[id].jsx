@@ -11,7 +11,7 @@ const Posts = () => {
 
   const getCurrentTask = () => {
     // ! 개별 페이지 정보 받아와야 함
-    let id = router.asPath.slice(10);
+    let id = router.asPath.slice(11);
     let token = window.localStorage.getItem("ac-token");
     console.log(id);
     axios
@@ -37,7 +37,7 @@ const Posts = () => {
   }, []);
 
   const modifyTaskStatus = (status) => {
-    let id = router.asPath.slice(10);
+    let id = router.asPath.slice(11);
     let token = window.localStorage.getItem("ac-token");
 
     axios
