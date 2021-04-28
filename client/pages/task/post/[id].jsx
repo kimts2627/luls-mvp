@@ -8,6 +8,8 @@ const Posts = () => {
   const [currentTaskPost, setPost] = useState({});
   const router = useRouter();
   const [isLoading, setLoading] = useState(true);
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  const { permission } = userInfo;
 
   const getCurrentTask = () => {
     // ! 개별 페이지 정보 받아와야 함
@@ -79,28 +81,30 @@ const Posts = () => {
               </h1>
               <h2 className="text-5xl Montserrat">{currentTaskPost.title}</h2>
               <h3>{currentTaskPost.content}</h3>
-              <div className="absolute bottom-10 flex justify-between w-60">
-                <button
-                  className={`rounded-lg border-4 ${
-                    currentTaskPost.submit_check === "pass"
-                      ? "border-green-500"
-                      : ""
-                  } p-2 bg-gray-100 focus:outline-none`}
-                  onClick={() => modifyTaskStatus("pass")}
-                >
-                  Pass
-                </button>
-                <button
-                  className={`rounded-lg border-4 ${
-                    currentTaskPost.submit_check === "fail"
-                      ? "border-red-500"
-                      : ""
-                  } p-2 bg-gray-100 focus:outline-none`}
-                  onClick={() => modifyTaskStatus("fail")}
-                >
-                  Fail
-                </button>
-              </div>
+              {permission === "admin" ? (
+                <div className="absolute bottom-10 flex justify-between w-60">
+                  <button
+                    className={`rounded-lg border-4 ${
+                      currentTaskPost.submit_check === "pass"
+                        ? "border-green-500"
+                        : ""
+                    } p-2 bg-gray-100 focus:outline-none`}
+                    onClick={() => modifyTaskStatus("pass")}
+                  >
+                    Pass
+                  </button>
+                  <button
+                    className={`rounded-lg border-4 ${
+                      currentTaskPost.submit_check === "fail"
+                        ? "border-red-500"
+                        : ""
+                    } p-2 bg-gray-100 focus:outline-none`}
+                    onClick={() => modifyTaskStatus("fail")}
+                  >
+                    Fail
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
         )}

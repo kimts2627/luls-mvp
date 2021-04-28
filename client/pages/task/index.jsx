@@ -121,12 +121,14 @@ const Tasks = () => {
               taskPosts.map((post) => <SingleTask post={post} key={post.id} />)
             )}
           </section>
-          <button
-            className="border border-red-500"
-            onClick={() => router.push("/task/post")}
-          >
-            new post
-          </button>
+          {permission === "student" ? (
+            <button
+              className="border border-red-500"
+              onClick={() => router.push("/task/post")}
+            >
+              new post
+            </button>
+          ) : null}
           <span className="ml-24">
             <span
               onClick={() =>
