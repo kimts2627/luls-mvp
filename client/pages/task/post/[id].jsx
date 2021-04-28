@@ -98,7 +98,7 @@ const Posts = () => {
               <h2 className="text-5xl Montserrat">{currentTaskPost.title}</h2>
               <h3>{currentTaskPost.content}</h3>
               {permission === "admin" ? (
-                <div className="absolute bottom-10 flex justify-between w-60">
+                <div className="absolute bottom-10 flex justify-between w-full">
                   <button
                     className={`rounded-lg border-4 ${
                       currentTaskPost.submit_check === "pass"
@@ -108,6 +108,16 @@ const Posts = () => {
                     onClick={() => modifyTaskStatus("pass")}
                   >
                     Pass
+                  </button>
+                  <button
+                    className={`rounded-lg border-4 ${
+                      currentTaskPost.submit_check === "pass"
+                        ? "bg-green-500"
+                        : ""
+                    } p-2 focus:outline-none`}
+                    onClick={() => modifyTaskStatus("0")}
+                  >
+                    Neutral
                   </button>
                   <button
                     className={`rounded-lg border-4 ${
@@ -127,10 +137,6 @@ const Posts = () => {
       </div>
     </Layout>
   );
-};
-
-Posts.getInitailProps = async (ctx) => {
-  console.log("aaa");
 };
 
 export default Posts;
