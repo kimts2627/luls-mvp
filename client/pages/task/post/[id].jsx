@@ -55,7 +55,9 @@ const Posts = () => {
       })
       .catch((err) => {
         console.log(err.response);
-        getCurrentTask();
+        if (err.response.status === 301) {
+          getCurrentTask();
+        }
       });
   };
 
@@ -69,11 +71,13 @@ const Posts = () => {
         ) : (
           <div className="w-1/2 h-screen text-4xl flex flex-col justify-center items-center">
             <div className="relative bg-white shadow-xl w-full h-1/2 flex flex-col justify-evenly items-center">
-              <h1 className="absolute left-5 top-5">{currentTaskPost.id}</h1>
-              <h1 className="absolute right-5 top-5">
+              <h1 className="absolute left-5 top-5 text-xl">
+                {currentTaskPost.id}
+              </h1>
+              <h1 className="absolute right-5 top-5 text-xl">
                 {currentTaskPost.school}
               </h1>
-              <h2 className="text-2xl">{currentTaskPost.title}</h2>
+              <h2 className="text-5xl Montserrat">{currentTaskPost.title}</h2>
               <h3>{currentTaskPost.content}</h3>
               <div className="absolute bottom-10 flex justify-between w-60">
                 <button
@@ -81,7 +85,7 @@ const Posts = () => {
                     currentTaskPost.submit_check === "pass"
                       ? "border-green-500"
                       : ""
-                  } p-2 bg-gray-100`}
+                  } p-2 bg-gray-100 focus:outline-none`}
                   onClick={() => modifyTaskStatus("pass")}
                 >
                   Pass
@@ -91,7 +95,7 @@ const Posts = () => {
                     currentTaskPost.submit_check === "fail"
                       ? "border-red-500"
                       : ""
-                  } p-2 bg-gray-100`}
+                  } p-2 bg-gray-100 focus:outline-none`}
                   onClick={() => modifyTaskStatus("fail")}
                 >
                   Fail
