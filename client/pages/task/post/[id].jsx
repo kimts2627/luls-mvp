@@ -5,30 +5,30 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../../components/layout";
 import { handleModifyTaskInfo } from "../../../reducers/task";
 
-export async function getStaticPaths() {
-  const response = await axios(
-    "https://www.likelionustest.com/bulletin/hwlist"
-  );
-  const postList = await response.data.bulletin;
-  return {
-    paths: postList.map((post) => {
-      return {
-        params: {
-          id: `${post.id}`,
-        },
-      };
-    }),
-    fallback: false,
-  };
-}
+// export async function getStaticPaths() {
+//   const response = await axios(
+//     "https://www.likelionustest.com/bulletin/hwlist"
+//   );
+//   const postList = await response.data.bulletin;
+//   return {
+//     paths: postList.map((post) => {
+//       return {
+//         params: {
+//           id: `${post.id}`,
+//         },
+//       };
+//     }),
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  return {
-    props: { data: "i`m noting" },
-  };
-}
+// export async function getStaticProps({ params }) {
+//   return {
+//     props: { data: "i`m noting" },
+//   };
+// }
 
-const Posts = (props) => {
+const Posts = () => {
   const dispatch = useDispatch();
   const [currentTaskPost, setPost] = useState({});
   const router = useRouter();
