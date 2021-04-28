@@ -9,7 +9,7 @@ const Posts = () => {
   const router = useRouter();
   const [isLoading, setLoading] = useState(true);
   const userInfo = useSelector((state) => state.auth.userInfo);
-  const { permission } = userInfo;
+  const { permission, school } = userInfo;
 
   const getCurrentTask = () => {
     // ! 개별 페이지 정보 받아와야 함
@@ -81,6 +81,14 @@ const Posts = () => {
               </button>
             </div>
             <div className="relative bg-white shadow-xl w-full h-1/2 flex flex-col justify-evenly items-center">
+              {permission === "student" && school.name === "멋사대학교" ? (
+                <button
+                  className="rounded-lg border-4 bg-white p-2"
+                  onClick={undefined}
+                >
+                  Edit
+                </button>
+              ) : null}
               <h1 className="absolute left-5 top-5 text-xl">
                 {currentTaskPost.id}
               </h1>
