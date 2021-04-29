@@ -176,14 +176,13 @@ const Posts = (props) => {
                   Edit
                 </button>
               ) : null}
-              {/* <section className="absolute top-0 w-full bg-gray-50 flex items-center justify-center">
-                {
-
-                  <div className='mx-2 h-5 cursor-pointer text-sm rounded-md bg-red-100'>
-
+              <section className="absolute top-0 w-full bg-gray-50 flex items-center justify-center">
+                {currentTaskPost.tag.map((tag) => (
+                  <div className="mx-2 h-5 cursor-pointer text-sm rounded-md bg-red-100">
+                    {tag.tagId.name}
                   </div>
-                }
-              </section> */}
+                ))}
+              </section>
               <h1 className="absolute left-5 top-5 text-xl">
                 {currentTaskPost.id}
               </h1>

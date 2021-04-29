@@ -11,6 +11,7 @@ import postcssConfig from "../../../postcss.config";
 const SingleTask = ({ post }) => {
   const router = useRouter();
 
+  //! 게시글 확인 상태에 따라 색상 변경
   const returnButtonColor = () => {
     switch (post.submit_check) {
       case "fail":
@@ -27,7 +28,7 @@ const SingleTask = ({ post }) => {
       <div
         className={`w-full h-16 shadow-md border mb-2 cursor-pointer flex items-center justify-evenly ${returnButtonColor()}`}
       >
-        <h1 className="flex-1">
+        <h1 className="flex-1 text-center">
           {post.bulletin !== null
             ? post.bulletin.Members_Id.f_name + post.bulletin.Members_Id.l_name
             : "null"}
@@ -60,6 +61,7 @@ const Tasks = () => {
   const router = useRouter();
   const numRef = useRef();
 
+  //! 현재 쿼리가 변경될 때 마다, 리스트를 요청
   useEffect(() => {
     let token = window.localStorage.getItem("ac-token");
     axios
@@ -147,6 +149,7 @@ const Tasks = () => {
     return "bg-gray-100";
   };
 
+  //! 선택된 태그들을 쿼리에 담아 리스트 재요청
   const reqestTagSortedList = () => {
     let uri = "/task/post?page=1";
     let query = currentTags.map((tag) => tag.id).join("&tag=");
@@ -160,7 +163,7 @@ const Tasks = () => {
       <div className="w-full h-staticFull flex items-center justify-center mt-28">
         <div className="relative w-full max-w-screen-lg h-full bg-red-100 p-16">
           <span className="absolute top-5 right-5">
-            <h2 className="text-xl">{`Welcome, ${permission} ${name}!`}</h2>
+            <h2 className="text-lg Montserrat">{`Welcome, ${permission} ${name}!`}</h2>
           </span>
           <div className="text-center mb-8">
             <h1 className="text-5xl">Task List</h1>
