@@ -139,12 +139,6 @@ const Posts = (props) => {
   return (
     <Layout>
       <div className="w-full h-full mt-28 flex items-center justify-center">
-        <img
-          src="/img/x.png"
-          alt="x"
-          className="absolute top-10 cursor-pointer w-20"
-          onClick={router.back}
-        />
         {!currentTaskPost ? (
           <div className="w-full h-full flex items-center justify-center">
             LOADING
@@ -168,6 +162,12 @@ const Posts = (props) => {
               </div>
             ) : null}
             <div className="relative bg-gray-50 shadow-inner w-full h-1/2 flex flex-col justify-evenly items-center">
+              <img
+                src="/img/x.png"
+                alt="x"
+                className="absolute -top-10 cursor-pointer w-20"
+                onClick={router.back}
+              />
               {permission === "student" && school.name === "멋사대학교" ? (
                 <button
                   className="absolute bottom-10 left-10 rounded-lg border-4 bg-white p-2"
