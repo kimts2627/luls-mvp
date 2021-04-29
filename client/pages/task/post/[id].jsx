@@ -86,7 +86,7 @@ const Posts = (props) => {
   useEffect(() => {
     console.log(props.id);
     getCurrentTask();
-  }, []);
+  }, [router.query.id]);
 
   const modifyTaskStatus = (status) => {
     let id = router.asPath.slice(11);
