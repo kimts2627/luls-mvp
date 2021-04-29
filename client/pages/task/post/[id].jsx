@@ -30,6 +30,11 @@ import { handleModifyTaskInfo } from "../../../reducers/task";
 //   };
 // }
 
+export async function getServerSideProps(ctx) {
+  console.log(ctx.query);
+  return { props: { id: ctx.query.id } };
+}
+
 const Posts = (props) => {
   const dispatch = useDispatch();
   const [currentTaskPost, setPost] = useState({});
@@ -66,12 +71,16 @@ const Posts = (props) => {
       });
   };
 
+  // useEffect(() => {
+  //   if (router.query.id) {
+
+  //     getCurrentTask();
+  //   }
+  // }, [router.query]);
+
   useEffect(() => {
-    if (router.query.id) {
-      console.log(props);
-      getCurrentTask();
-    }
-  }, [router.query]);
+    console.log(`나는 ctx 쿼리!!!!!!!!!!!!${props.id}`);
+  }, []);
 
   const modifyTaskStatus = (status) => {
     let id = router.asPath.slice(11);
