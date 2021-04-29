@@ -5,30 +5,30 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../../components/layout";
 import { handleModifyTaskInfo } from "../../../reducers/task";
 
-// export async function getStaticPaths() {
-//   const response = await axios(
-//     "https://likelionustest.com/bulletin/hwlist?school=멋사대학교"
-//   );
-//   const postList = await response.data.bulletin;
-//   console.log(postList);
-//   return {
-//     paths: postList.map((post) => {
-//       return {
-//         params: {
-//           id: `${post.id}`,
-//         },
-//       };
-//     }),
-//     fallback: false,
-//   };
-// }
+export async function getStaticPaths() {
+  const response = await axios(
+    "https://likelionustest.com/bulletin/hwlist?school=멋사대학교"
+  );
+  const postList = await response.data.bulletin;
+  console.log(postList);
+  return {
+    paths: postList.map((post) => {
+      return {
+        params: {
+          id: `${post.id}`,
+        },
+      };
+    }),
+    fallback: false,
+  };
+}
 
-// export async function getStaticProps({ params }) {
-//   const post = { no: "no" };
-//   return {
-//     props: post,
-//   };
-// }
+export async function getStaticProps({ params }) {
+  const post = { no: "no" };
+  return {
+    props: post,
+  };
+}
 
 const Posts = (props) => {
   const dispatch = useDispatch();
@@ -67,9 +67,11 @@ const Posts = (props) => {
   };
 
   useEffect(() => {
-    console.log(props);
-    getCurrentTask();
-  }, []);
+    if (router.query.id) {
+      console.log(props);
+      getCurrentTask();
+    }
+  }, [router.query]);
 
   const modifyTaskStatus = (status) => {
     let id = router.asPath.slice(11);
