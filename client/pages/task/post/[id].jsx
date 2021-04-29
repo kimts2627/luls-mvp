@@ -44,11 +44,12 @@ const Posts = (props) => {
 
   const getCurrentTask = () => {
     // ! 개별 페이지 정보 받아와야 함
-    let id = router.asPath.slice(11);
+    // let id = router.asPath.slice(11);
     let token = window.localStorage.getItem("ac-token");
-    console.log(id);
+    console.log(`나는 쿼리다!!!!!!!!!!!!!!!!${router.query}`);
+    console.log(router);
     axios
-      .get(`https://likelionustest.com/bulletin/list/${id}`, {
+      .get(`https://likelionustest.com/bulletin/list/${router.query.id}`, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
