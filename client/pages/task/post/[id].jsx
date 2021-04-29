@@ -24,8 +24,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const post = { no: "no" };
   return {
-    props: { data: "i`m noting" },
+    props: post,
   };
 }
 

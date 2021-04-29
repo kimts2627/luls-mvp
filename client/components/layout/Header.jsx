@@ -9,6 +9,7 @@ import {
   setAlert,
 } from "../../reducers/auth";
 import AuthModal from "../auth/AuthModal";
+import axios from "axios";
 
 const Header = ({ headerSize }) => {
   const dispatch = useDispatch();
@@ -51,6 +52,10 @@ const Header = ({ headerSize }) => {
     handleAlert();
   };
 
+  const testFunc = () => {
+    axios("https://likelionustest.com/login1").then(console.log);
+  };
+
   return (
     <header
       className={`fixed top-0 w-full ${
@@ -73,7 +78,9 @@ const Header = ({ headerSize }) => {
           } bg-white w-full transition-all z-40 flex flex-row-reverse pr-6`}
         >
           <ul className="w-96 text-right h-full flex items-center justify-between underline">
-            <a className="cursor-pointer">Admin</a>
+            <a className="cursor-pointer" onClick={testFunc}>
+              Admin
+            </a>
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>
