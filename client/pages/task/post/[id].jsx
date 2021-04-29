@@ -7,7 +7,7 @@ import { handleModifyTaskInfo } from "../../../reducers/task";
 
 export async function getStaticPaths() {
   const response = await axios(
-    "https://www.likelionustest.com/bulletin/hwlist"
+    "https://www.likelionustest.com/bulletin/hwlist?school=멋사대학교"
   );
   const postList = await response.data.bulletin;
   console.log(postList);
