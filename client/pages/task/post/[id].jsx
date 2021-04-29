@@ -143,7 +143,7 @@ const Posts = (props) => {
           src="/img/x.png"
           alt="x"
           className="absolute top-32 cursor-pointer w-10"
-          onClick={router.back()}
+          onClick={router.back}
         />
         {!currentTaskPost ? (
           <div className="w-full h-full flex items-center justify-center">
