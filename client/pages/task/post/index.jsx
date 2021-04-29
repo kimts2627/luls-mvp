@@ -105,7 +105,9 @@ const Tasks = () => {
             {tags.map((tag) => (
               <div
                 key={tag.name}
-                className="mx-2 cursor-pointer border"
+                className={`mx-2 cursor-pointer ${
+                  router.query.tag === tag.name ? "bg-red-100" : "bg-gray-100"
+                }`}
                 onClick={() => router.push(`/task/post?tag=${tag.name}&page=1`)}
               >
                 {tag.name}
@@ -127,7 +129,7 @@ const Tasks = () => {
               new post
             </button>
           ) : null}
-          <span className="ml-24">
+          <span className="absolute w-full left-0 mt-6 flex justify-center">
             <span
               onClick={() =>
                 router.push(
@@ -136,23 +138,20 @@ const Tasks = () => {
                     : `/task/post?page=${Number(router.query.page) - 1}`
                 )
               }
+              className="cursor-pointer"
             >
               {"<"}
             </span>
-            {isLoading ? (
-              <div className="">LOADING</div>
-            ) : (
-              postsNum.map((page) => (
-                <button
-                  key={page}
-                  className="cursor-pointer w-8"
-                  ref={numRef}
-                  onClick={() => router.push(`/task/post?page=${page}`)}
-                >
-                  {page}
-                </button>
-              ))
-            )}
+            {postsNum.map((page) => (
+              <button
+                key={page}
+                className="cursor-pointer w-8"
+                ref={numRef}
+                onClick={() => router.push(`/task/post?page=${page}`)}
+              >
+                {page}
+              </button>
+            ))}
             <span
               onClick={() =>
                 router.push(
@@ -161,6 +160,7 @@ const Tasks = () => {
                     : `/task/post?page=${Number(router.query.page) + 1}`
                 )
               }
+              className="cursor-pointer"
             >
               {">"}
             </span>
