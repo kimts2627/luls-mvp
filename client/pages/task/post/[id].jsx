@@ -54,7 +54,7 @@ const Posts = (props) => {
     console.log(`나는 쿼리다!!!!!!!!!!!!!!!!${router.query}`);
     console.log(router);
     axios
-      .get(`https://likelionustest.com/bulletin/list/${router.query.id}`, {
+      .get(`https://likelionustest.com/bulletin/list/${props.id}`, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -80,6 +80,7 @@ const Posts = (props) => {
 
   useEffect(() => {
     console.log(`나는 ctx 쿼리!!!!!!!!!!!!${props.id}`);
+    getCurrentTask();
   }, []);
 
   const modifyTaskStatus = (status) => {
