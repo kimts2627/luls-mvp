@@ -34,7 +34,8 @@
     "react-dom": "17.0.2",
     "react-redux": "^7.2.3",
     "redux": "^4.0.5",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "serve": "^11.3.2"
   },
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.18",
