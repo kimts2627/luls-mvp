@@ -38,6 +38,7 @@ export async function getServerSideProps(ctx) {
 const Posts = (props) => {
   const dispatch = useDispatch();
   const [currentTaskPost, setPost] = useState({});
+  const [sidePost, setSidePost] = useState({});
   const router = useRouter();
   const [isLoading, setLoading] = useState(true);
   const userInfo = useSelector((state) => state.auth.userInfo);
@@ -54,16 +55,20 @@ const Posts = (props) => {
     console.log(`나는 쿼리다!!!!!!!!!!!!!!!!${router.query}`);
     console.log(router);
     axios
-      .get(`https://likelionustest.com/bulletin/list/${props.id}`, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `https://likelionustest.com/bulletin/list/${props.id}?school=멋사대학교`,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => res.data)
       .then((data) => {
         console.log(data);
         setPost(data.content);
+        setSidePost(data.pageNumber);
         setLoading(false);
       })
       .catch((err) => {
@@ -79,7 +84,7 @@ const Posts = (props) => {
   // }, [router.query]);
 
   useEffect(() => {
-    console.log(`나는 ctx 쿼리!!!!!!!!!!!!${props.id}`);
+    console.log(props.id);
     getCurrentTask();
   }, []);
 
@@ -121,6 +126,24 @@ const Posts = (props) => {
     router.push("/task/post/modify");
   };
 
+  const movePage = (e) => {
+    if (permission === "admin") {
+      if (e.current.textContent === ">") {
+        if (sidePost.next) {
+          router.push(`/task/post/${next}`);
+        } else {
+          alert("There is no next page");
+        }
+      } else if (e.current.textContent === "<") {
+        if (sidePost.prev) {
+          router.push(`/task/post/${prev}`);
+        } else {
+          alert("There is no previous page");
+        }
+      }
+    }
+  };
+
   return (
     <Layout>
       <div className="w-full h-full mt-28 flex items-center justify-center">
@@ -131,10 +154,16 @@ const Posts = (props) => {
         ) : (
           <div className="w-1/2 h-screen text-4xl flex flex-col justify-center items-center">
             <div className="absolute w-full h-1/4">
-              <button className="absolute top-24 left-48 text-9xl">
+              <button
+                className="absolute top-24 left-48 text-9xl"
+                onClick={(e) => movePage(e)}
+              >
                 {"<"}
               </button>
-              <button className="absolute top-24 right-48 text-9xl">
+              <button
+                className="absolute top-24 right-48 text-9xl"
+                onClick={(e) => movePage(e)}
+              >
                 {">"}
               </button>
             </div>
