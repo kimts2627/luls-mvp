@@ -106,8 +106,8 @@ const Tasks = () => {
               <div
                 key={tag.name}
                 className={`mx-2 cursor-pointer ${
-                  router.query.tag === tag.name ? "bg-red-100" : "bg-gray-100"
-                }`}
+                  router.query.tag === tag.name ? "bg-red-200" : "bg-gray-100"
+                } rounded-md`}
                 onClick={() => router.push(`/task/post?tag=${tag.name}&page=1`)}
               >
                 {tag.name}
