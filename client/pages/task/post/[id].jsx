@@ -142,7 +142,7 @@ const Posts = (props) => {
         <img
           src="/img/x.png"
           alt="x"
-          className="absolute top-32 cursor-pointer w-10"
+          className="absolute top-10 cursor-pointer w-20"
           onClick={router.back}
         />
         {!currentTaskPost ? (
@@ -167,7 +167,7 @@ const Posts = (props) => {
                 </button>
               </div>
             ) : null}
-            <div className="relative bg-white shadow-inner w-full h-1/2 flex flex-col justify-evenly items-center">
+            <div className="relative bg-gray-50 shadow-inner w-full h-1/2 flex flex-col justify-evenly items-center">
               {permission === "student" && school.name === "멋사대학교" ? (
                 <button
                   className="absolute bottom-10 left-10 rounded-lg border-4 bg-white p-2"
