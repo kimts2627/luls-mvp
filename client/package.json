@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start"
+    "dev": "next",
+    "build": "next build",
+    "preexport": "npm run build",
+    "export": "next export",
+    "prestart": "npm run export",
+    "start": "serve out"
   },
   "dependencies": {
     "@toast-ui/editor": "^2.5.2",
@@ -19,7 +22,7 @@
     "codemirror": "^5.61.0",
     "cookie-cutter": "^0.2.0",
     "google-maps-react": "^2.0.6",
-    "next": "10.1.2",
+    "next": "^10.2.0",
     "next-redux-wrapper": "^6.0.2",
     "node-fetch": "^2.6.1",
     "postcss-flexbugs-fixes": "^5.0.2",
