@@ -52,7 +52,6 @@ const Posts = (props) => {
     // ! 개별 페이지 정보 받아와야 함
     // let id = router.asPath.slice(11);
     let token = window.localStorage.getItem("ac-token");
-    console.log(`나는 쿼리다!!!!!!!!!!!!!!!!${router.query}`);
     console.log(router);
     axios
       .get(
@@ -75,13 +74,6 @@ const Posts = (props) => {
         console.log(err.response);
       });
   };
-
-  // useEffect(() => {
-  //   if (router.query.id) {
-
-  //     getCurrentTask();
-  //   }
-  // }, [router.query]);
 
   useEffect(() => {
     console.log(props.id);
@@ -147,27 +139,35 @@ const Posts = (props) => {
   return (
     <Layout>
       <div className="w-full h-full mt-28 flex items-center justify-center">
+        <img
+          src="/img/x.png"
+          alt="x"
+          className="absolute top-32 cursor-pointer w-10"
+          onClick={router.back()}
+        />
         {!currentTaskPost ? (
           <div className="w-full h-full flex items-center justify-center">
             LOADING
           </div>
         ) : (
           <div className="w-1/2 h-screen text-4xl flex flex-col justify-center items-center">
-            <div className="absolute w-full h-1/4">
-              <button
-                className="absolute top-24 left-48 text-9xl"
-                onClick={(e) => movePage(e)}
-              >
-                {"<"}
-              </button>
-              <button
-                className="absolute top-24 right-48 text-9xl"
-                onClick={(e) => movePage(e)}
-              >
-                {">"}
-              </button>
-            </div>
-            <div className="relative bg-white shadow-xl w-full h-1/2 flex flex-col justify-evenly items-center">
+            {permission === "admin" ? (
+              <div className="absolute w-full h-1/4">
+                <button
+                  className="absolute top-24 left-48 text-9xl"
+                  onClick={(e) => movePage(e)}
+                >
+                  {"<"}
+                </button>
+                <button
+                  className="absolute top-24 right-48 text-9xl"
+                  onClick={(e) => movePage(e)}
+                >
+                  {">"}
+                </button>
+              </div>
+            ) : null}
+            <div className="relative bg-white shadow-inner w-full h-1/2 flex flex-col justify-evenly items-center">
               {permission === "student" && school.name === "멋사대학교" ? (
                 <button
                   className="absolute bottom-10 left-10 rounded-lg border-4 bg-white p-2"
@@ -176,16 +176,26 @@ const Posts = (props) => {
                   Edit
                 </button>
               ) : null}
+              {/* <section className="absolute top-0 w-full bg-gray-50 flex items-center justify-center">
+                {
+
+                  <div className='mx-2 h-5 cursor-pointer text-sm rounded-md bg-red-100'>
+
+                  </div>
+                }
+              </section> */}
               <h1 className="absolute left-5 top-5 text-xl">
                 {currentTaskPost.id}
               </h1>
               <h1 className="absolute right-5 top-5 text-xl">
                 {currentTaskPost.school}
               </h1>
-              <h2 className="text-5xl Montserrat">{currentTaskPost.title}</h2>
-              <h3>{currentTaskPost.content}</h3>
+              <h2 className="text-5xl Montserrat -mt-14">
+                {currentTaskPost.title}
+              </h2>
+              <h3 className="-mt-8">{currentTaskPost.content}</h3>
               {permission === "admin" ? (
-                <div className="absolute bottom-10 flex justify-between w-full">
+                <div className="absolute bottom-10 flex justify-evenly w-full">
                   <button
                     className={`rounded-lg border-4 ${
                       currentTaskPost.submit_check === "pass"
