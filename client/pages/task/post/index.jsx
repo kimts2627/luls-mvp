@@ -32,15 +32,15 @@ const SingleTask = ({ post }) => {
             ? post.bulletin.Members_Id.f_name + post.bulletin.Members_Id.l_name
             : "null"}
         </h1>
-        <h1 className="flex-1">{post.title}</h1>
-        <h2 className="flex-1 flex justify-center items-center">
+        <h1 className="flex-1 text-center">{post.title}</h1>
+        <h2 className="flex-1 flex justify-center items-center  text-center">
           {post.tag.map((tag) => (
-            <div className="mx-2 h-5 cursor-pointer text-sm rounded-md bg-red-100">
+            <div className="mx-2 h-5 cursor-pointer text-sm rounded-md bg-red-100  text-center">
               {tag.tagId.name}
             </div>
           ))}
         </h2>
-        <h2 className="flex-1">{post.createdAt.slice(0, 10)}</h2>
+        <h2 className="flex-1  text-center">{post.createdAt.slice(0, 10)}</h2>
       </div>
     </Link>
   );
