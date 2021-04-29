@@ -53,8 +53,10 @@ const Header = ({ headerSize }) => {
   };
 
   const testFunc = () => {
-    axios("https://likelionustest.com/users/login1").then(res => {console.log(res);
-  }
+    axios.get("https://likelionustest.com/users/login1").then((res) => {
+      console.log(res);
+      router.push(res.data);
+    });
   };
 
   return (
