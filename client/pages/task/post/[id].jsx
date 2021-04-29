@@ -48,6 +48,8 @@ const Posts = (props) => {
     dispatch(handleModifyTaskInfo(info));
   }, []);
 
+  const lastQuery = useSelector((state) => state.task.lastQuery);
+
   const getCurrentTask = () => {
     // ! 개별 페이지 정보 받아와야 함
     // let id = router.asPath.slice(11);
@@ -133,6 +135,16 @@ const Posts = (props) => {
           alert("There is no previous page");
         }
       }
+    }
+  };
+
+  const returnToList = () => {
+    if (lastQuery.page || lastQuery.tag) {
+      router.push(
+        `/task/post?page=${lastQuery.page}&tag=${lastQuery.tag.join("&tag=")}`
+      );
+    } else {
+      router.back();
     }
   };
 

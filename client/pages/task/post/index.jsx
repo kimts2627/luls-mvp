@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Layout from "../../../components/layout";
-import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { handleCurrentTask } from "../../../reducers/task";
+import { setLastQuery } from "../../../reducers/task";
 import axios from "axios";
-import postcssConfig from "../../../postcss.config";
 
 const SingleTask = ({ post }) => {
   const router = useRouter();
@@ -60,6 +58,12 @@ const Tasks = () => {
 
   const router = useRouter();
   const numRef = useRef();
+
+  const dispatch = useDispatch();
+
+  const settingLastQuery = useCallback((query) => {
+    dispatch(setLastQuery(query));
+  }, []);
 
   //! 현재 쿼리가 변경될 때 마다, 리스트를 요청
   useEffect(() => {
@@ -153,6 +157,7 @@ const Tasks = () => {
   const reqestTagSortedList = () => {
     let uri = "/task/post?page=1";
     let query = currentTags.map((tag) => tag.id).join("&tag=");
+    settingLastQuery(router.query);
     router.push(uri + "&tag=" + query);
   };
 
