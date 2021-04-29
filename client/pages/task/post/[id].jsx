@@ -128,13 +128,13 @@ const Posts = (props) => {
 
   const movePage = (e) => {
     if (permission === "admin") {
-      if (e.current.textContent === ">") {
+      if (e.target.textContent === ">") {
         if (sidePost.next) {
           router.push(`/task/post/${next}`);
         } else {
           alert("There is no next page");
         }
-      } else if (e.current.textContent === "<") {
+      } else if (e.target.textContent === "<") {
         if (sidePost.prev) {
           router.push(`/task/post/${prev}`);
         } else {
