@@ -53,7 +53,8 @@ const Header = ({ headerSize }) => {
   };
 
   const testFunc = () => {
-    axios("https://likelionustest.com/users/login1").then(console.log);
+    axios("https://likelionustest.com/users/login1").then(res => {console.log(res);
+  }
   };
 
   return (
