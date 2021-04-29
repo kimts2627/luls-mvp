@@ -11,8 +11,6 @@ import postcssConfig from "../../../postcss.config";
 const SingleTask = ({ post }) => {
   const router = useRouter();
 
-  const dispatch = useDispatch();
-
   const returnButtonColor = () => {
     switch (post.submit_check) {
       case "fail":
@@ -26,20 +24,24 @@ const SingleTask = ({ post }) => {
 
   return (
     <Link href={`/task/post/${post.id}`} as={`/task/post/${post.id}`}>
-      <a>
-        <div
-          className={`w-full h-16 shadow-md border mb-2 cursor-pointer flex justify-evenly ${returnButtonColor()}`}
-        >
-          <h1>
-            {post.bulletin !== null
-              ? post.bulletin.Members_Id.f_name +
-                post.bulletin.Members_Id.l_name
-              : "null"}
-          </h1>
-          <h1>{post.title}</h1>
-          <h2>{post.createdAt}</h2>
-        </div>
-      </a>
+      <div
+        className={`w-full h-16 shadow-md border mb-2 cursor-pointer flex items-center justify-evenly ${returnButtonColor()}`}
+      >
+        <h1 className="flex-1">
+          {post.bulletin !== null
+            ? post.bulletin.Members_Id.f_name + post.bulletin.Members_Id.l_name
+            : "null"}
+        </h1>
+        <h1 className="flex-1">{post.title}</h1>
+        <h2 className="flex-1 flex justify-center items-center">
+          {post.tag.map((tag) => (
+            <div className="mx-2 h-5 cursor-pointer text-sm rounded-md bg-red-100">
+              {tag.tagId.name}
+            </div>
+          ))}
+        </h2>
+        <h2 className="flex-1">{post.createdAt.slice(0, 10)}</h2>
+      </div>
     </Link>
   );
 };

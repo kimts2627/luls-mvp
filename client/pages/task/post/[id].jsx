@@ -165,7 +165,7 @@ const Posts = (props) => {
               <img
                 src="/img/x.png"
                 alt="x"
-                className="absolute -top-10 cursor-pointer w-20"
+                className="absolute mt-40 cursor-pointer w-20"
                 onClick={router.back}
               />
               {permission === "student" && school.name === "멋사대학교" ? (
