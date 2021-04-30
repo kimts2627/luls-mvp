@@ -9,7 +9,7 @@ import axios from "axios";
 const SingleTask = ({ post }) => {
   const router = useRouter();
 
-  //! 게시글 확인 상태에 따라 색상 변경
+  //! 게시글 확인 상태에 따라 색상 변경 함수
   const returnButtonColor = () => {
     switch (post.submit_check) {
       case "fail":
@@ -34,7 +34,7 @@ const SingleTask = ({ post }) => {
         <h1 className="flex-1 text-center">{post.title}</h1>
         <h2 className="flex-1 flex justify-center items-center  text-center">
           {post.tag.map((tag) => (
-            <div className="mx-2 h-5 cursor-pointer text-sm rounded-md bg-red-100  text-center">
+            <div className="mx-2 h-5 cursor-pointer text-xs rounded-md bg-red-100 text-center">
               {tag.tagId.name}
             </div>
           ))}
