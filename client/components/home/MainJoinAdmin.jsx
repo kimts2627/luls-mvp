@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 
 const MainJoinAdmin = () => {
@@ -86,7 +87,13 @@ const MainJoinAdmin = () => {
         ref={bkRegRef}
       />
       <div className="w-full absolute top-0 left-0 h-120 overflow-hidden shadow-lg">
-        <img src="/img/joinadmin.jpg" alt="" className="w-full" />
+        <Image
+          src="/img/joinadmin.jpg"
+          alt=""
+          width={1536}
+          height={1000}
+          className="w-full"
+        />
       </div>
       <div
         className="absolute bottom-0 text-5xl opacity-0 left-20 transition-all duration-700"

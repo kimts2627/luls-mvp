@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const NewsBar = () => {
   const [currentNews, setNews] = useState(0);
@@ -62,11 +63,12 @@ const MainIntro = () => {
 
   return (
     <div className="relative w-full max-w-screen-2xl h-auto flex flex-col intro">
-      {/* <Terminal /> */}
       <div className="relative flex justify-center items-center h-120 overflow-hidden">
-        <img
+        <Image
           src="/img/intro.jpg"
           alt="intro"
+          width={1536}
+          height={1000}
           className="z-0 opacity-100 w-screen"
         />
         <div className="absolute w-full h-full bg-black z-10 opacity-30"></div>

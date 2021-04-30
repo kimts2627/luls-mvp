@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import Image from "next/image";
 
 const MainJoinStudent = () => {
   const textRef = useRef();
@@ -82,7 +83,13 @@ const MainJoinStudent = () => {
         className="w-120 absolute -top-12 -left-10 transform rotate-6 z-10"
       />
       <div className="w-full absolute top-0 left-0 h-120 overflow-hidden shadow-lg">
-        <img src="/img/joinstudent.jpg" alt="" className="w-full -mt-32" />
+        <Image
+          src="/img/joinstudent.jpg"
+          alt=""
+          width={1536}
+          height={1000}
+          className="w-full -mt-32"
+        />
       </div>
       <div
         className="absolute bottom-0 text-5xl opacity-0 right-20 transition-all duration-700"
