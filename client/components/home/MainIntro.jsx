@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
-import Terminal from "./Terminal";
 
 const NewsBar = () => {
   const [currentNews, setNews] = useState(0);
