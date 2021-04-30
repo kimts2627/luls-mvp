@@ -44,13 +44,14 @@ const ModifyTask = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        validateStatus: (status) => status >= 200 && status < 400,
       })
       .then((res) => {
-        console.log(`제대로 받았따!${res.data}`);
+        console.log(res.data);
         router.back();
       })
       .catch((err) => {
-        console.log(`제대로 못받았따!${err.response}`);
+        console.log(err.response);
         router.back();
       });
   };
