@@ -32,14 +32,14 @@ const SingleTask = ({ post }) => {
             : "null"}
         </h1>
         <h1 className="flex-1 text-center">{post.title}</h1>
-        <h2 className="flex-1 flex justify-center items-center  text-center">
+        <h2 className="flex-1 flex justify-center items-center text-center">
           {post.tag.map((tag) => (
-            <div className="mx-2 h-5 cursor-pointer text-xs rounded-md bg-red-100 text-center">
+            <div className="mx-2 h-5 cursor-pointer text-xs rounded-md bg-red-100 p-0.5">
               {tag.tagId.name}
             </div>
           ))}
         </h2>
-        <h2 className="flex-1  text-center">{post.createdAt.slice(0, 10)}</h2>
+        <h2 className="flex-1 text-center">{post.createdAt.slice(0, 10)}</h2>
       </div>
     </Link>
   );
@@ -147,7 +147,7 @@ const Tasks = () => {
   const setTagsColor = (tag) => {
     for (let i = 0; i < currentTags.length; i++) {
       if (currentTags[i].id === tag.id) {
-        return "bg-red-300";
+        return "bg-red-200";
       }
     }
     return "bg-gray-100";
@@ -194,7 +194,7 @@ const Tasks = () => {
                 {showCollectedTags()}
               </section>
               <button
-                className="w-20 rounded-md shadow-inner ml-3 bg-red-50"
+                className="w-20 rounded-md shadow-inner ml-3 bg-red-200"
                 onClick={reqestTagSortedList}
               >
                 Search!
