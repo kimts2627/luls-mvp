@@ -6,6 +6,9 @@ module.exports = {
       "60vh": "60vh",
     },
     extend: {
+      text: {
+        xs: { fontSize: "0.75rem", lineHeight: "1rem" },
+      },
       boxShadow: {
         "3xl": "10px 0 30px -15px rgba(0, 0, 0, 0.3)",
       },
