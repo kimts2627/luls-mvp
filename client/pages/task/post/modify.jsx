@@ -9,6 +9,7 @@ const ModifyTask = () => {
   const titleRef = useRef();
   const contentRef = useRef();
   const modifyTaskinfo = useSelector((state) => state.task.modifyTaskinfo);
+  const userInfo = useSelector((state) => state.auth.userInfo);
   const [currentVal, setVal] = useState({
     id: "",
     content: {
@@ -17,22 +18,26 @@ const ModifyTask = () => {
     },
   });
 
+  //! 마운트시 해당 게시글의 정보를 받아와서 인풋태그의 값으로 주입
   useEffect(() => {
     setVal({ ...modifyTaskinfo });
     titleRef.current.value = modifyTaskinfo.content.title;
     contentRef.current.value = modifyTaskinfo.content.content;
   }, []);
 
-  const userInfo = useSelector((state) => state.auth.userInfo);
-
+  //! 인풋태그의 값을 받아와 상태에 주입하는 함수
   const handleChange = (e) => {
     let modifiedContent = { ...currentVal.content };
     modifiedContent[e.target.placeholder] = e.target.value;
     setVal({ ...currentVal, content: { ...modifiedContent } });
   };
 
+  //! 값이 주입된 함
   const modifyRequest = () => {
     let token = window.localStorage.getItem("ac-token");
+    if (!currentVal.content.title || !currentVal.content.content) {
+      return alert("Fill all sections");
+    }
     axios
       .post("https://likelionustest.com/bulletin/modify", currentVal, {
         withCredentials: true,
@@ -50,6 +55,7 @@ const ModifyTask = () => {
       });
   };
 
+  //! 태그 수정은 현재 보류중
   // const [tagList, setTagList] = useState([]);
 
   // useEffect(() => {

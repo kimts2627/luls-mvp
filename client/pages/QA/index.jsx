@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Layout from "../../components/layout";
 
 const QA = () => {
+  //! 클릭시 목록 오픈해주는 함수
   const qaOnClickHandler = (e) => {
     let style = e.currentTarget.style;
     if (style.height !== "16rem") {

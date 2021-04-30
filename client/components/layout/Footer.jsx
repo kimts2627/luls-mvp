@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const Footer = () => {
   const [logoColor, setColor] = useState("b");
 
+  //! HACKYOURLIFE 애니메이션 적용
   useEffect(() => {
     if (logoColor === "b") {
       setTimeout(() => {

@@ -4,6 +4,7 @@ const MainContactUs = () => {
   const starRef = useRef();
   const divRef = useRef();
 
+  //! 마운트 시 해당 엘리먼트 움직임 이벤트 등록
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (starRef.current !== null && divRef.current !== null) {

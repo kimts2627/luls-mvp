@@ -12,14 +12,15 @@ const PostTask = () => {
     tag: [],
   });
 
+  const [tagList, setTagList] = useState([]);
   const userInfo = useSelector((state) => state.auth.userInfo);
 
+  //! 입력값을 상태에 주입하는 함수
   const handleChange = (e) => {
     setVal({ ...currentVal, [e.target.placeholder]: e.target.value });
   };
 
-  const [tagList, setTagList] = useState([]);
-
+  //! 마운트 시 전체 태그목록 불러옴
   useEffect(() => {
     let token = window.localStorage.getItem("ac-token");
     axios
@@ -35,6 +36,7 @@ const PostTask = () => {
       });
   }, []);
 
+  //! 주입된 값과 태그들을 바탕으로 CREATE 요청하는 함수
   const submitTaskPost = () => {
     let token = window.localStorage.getItem("ac-token");
     for (let i in currentVal) {
@@ -55,6 +57,7 @@ const PostTask = () => {
       });
   };
 
+  //! 게시글에 태그들을 선택하여 상태에 주입하는 함수
   const setTag = (thisTag) => {
     if (currentVal.tag.length !== 0) {
       for (let i of currentVal.tag) {

@@ -18,6 +18,7 @@ const NewsBar = () => {
     "https://www.youtube.com/embed/FSvugctoYzs?controls=0",
   ];
 
+  //! 홈페이지 일때 5초간격 지속 뉴스갱신
   useEffect(() => {
     if (router.pathname === "/") {
       if (currentNews === 2) {
@@ -31,6 +32,7 @@ const NewsBar = () => {
       }
     }
   }, [currentNews]);
+
   return (
     <div className="w-full h-16 bg-gradient-to-r from-yellow-400 to-yellow-700 flex justify-center items-center">
       <span className="w-auto h-1/2 flex">
@@ -52,11 +54,13 @@ const MainIntro = () => {
   );
   const thumbRef = useRef();
 
+  //! 상태에 등록된 링크에 따라 플레이어 동영상 변경
   useEffect(() => {
     if (thumbRef.current.src === currentVideo) {
       thumbRef.current.style.border = "solid black 3px";
     }
   }, [currentVideo]);
+
   return (
     <div className="relative w-full max-w-screen-2xl h-auto flex flex-col intro">
       {/* <Terminal /> */}

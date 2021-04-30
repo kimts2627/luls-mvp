@@ -44,6 +44,7 @@ const MyApp = ({ Component, pageProps }) => {
     dispatch(setAlert(status));
   }, []);
 
+  //! auth코드를 보내주고 구글로부터 token을 받아오는 함수
   const getToken = async () => {
     const query = {
       code: decodeURIComponent(authCode),
@@ -82,6 +83,7 @@ const MyApp = ({ Component, pageProps }) => {
     }
   };
 
+  //! 로그인 시 상단 alert창 등장함수
   const handleAlert = () => {
     if (window.history.state.idx !== 0) {
       settingAlert("login");
@@ -91,6 +93,7 @@ const MyApp = ({ Component, pageProps }) => {
     }
   };
 
+  //! 구글 토큰을 가지고 서버에 로그인 요청을 하는 함수
   const loginReqToServer = () => {
     let token = window.localStorage.getItem("ac-token");
     axios
@@ -120,6 +123,7 @@ const MyApp = ({ Component, pageProps }) => {
       });
   };
 
+  //! uri에 authcode가 존재할 시 토큰 요청을 함과 동시에, 코드를 지움
   useEffect(() => {
     if (router.asPath.slice(0, 6) === "/?code") {
       authCode = `${router.asPath.slice(7, router.asPath.indexOf("&"))}`;
@@ -128,7 +132,7 @@ const MyApp = ({ Component, pageProps }) => {
     }
   }, []);
 
-  //! Login stablizer
+  //! Login stablizer 토큰의 존재여부를 확인 해 로그인 유지
   useEffect(() => {
     if (window.localStorage.getItem("ac-token") && !isAuth) {
       loginReqToServer();
@@ -136,6 +140,7 @@ const MyApp = ({ Component, pageProps }) => {
     }
   });
 
+  //! 모달창이 열려있을 때, 스크롤 제한하기
   useEffect(() => {
     if (isLoginModalOn || isSignupModalOn) {
       document.querySelector("body").style.overflow = "hidden";

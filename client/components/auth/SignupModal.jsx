@@ -44,6 +44,7 @@ const SignupModal = () => {
     dispatch(setAlert(status));
   }, []);
 
+  //! 회원가입 요청완료 시 알림 등장 함수
   const handleAlert = () => {
     settingAlert("login");
     setTimeout(() => {
@@ -51,13 +52,14 @@ const SignupModal = () => {
     }, 4000);
   };
 
+  //! 추가 정보입력 캔슬 시 전체 로그인 과정 캔슬 함수
   const signupCancle = () => {
-    //* 추가 정보입력 캔슬 시 전체 로그인 과정 캔슬
     handlingSignupModal();
     window.localStorage.clear();
     return alert("Please Login and Signup again");
   };
 
+  //! 추가 정보 입력하여 서버에 회원가입 요청 함수
   const sendSignupRequest = () => {
     for (let i in signUpInfo) {
       if (!signUpInfo[i]) {

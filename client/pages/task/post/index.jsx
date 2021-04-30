@@ -119,7 +119,7 @@ const Tasks = () => {
     { id: 10, name: "HW-10" },
   ];
 
-  //! 선택된 태그들 currentTags 상태에 배열로 저장 및 삭제
+  //! 선택된 태그들 currentTags 상태에 배열로 저장 및 삭제 함수
   const collectTags = (tag) => {
     for (let i = 0; i < currentTags.length; i++) {
       if (currentTags[i].id === tag.id) {
@@ -132,7 +132,7 @@ const Tasks = () => {
     setCurrentTags([...currentTags, tag]);
   };
 
-  //! 선택된 태그들 sorting 하여 보여주기
+  //! 선택된 태그들 sorting 하여 보여주는 함수
   const showCollectedTags = () => {
     let result = "";
     let newCurrentTags = [...currentTags];
@@ -143,7 +143,7 @@ const Tasks = () => {
     return result.slice(0, result.length - 2);
   };
 
-  //! 선택된 태그 컬러변경
+  //! 선택된 태그 컬러변경 함수
   const setTagsColor = (tag) => {
     for (let i = 0; i < currentTags.length; i++) {
       if (currentTags[i].id === tag.id) {
@@ -153,7 +153,7 @@ const Tasks = () => {
     return "bg-gray-100";
   };
 
-  //! 선택된 태그들을 쿼리에 담아 리스트 재요청
+  //! 선택된 태그들을 쿼리에 담아 리스트 재요청하는 함수
   const reqestTagSortedList = () => {
     let uri = "/task/post?page=1";
     let query = currentTags.map((tag) => tag.id).join("&tag=");

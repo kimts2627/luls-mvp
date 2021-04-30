@@ -5,6 +5,7 @@ const MainJoinStudent = () => {
   const divRef = useRef();
   const descRef = useRef();
 
+  //! 해당 섹션에 진입 시 텍스트 등장 이벤트 함수
   const studentEvent = () => {
     if (divRef.current !== null) {
       if (
@@ -21,6 +22,7 @@ const MainJoinStudent = () => {
     }
   };
 
+  //! 마운트 시 해당 이벤트 window에 등록
   useEffect(() => {
     window.addEventListener("scroll", studentEvent, {
       passive: true,
@@ -32,11 +34,12 @@ const MainJoinStudent = () => {
     };
   }, []);
 
-  //*######################################################
+  //!######################################################
 
   const bkRegRef = useRef();
   let bkDeg = 6;
 
+  //! 마우스휠에 따라 도형들을 돌리는 이벤트 함수
   const rotateProps = (e) => {
     if (bkRegRef.current !== null) {
       if (e.wheelDelta >= 0) {
@@ -48,6 +51,7 @@ const MainJoinStudent = () => {
     }
   };
 
+  //! 마운트 시 해당 이벤트를 window에 등록
   useEffect(() => {
     window.addEventListener("mousewheel", rotateProps, {
       passive: true,
@@ -59,7 +63,7 @@ const MainJoinStudent = () => {
     };
   }, []);
 
-  //*######################################################
+  //!######################################################
 
   return (
     <div

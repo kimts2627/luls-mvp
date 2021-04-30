@@ -23,6 +23,7 @@ const SingleNotice = ({ notice }) => {
     dispatch(handleCurrentNotice(currentNotice));
   }, []);
 
+  //! 게시물 정보 주입하여 공지모달 생성함수
   const openNoticeModal = () => {
     if (noticeModal) {
       return;
@@ -76,6 +77,7 @@ const UclaHome = () => {
     dispatch(handleNoticeModal());
   }, []);
 
+  //! 마운트 시 쿼리 학교의 공지리스트 받아옴
   useEffect(() => {
     axios
       .get(

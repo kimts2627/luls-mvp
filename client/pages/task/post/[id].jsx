@@ -5,31 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../../components/layout";
 import { handleModifyTaskInfo } from "../../../reducers/task";
 
-// export async function getStaticPaths() {
-//   const response = await axios(
-//     "https://likelionustest.com/bulletin/hwlist?school=멋사대학교"
-//   );
-//   const postList = await response.data.bulletin;
-//   console.log(postList);
-//   return {
-//     paths: postList.map((post) => {
-//       return {
-//         params: {
-//           id: `${post.id}`,
-//         },
-//       };
-//     }),
-//     fallback: false,
-//   };
-// }
-
-// export async function getStaticProps({ params }) {
-//   const post = { no: "no" };
-//   return {
-//     props: post,
-//   };
-// }
-
+//! query를 받아와 props에 주입 해 주는 함수
 export async function getServerSideProps(ctx) {
   console.log(ctx.query);
   return { props: { id: ctx.query.id } };
@@ -50,9 +26,8 @@ const Posts = (props) => {
 
   const lastQuery = useSelector((state) => state.task.lastQuery);
 
+  //! 현재 페이지의 내용과 부수적인 내용들을 서버로부터 받아오는 함수
   const getCurrentTask = () => {
-    // ! 개별 페이지 정보 받아와야 함
-    // let id = router.asPath.slice(11);
     let token = window.localStorage.getItem("ac-token");
     console.log(router);
     axios
@@ -77,11 +52,13 @@ const Posts = (props) => {
       });
   };
 
+  //! 쿼리의 id가 바뀔때마다 실행
   useEffect(() => {
     console.log(props.id);
     getCurrentTask();
   }, [router.query.id]);
 
+  //! 각 게시물의 상태 업데이트 함수
   const modifyTaskStatus = (status) => {
     let id = router.asPath.slice(11);
     let token = window.localStorage.getItem("ac-token");
@@ -107,6 +84,7 @@ const Posts = (props) => {
       });
   };
 
+  //! 게시물 수정 페이지로 이동 함수
   const moveToModifyPage = () => {
     const { id, title, content } = currentTaskPost;
     setModifyTaskInfo({
@@ -120,6 +98,7 @@ const Posts = (props) => {
     router.push("/task/post/modify");
   };
 
+  //! 양옆의 페이지로 이동 함수
   const movePage = (e) => {
     if (permission === "admin") {
       if (e.target.textContent === ">") {
@@ -138,6 +117,7 @@ const Posts = (props) => {
     }
   };
 
+  //! 마지막으로 기억하는 쿼리조건의 리스트로 돌아가는 함수
   const returnToList = () => {
     if (lastQuery.page || lastQuery.tag) {
       router.push(
@@ -178,7 +158,7 @@ const Posts = (props) => {
                 src="/img/x.png"
                 alt="x"
                 className="absolute -mt-96 cursor-pointer w-20"
-                onClick={router.back}
+                onClick={returnToList}
               />
               {permission === "student" && school.name === "멋사대학교" ? (
                 <button

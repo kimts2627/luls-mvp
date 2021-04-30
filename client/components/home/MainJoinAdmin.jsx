@@ -5,6 +5,7 @@ const MainJoinAdmin = () => {
   const divRef = useRef();
   const descRef = useRef();
 
+  //! 어드민 진입 시 텍스트 등장 이벤트 함수
   const adminEvent = () => {
     if (divRef.current !== null) {
       if (
@@ -21,6 +22,7 @@ const MainJoinAdmin = () => {
     }
   };
 
+  //! 마운트 시 해당 이벤트 등록
   useEffect(() => {
     window.addEventListener("scroll", adminEvent, {
       passive: true,
@@ -32,7 +34,7 @@ const MainJoinAdmin = () => {
     };
   }, []);
 
-  //*######################################################
+  //!######################################################
 
   const orRegRef = useRef();
   const bkRegRef = useRef();
@@ -64,7 +66,7 @@ const MainJoinAdmin = () => {
     };
   }, []);
 
-  //*######################################################
+  //!######################################################
 
   return (
     <div

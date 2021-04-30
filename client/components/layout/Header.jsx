@@ -34,6 +34,7 @@ const Header = ({ headerSize }) => {
     dispatch(setAlert(status));
   });
 
+  //! 로그아웃시 알림창 생성 함수
   const handleAlert = () => {
     settingAlert("logout");
     setTimeout(() => {
@@ -41,7 +42,7 @@ const Header = ({ headerSize }) => {
     }, 4000);
   };
 
-  //! SignOut
+  //! 브라우저에 남아있는 정보 말소 후, 로그인처리
   const signOut = () => {
     if (router.pathname !== "/") {
       router.push("/");
@@ -52,6 +53,7 @@ const Header = ({ headerSize }) => {
     handleAlert();
   };
 
+  //! 서버에서 구글OAuth 페이지로 리다이렉트 시키는 방법 테스트용 함수
   const testFunc = () => {
     axios
       .get("https://likelionustest.com/users/login1", { withCredentials: true })

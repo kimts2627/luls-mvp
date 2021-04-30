@@ -15,7 +15,6 @@ const Layout = ({ children }) => {
 
   //* mouseWheel 동작에 따라 headerSize state의 상태를 결정함
   //! unmout시 eventlistener 해제
-
   if (router.pathname === "/") {
     useEffect(() => {
       if (window) {

@@ -14,6 +14,7 @@ const SigninModal = () => {
     dispatch(handleLoginModal());
   }, []);
 
+  //! 모달창 마운트 시 위치고정 함수
   useEffect(() => {
     if (window) {
       modalRef.current.style.top = `${window.pageYOffset}px`;
@@ -61,6 +62,7 @@ const SigninModal = () => {
     hd: "likelion.net",
   });
 
+  //! 구글 OAuth 로그인 화면으로 리다이렉트 함수
   const reqAuthorizationToGoogle = () => {
     const loginUrl = AUTHORIZE_URI + "?" + queryStr;
     router.push(loginUrl);

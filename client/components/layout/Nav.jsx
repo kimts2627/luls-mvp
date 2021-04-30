@@ -13,6 +13,7 @@ const Nav = ({ headerSize }) => {
     contact: 0,
   });
 
+  //! 마운트 시 각 섹션의 위치를 상태에 주입해줌
   useEffect(() => {
     if (router.pathname === "/") {
       setPositions({
@@ -49,18 +50,6 @@ const Nav = ({ headerSize }) => {
           >
             Intro
           </li>
-          {/* <li
-            className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
-            onClick={() =>
-              window.scrollTo({
-                top: 1350,
-                left: 0,
-                behavior: "smooth",
-              })
-            }
-          >
-            OverView
-          </li> */}
           <li
             className="cursor-pointer opacity-70 mr-6 hover:opacity-100"
             onClick={() =>

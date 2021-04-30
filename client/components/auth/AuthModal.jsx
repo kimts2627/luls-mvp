@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 
 const AuthModal = () => {
   const barRef = useRef();
-
   const authAlert = useSelector((state) => state.auth.authAlert);
 
+  //! 로그인/아웃 알럿창 상태에 따라 스타일 지정
   useEffect(() => {
     if (authAlert === null) {
       barRef.current.style.top = "-4rem";
@@ -15,6 +15,7 @@ const AuthModal = () => {
     }
   }, [authAlert]);
 
+  //! 알럿창 강제 퇴장 함수
   const exitAlert = () => {
     barRef.current.style.top = "-4rem";
   };

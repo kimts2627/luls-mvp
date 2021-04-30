@@ -3,7 +3,9 @@ import Link from "next/link";
 
 const MainSchools = () => {
   const divRef = useRef();
+  const backRef = useRef();
 
+  //! 스쿨 섹션에 진입 시 배경이 암전되는 이벤트 함수
   const schoolFocusEvent = () => {
     if (divRef.current !== null) {
       const back = document.querySelector(".back");
@@ -26,18 +28,7 @@ const MainSchools = () => {
     }
   };
 
-  // const handleToys = (command) => {
-  //   const toys = document.querySelectorAll(".toy");
-  //   console.log(toys);
-  //   if (command === "on") {
-  //     for (let i = 0; i < toys.length; i++) {
-  //       toys[i].style.opacity = "0.8";
-  //     }
-  //   } else if (command === "off") {
-  //     i.style.opacity = "0";
-  //   }
-  // };
-
+  //! 마운트 시 해당 이벤트함수 window에 등록
   useEffect(() => {
     window.addEventListener("scroll", schoolFocusEvent, {
       passive: true,
@@ -49,8 +40,7 @@ const MainSchools = () => {
     };
   }, []);
 
-  const backRef = useRef();
-
+  //! 아이콘 호버 시 배경에 학교이미지 보여주는 함수
   const showBackground = (e) => {
     backRef.current.style.opacity = "0.6";
     e.currentTarget.style.transform = "scale(1.1)";
@@ -59,6 +49,7 @@ const MainSchools = () => {
     backRef.current.src = `/img/${src.slice(36, src.length - 4)}-campus.jpeg`;
   };
 
+  //! 호버 해제 시 배경 지워주는 함수
   const hideBackground = (e) => {
     e.currentTarget.style.transform = "scale(1.0)";
     backRef.current.style.opacity = "0";
