@@ -25,6 +25,7 @@ const Main = () => {
           adipiscing elit
         </p>
       </div>
+      <div className="w-full h-96 bg-white" />
       <MainSchools />
       <MainHallOfFame />
       <MainJoinAdmin />
