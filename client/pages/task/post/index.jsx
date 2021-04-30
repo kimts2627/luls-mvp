@@ -119,7 +119,8 @@ const Tasks = () => {
     { id: 10, name: "HW-10" },
   ];
 
-  //! 선택된 태그들 currentTags 상태에 배열로 저장 및 삭제 함수
+  //? 선택된 태그들 currentTags 상태에 배열로 저장 및 삭제 함수
+  //* 기능 나누기
   const collectTags = (tag) => {
     for (let i = 0; i < currentTags.length; i++) {
       if (currentTags[i].id === tag.id) {

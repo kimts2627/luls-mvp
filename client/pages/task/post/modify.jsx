@@ -32,7 +32,7 @@ const ModifyTask = () => {
     setVal({ ...currentVal, content: { ...modifiedContent } });
   };
 
-  //! 값이 주입된 함
+  //! 값이 주입된 함수
   const modifyRequest = () => {
     let token = window.localStorage.getItem("ac-token");
     if (!currentVal.content.title || !currentVal.content.content) {
@@ -46,11 +46,11 @@ const ModifyTask = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(`제대로 받았따!${res.data}`);
         router.back();
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(`제대로 못받았따!${err.response}`);
         router.back();
       });
   };
