@@ -60,7 +60,7 @@ const Posts = (props) => {
 
   //! 각 게시물의 상태 업데이트 함수
   const modifyTaskStatus = (status) => {
-    let id = router.asPath.slice(11);
+    let id = router.asPath.slice(13);
     let token = window.localStorage.getItem("ac-token");
 
     axios
