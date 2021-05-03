@@ -95,7 +95,7 @@ const Posts = (props) => {
         submit_check: "0",
       },
     });
-    router.push("/task/post/modify");
+    router.push("/tasks/posts/modify");
   };
 
   //! 양옆의 페이지로 이동 함수
@@ -103,13 +103,13 @@ const Posts = (props) => {
     if (permission === "admin") {
       if (e.target.textContent === ">") {
         if (sidePost.next) {
-          router.push(`/task/post/${String(sidePost.next)}`);
+          router.push(`/tasks/posts/${String(sidePost.next)}`);
         } else {
           alert("There is no next page");
         }
       } else if (e.target.textContent === "<") {
         if (sidePost.prev) {
-          router.push(`/task/post/${String(sidePost.prev)}`);
+          router.push(`/tasks/posts/${String(sidePost.prev)}`);
         } else {
           alert("There is no previous page");
         }
@@ -121,7 +121,7 @@ const Posts = (props) => {
   const returnToList = () => {
     if (lastQuery.page || lastQuery.tag) {
       router.push(
-        `/task/post?page=${lastQuery.page}&tag=${lastQuery.tag.join("&tag=")}`
+        `/tasks/posts?page=${lastQuery.page}&tag=${lastQuery.tag.join("&tag=")}`
       );
     } else {
       router.back();

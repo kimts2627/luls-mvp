@@ -156,7 +156,7 @@ const Tasks = () => {
 
   //! 선택된 태그들을 쿼리에 담아 리스트 재요청하는 함수
   const reqestTagSortedList = () => {
-    let uri = "/task/post?page=1";
+    let uri = "/tasks/posts?page=1";
     let query = currentTags.map((tag) => tag.id).join("&tag=");
     settingLastQuery(router.query);
     router.push(uri + "&tag=" + query);
@@ -212,7 +212,7 @@ const Tasks = () => {
           {permission === "student" ? (
             <button
               className="border border-red-500"
-              onClick={() => router.push("/task/post/submit")}
+              onClick={() => router.push("/tasks/posts/submit")}
             >
               new post
             </button>
@@ -222,8 +222,8 @@ const Tasks = () => {
               onClick={() =>
                 router.push(
                   router.query.page === "1"
-                    ? `/task/post?page=1`
-                    : `/task/post?page=${Number(router.query.page) - 1}`
+                    ? `/tasks/posts?page=1`
+                    : `/tasks/posts?page=${Number(router.query.page) - 1}`
                 )
               }
               className="cursor-pointer"
@@ -235,7 +235,7 @@ const Tasks = () => {
                 key={page}
                 className="cursor-pointer w-8"
                 ref={numRef}
-                onClick={() => router.push(`/task/post?page=${page}`)}
+                onClick={() => router.push(`/tasks/posts?page=${page}`)}
               >
                 {page}
               </button>
@@ -244,8 +244,8 @@ const Tasks = () => {
               onClick={() =>
                 router.push(
                   router.query.page === String(postsNum[postsNum.length - 1])
-                    ? `/task/post?page=${postsNum[postsNum.length - 1]}`
-                    : `/task/post?page=${Number(router.query.page) + 1}`
+                    ? `/tasks/posts?page=${postsNum[postsNum.length - 1]}`
+                    : `/tasks/posts?page=${Number(router.query.page) + 1}`
                 )
               }
               className="cursor-pointer"
