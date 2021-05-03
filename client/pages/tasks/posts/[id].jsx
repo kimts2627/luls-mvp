@@ -32,7 +32,7 @@ const Posts = (props) => {
     console.log(router);
     axios
       .get(
-        `https://likelionustest.com/bulletin/list/${props.id}?school=멋사대학교`,
+        `https://likelionustest.com/bulletin/lists/${props.id}?school=멋사대학교`,
         {
           withCredentials: true,
           headers: {

@@ -23,6 +23,7 @@ module.exports = {
       height: {
         120: "30rem",
         150: "48rem",
+        smallFull: "80rem",
         staticFull: "100rem",
         longFull: "150rem",
       },

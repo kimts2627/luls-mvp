@@ -81,7 +81,7 @@ const UclaHome = () => {
   useEffect(() => {
     axios
       .get(
-        "https://www.likelionustest.com/bulletin/noticelist?school=멋사대학교",
+        "https://www.likelionustest.com/bulletin/noticelists?school=멋사대학교",
         {
           withCredentials: true,
         }

@@ -70,7 +70,7 @@ const Tasks = () => {
     let token = window.localStorage.getItem("ac-token");
     axios
       .get(
-        `https://likelionustest.com/bulletin/hwlist?school=멋사대학교&page=${router.query.page}&tag=${router.query.tag}`,
+        `https://likelionustest.com/bulletin/hwlists?school=멋사대학교&page=${router.query.page}&tag=${router.query.tag}`,
         {
           withCredentials: true,
           headers: {

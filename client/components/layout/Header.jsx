@@ -85,9 +85,9 @@ const Header = ({ headerSize }) => {
           } bg-white w-full transition-all z-40 flex flex-row-reverse pr-6`}
         >
           <ul className="w-96 text-right h-full flex items-center justify-between underline">
-            <a className="cursor-pointer" onClick={testFunc}>
-              Admin
-            </a>
+            <Link href="/admins/attendences">
+              <a className="cursor-pointer">Admin</a>
+            </Link>
             <a className="cursor-pointer">Student</a>
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>

@@ -24,7 +24,7 @@ const PostTask = () => {
   useEffect(() => {
     let token = window.localStorage.getItem("ac-token");
     axios
-      .get("https://likelionustest.com/bulletin/taglist", {
+      .get("https://likelionustest.com/bulletin/taglists", {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
