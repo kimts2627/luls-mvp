@@ -9,10 +9,13 @@ const AttendanceChart = ({
   dataChangeTrigger,
   currentComment,
   setComment,
+  setCommentInput,
+  falsyStatusData,
+  setFalsyStatusData,
 }) => {
   const weeks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const statusRef = useRef();
 
+  //! 출석 상태에 따른 색 변경 함수
   const setAttendanceStatusColor = (week) => {
     switch (week.status) {
       case 1:
@@ -26,6 +29,7 @@ const AttendanceChart = ({
     }
   };
 
+  //! 출석 상태와, 코멘트에 따른 textContent 변경
   const setAttendanceStatusComment = (week) => {
     switch (week.status) {
       case 1:
@@ -68,7 +72,7 @@ const AttendanceChart = ({
                   key={week.att.date}
                   className={`border w-32 h-full ${setAttendanceStatusColor(
                     week
-                  )} cursor-pointer relative box flex justify-center items-center status text-xs`}
+                  )} cursor-pointer relative box flex justify-center items-center status text-xs truncate p-4`}
                 >
                   {setAttendanceStatusComment(week)}
                   <StatusModal
@@ -78,6 +82,9 @@ const AttendanceChart = ({
                     dataChangeTrigger={dataChangeTrigger}
                     currentComment={currentComment}
                     setComment={setComment}
+                    setCommentInput={setCommentInput}
+                    falsyStatusData={falsyStatusData}
+                    setFalsyStatusData={setFalsyStatusData}
                   />
                 </div>
               ))}
@@ -94,11 +101,14 @@ const Attendances = () => {
   const [dataChangeTrigger, setTrigger] = useState(false);
   const [currentComment, setComment] = useState("");
   const [selectedComment, selectComment] = useState("");
+  const [isCommentInputOn, setCommentInput] = useState(false);
+  const [falsyStatusData, setFalsyStatusData] = useState({});
 
   const inputRef = useRef();
 
   let boxes;
 
+  //! attendance 상태 변경시 작동하는 트리거에 맞춰 전체 학생 및 출석 리스트를 불러옴
   useEffect(() => {
     axios
       .get("https://likelionustest.com/att/lists?school=멋사대학교")
@@ -121,6 +131,7 @@ const Attendances = () => {
     };
   }, [dataChangeTrigger]);
 
+  //! 각 섹션 호버 시, 버튼 유무 / 차트 하단에 코멘트 유무 표시 이벤트 등록 함수
   const handleHoverEvent = () => {
     boxes = document.querySelectorAll(".box");
     for (let i of boxes) {
@@ -135,10 +146,12 @@ const Attendances = () => {
     }
   };
 
+  //! 코멘트 인풋 핸들링 함수
   const handleChange = (e) => {
     setComment(e.target.value);
   };
 
+  //! 코멘트 상태에 따라 코멘트 상태와 코멘트 인풋 싱크를 맞춰줌
   useEffect(() => {
     inputRef.current.value = currentComment;
   }, [currentComment]);
@@ -154,20 +167,37 @@ const Attendances = () => {
             dataChangeTrigger={dataChangeTrigger}
             currentComment={currentComment}
             setComment={setComment}
+            setCommentInput={setCommentInput}
+            falsyStatusData={falsyStatusData}
+            setFalsyStatusData={setFalsyStatusData}
           />
           <p className="text-gray-800 h-10 mt-10">{selectedComment}</p>
+          {isCommentInputOn ? (
+            <section className="mt-6 w-120 h-8 flex bg-white shadow-md z-10">
+              <input
+                type="text"
+                className="flex-1 h-full p-2"
+                placeholder="post comments here and post"
+                onChange={(e) => handleChange(e)}
+                ref={inputRef}
+              />
+              <button className="p-1 bg-gray-100" onClick={undefined}>
+                Submit
+              </button>
+            </section>
+          ) : null}
           <section className="mt-6 w-120 h-8 flex bg-white shadow-md z-10">
             <input
               type="text"
               className="flex-1 h-full p-2"
-              placeholder="post comments here and select status button"
+              placeholder="post comments here and post"
               onChange={(e) => handleChange(e)}
               ref={inputRef}
             />
+            <button className="p-1 bg-gray-100" onClick={undefined}>
+              Submit
+            </button>
           </section>
-          <p className="text-red-600">
-            Only non-check or delay can post comments
-          </p>
         </section>
       </div>
     </Layout>
