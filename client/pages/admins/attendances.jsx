@@ -4,7 +4,7 @@ import Layout from "../../components/layout";
 import StatusModal from "../../components/attendance/StatusModal";
 
 const AttendanceChart = ({ attendance }) => {
-  const week = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const weeks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const statusRef = useRef();
 
   const attendanceStatusColor = (status) => {
@@ -34,13 +34,13 @@ const AttendanceChart = ({ attendance }) => {
       </aside>
       <div className="z-0 absolute w-full h-full bg-white shadow-md overflow-scroll">
         <aside className="h-full w-longFull bg-gray-50 absolute top-0 left-32">
-          <div className="w-full h-28 bg-blue-300">
-            {week.map((week) => {
+          <div className="w-full h-28 bg-blue-300 flex">
+            {weeks.map((week) => (
               <div
                 className="border flex justify-center items-center h-full w-32"
                 key={week}
-              >{`Week-${week}`}</div>;
-            })}
+              >{`Week-${week}`}</div>
+            ))}
           </div>
           {attendance.map((student) => (
             <div key={student.id} className="w-full h-28 bg-gray-50 flex">
