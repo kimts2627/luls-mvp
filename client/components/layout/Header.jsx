@@ -85,7 +85,7 @@ const Header = ({ headerSize }) => {
           } bg-white w-full transition-all z-40 flex flex-row-reverse pr-6`}
         >
           <ul className="w-96 text-right h-full flex items-center justify-between underline">
-            <Link href="/admins/attendences">
+            <Link href="/admins/attendances">
               <a className="cursor-pointer">Admin</a>
             </Link>
             <a className="cursor-pointer">Student</a>

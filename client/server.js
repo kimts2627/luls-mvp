@@ -1,43 +1,37 @@
-const express = require("express");
+const { createServer: https } = require("https");
+const { createServer: http } = require("http");
+const { parse } = require("url");
 const next = require("next");
-const https = require("https");
-const morgan = require("morgan");
 const fs = require("fs");
 
-const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const ports = {
+  http: 3080,
+  https: 3000,
+};
+
 const httpsOptions = {
-  key: fs.readFileSync("./localhost+1-key.pem"),
-  cert: fs.readFileSync("./localhost+1.pem"),
+  key: fs.readFileSync("./key.pem", "utf-8"),
+  cert: fs.readFileSync("./cert.pem", "utf-8"),
 };
 
 app.prepare().then(() => {
-  const server = express();
-
-  server.use(morgan("dev"));
-
-  server.get("/a", (req, res) => {
-    return app.render(req, res, "/a", req.query);
-  });
-
-  server.get("/b", (req, res) => {
-    return app.render(req, res, "/b", req.query);
-  });
-
-  server.all("*", (req, res) => {
-    return handle(req, res);
-  });
-
-  server.listen(port, (err) => {
+  http((req, res) => {
+    const parsedUrl = parse(req.url, true);
+    handle(req, res, parsedUrl);
+  }).listen(ports.http, (err) => {
     if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
+    console.log(`> HTTP: Ready on http://localhost:${ports.http}`);
   });
 
-  // https.createServer(httpsOptions, server).listen(3000, (err) => {
-  //   if (err) throw err;
-  //   console.log(`> Ready on https://localhost:${port}`);
-  // });
+  https(httpsOptions, (req, res) => {
+    const parsedUrl = parse(req.url, true);
+    handle(req, res, parsedUrl);
+  }).listen(ports.https, (err) => {
+    if (err) throw err;
+    console.log(`> HTTPS: Ready on https://localhost:${ports.https}`);
+  });
 });
