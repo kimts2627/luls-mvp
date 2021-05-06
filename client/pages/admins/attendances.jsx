@@ -122,7 +122,7 @@ const Attendances = () => {
   //! attendance 상태 변경시 작동하는 트리거에 맞춰 전체 학생 및 출석 리스트를 불러옴
   useEffect(() => {
     axios
-      .get("https://likelionustest.com/att/lists?school=멋사대학교")
+      .get("https://likelionustest.com/admins/att/lists?school=멋사대학교")
       .then((res) => res.data.attendance)
       .then((data) => {
         setAttendance(data);
@@ -174,7 +174,7 @@ const Attendances = () => {
     const comment = currentComment;
     axios
       .patch(
-        `https://likelionustest.com/att/checks/${week.att.id}/${student.id}`,
+        `https://likelionustest.com/admins/att/checks/${week.att.id}/${student.id}`,
         {
           status: status,
           comment: !comment ? null : comment,

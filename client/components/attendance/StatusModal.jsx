@@ -57,7 +57,7 @@ const StatusModal = ({
     );
     axios
       .patch(
-        `https://likelionustest.com/att/checks/${week.att.id}/${student.id}`,
+        `https://likelionustest.com/admins/att/checks/${week.att.id}/${student.id}`,
         {
           status: status,
           comment: !comment ? null : comment,

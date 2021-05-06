@@ -42,7 +42,7 @@ const Header = ({ headerSize }) => {
     }, 4000);
   };
 
-  //! 브라우저에 남아있는 정보 말소 후, 로그인처리
+  //! 브라우저에 남아있는 정보 말소 후, 로그아웃처리
   const signOut = () => {
     if (router.pathname !== "/") {
       router.push("/");
@@ -88,7 +88,9 @@ const Header = ({ headerSize }) => {
             <Link href="/admins/attendances">
               <a className="cursor-pointer">Admin</a>
             </Link>
-            <a className="cursor-pointer">Student</a>
+            <Link href="/students/mypage">
+              <a className="cursor-pointer">Student</a>
+            </Link>
             <a className="cursor-pointer">Alumni</a>
             <a className="cursor-pointer">B-Platform</a>
             {isAuth ? (
