@@ -489,7 +489,7 @@ const mypage = () => {
       <div className="w-full h-smallFull flex justify-center mt-28">
         <section className="bg-green-100 w-full max-w-screen-xl h-full flex flex-col items-center">
           <h1 className="text-7xl mt-36 mb-20">MyPage</h1>
-          <MyPageSection userInfo={userInfo} />
+          <MyPageSection userInfo={dummyUserInfo} />
         </section>
       </div>
     </Layout>
