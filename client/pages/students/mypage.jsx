@@ -1,12 +1,14 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
 import Layout from "../../components/layout/";
 import MyPageSection from "../../components/mypage/MyPageSection";
 
 const mypage = () => {
-  // const userInfo = useSelector((state) => state.auth.userInfo);
-
-  const userInfo = {
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  const router = useRouter();
+  console.log(router);
+  const dummyUserInfo = {
     id: 5,
     permission: "student",
     email: "kimtstststs@gmail.com",
