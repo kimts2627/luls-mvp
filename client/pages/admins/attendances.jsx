@@ -23,73 +23,87 @@ const AttendanceChart = ({
   const setAttendanceStatusColor = (week) => {
     switch (week.status) {
       case 1:
-        return "bg-green-300 text-green-700";
+        return "bg-green-300";
       case 2:
-        return "bg-yellow-300 text-yellow-700";
+        return "bg-yellow-300";
       case 3:
-        return "bg-red-300 text-red-800";
+        return "bg-red-300";
       default:
         return "bg-gray-50";
     }
   };
 
-  //! 출석 상태와, 코멘트에 따른 textContent 변경
-  const setAttendanceStatusComment = (week) => {
-    switch (week.status) {
-      case 1:
-        return "Checked";
-      case 2:
-        return !week.comment ? "" : week.comment;
-      case 3:
-        return !week.comment ? "Non-checked" : week.comment;
-      default:
-        return "";
-    }
+  const memoModifyRequest = (week, student, e) => {
+    console.log(e.currentTarget.previousSibling);
+    axios
+      .patch(
+        `https://likelionustest.com/admins/att/checks/${week.att.id}/${student.id}`,
+        {
+          comment: e.currentTarget.previousSibling.value,
+        }
+      )
+      .then((res) => {
+        setTrigger(!dataChangeTrigger);
+        e.currentTarget.previousSibling.value = "";
+      });
   };
 
   return (
     <div className="relative w-3/4 h-150">
-      <aside className="absolute z-10 h-full w-32 bg-blue-300 pt-28 flex flex-col items-center justify-start">
+      <aside className="absolute z-10 h-full w-36 bg-blue-300 pt-28 flex flex-col items-center justify-start">
         {attendance.map((student) => (
           <h1
             key={student.l_name}
-            className="h-28 border w-full flex justify-center items-center"
+            className="h-24 border w-full flex justify-center items-center"
           >
             {`${student.l_name} ${student.f_name}`}
           </h1>
         ))}
       </aside>
       <div className="z-0 absolute w-full h-full bg-white shadow-md overflow-scroll">
-        <aside className="h-full w-longFull bg-gray-50 absolute top-0 left-32">
+        <aside className="h-full w-longFull bg-gray-50 absolute top-0 left-36">
           <div className="w-full h-28 bg-blue-300 flex">
             {weeks.map((week) => (
               <div
-                className="border flex justify-center items-center h-full w-32"
+                className="border flex justify-center items-center h-full w-36"
                 key={week}
               >{`Week-${week}`}</div>
             ))}
           </div>
           {attendance.map((student) => (
-            <div key={student.id} className="w-full h-28 bg-gray-50 flex">
+            <div key={student.id} className="w-full h-24 bg-gray-50 flex">
               {student.mem_att.map((week) => (
                 <div
                   key={week.att.date}
-                  className={`border w-32 h-full ${setAttendanceStatusColor(
+                  className={`border w-36 h-full ${setAttendanceStatusColor(
                     week
-                  )} cursor-pointer relative box flex justify-center items-center status text-xs truncate p-4`}
+                  )} cursor-pointer relative flex justify-center items-end status text-xs truncate p-1`}
                 >
-                  {setAttendanceStatusComment(week)}
-                  <StatusModal
-                    student={student}
-                    week={week}
-                    setTrigger={setTrigger}
-                    dataChangeTrigger={dataChangeTrigger}
-                    currentComment={currentComment}
-                    setComment={setComment}
-                    setCommentInput={setCommentInput}
-                    falsyStatusData={falsyStatusData}
-                    setFalsyStatusData={setFalsyStatusData}
+                  <input
+                    className="w-full h-1/2 bg-white p-0.5 overflow-scroll focus:outline-none flex"
+                    type="text"
+                    placeholder="memo"
+                    value={week.comment}
                   />
+                  <img
+                    src="/img/triangle-or.png"
+                    alt=""
+                    className="w-4 absolute right-2 bottom-2 transform rotate-90"
+                    onClick={(e) => memoModifyRequest(week, student, e)}
+                  />
+                  <div className="absolute h-10 w-full top-0 box">
+                    <StatusModal
+                      student={student}
+                      week={week}
+                      setTrigger={setTrigger}
+                      dataChangeTrigger={dataChangeTrigger}
+                      currentComment={currentComment}
+                      setComment={setComment}
+                      setCommentInput={setCommentInput}
+                      falsyStatusData={falsyStatusData}
+                      setFalsyStatusData={setFalsyStatusData}
+                    />
+                  </div>
                 </div>
               ))}
             </div>

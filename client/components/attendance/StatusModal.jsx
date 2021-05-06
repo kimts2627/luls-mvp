@@ -22,30 +22,21 @@ const StatusModal = ({
 
   //! 각 버튼 클릭 핸들링하는 함수
   const handleClick = (e) => {
-    switch (e.target.textContent) {
-      case "check":
+    switch (e.target.id) {
+      case "C":
         modifyStatusData(week, student, 1, null);
-        handlingFalsyStatus({});
         return;
-      case "non-check":
-        handlingFalsyStatus({
-          week: week,
-          student: student,
-          status: 3,
-        });
+      case "N-C":
+        modifyStatusData(week, student, 3, null);
         return;
-      case "delay":
-        handlingFalsyStatus({
-          week: week,
-          student: student,
-          status: 2,
-        });
+      case "D":
+        modifyStatusData(week, student, 2, null);
         return;
-      case "neutral":
+      case "0":
         modifyStatusData(week, student, 0, null);
-        handlingFalsyStatus({});
         return;
       default:
+        console.log("mo");
         return;
     }
   };
@@ -69,16 +60,33 @@ const StatusModal = ({
       });
   };
 
+  const handleButtonColors = (button) => {
+    switch (button) {
+      case "C":
+        return "bg-green-400";
+      case "N-C":
+        return "bg-red-400";
+      case "D":
+        return "bg-yellow-400";
+      default:
+        return "bg-white";
+    }
+  };
+
   return (
     <>
-      <div className="absolute w-full h-full shadow-inner bg-white flex flex-col justify-center items-center hidden opacity-80">
-        {["check", "non-check", "delay", "neutral"].map((button) => (
+      <div className="absolute w-full h-full shadow-inner flex justify-evenly items-center hidden">
+        {["C", "N-C", "D", "0"].map((button) => (
           <section
-            className="flex-1 border w-full text-center"
+            className={`${handleButtonColors(
+              button
+            )} w-7 h-7 text-center rounded-full hover:${handleButtonColors(
+              button
+            ).replace("400", "600")}`}
+            id={button}
+            key={button}
             onClick={(e) => handleClick(e)}
-          >
-            {button}
-          </section>
+          ></section>
         ))}
       </div>
     </>

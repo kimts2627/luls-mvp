@@ -20,7 +20,7 @@ const MyPageSection = ({ userInfo }) => {
   } = userInfo;
   return (
     <section className="w-3/4 h-150 p-12 flex flex-col items-center">
-      <div className="w-52 h-52 rounded-full border-8 border-yellow-500 shadow-lg overflow-hidden">
+      <div className="w-52 rounded-full h-52 shadow-lg overflow-hidden">
         <img src="/img/female.jpeg" alt="" className="w-full h-full" />
       </div>
       <div className=" flex items-center justify-evenly h-32 w-2/3 mt-10">
