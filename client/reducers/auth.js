@@ -59,7 +59,33 @@ export const initialState = {
     State: "",
     Birthday: "",
   },
-  userInfo: {},
+  userInfo: {
+    id: "",
+    permission: "",
+    email: "",
+    f_name: "",
+    l_name: "",
+    birthday: "",
+    createdAt: "",
+    updatedAt: "",
+    school: {
+      id: "",
+      name: "",
+      degree: "",
+      major: "",
+      entrance_year: "",
+      graduation_year: "",
+    },
+    city: {
+      id: "",
+      city: "",
+      country: "",
+      state: "",
+    },
+    bulletin: [],
+    mem_badge: [],
+    mem_att: [],
+  },
 };
 
 const reducer = (state = initialState, action) => {
