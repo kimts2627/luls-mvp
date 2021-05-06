@@ -7,7 +7,6 @@ import MyPageSection from "../../components/mypage/MyPageSection";
 const mypage = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const router = useRouter();
-  console.log(router);
   const dummyUserInfo = {
     id: 5,
     permission: "student",

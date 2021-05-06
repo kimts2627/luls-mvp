@@ -37,7 +37,9 @@ const MyPageSection = ({ userInfo }) => {
         <div className=" flex flex-col h-full items-start justify-center">
           <p>
             <span className="Montserrat">School</span>
-            {` ${school.name} / ${school.major} / ${school.degree}`}
+            {school
+              ? ` ${school.name} / ${school.major} / ${school.degree}`
+              : ""}
           </p>
           <p>
             <span className="Montserrat">Joined us at:</span>
