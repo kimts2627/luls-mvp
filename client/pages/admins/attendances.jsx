@@ -1,7 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import Layout from "../../components/layout";
-import StatusModal from "../../components/attendance/StatusModal";
+import StatusModal, {
+  modifyStatusData,
+} from "../../components/attendance/StatusModal";
+import { useDispatch, useSelector } from "react-redux";
+import { handleFalsyStatus } from "../../reducers/attendance";
 
 const AttendanceChart = ({
   attendance,
@@ -103,6 +107,13 @@ const Attendances = () => {
   const [selectedComment, selectComment] = useState("");
   const [isCommentInputOn, setCommentInput] = useState(false);
   const [falsyStatusData, setFalsyStatusData] = useState({});
+  const falsyStatus = useSelector((state) => state.attendance.falsyStatus);
+
+  const dispatch = useDispatch();
+
+  const handlingFalsyStatus = useCallback((statusInfo) => {
+    dispatch(handleFalsyStatus(statusInfo));
+  }, []);
 
   const inputRef = useRef();
 
@@ -153,8 +164,28 @@ const Attendances = () => {
 
   //! 코멘트 상태에 따라 코멘트 상태와 코멘트 인풋 싱크를 맞춰줌
   useEffect(() => {
-    inputRef.current.value = currentComment;
+    if (inputRef.current) {
+      inputRef.current.value = currentComment;
+    }
   }, [currentComment]);
+
+  const submitFalsyStatusWithComment = () => {
+    const { week, student, status } = falsyStatus;
+    const comment = currentComment;
+    axios
+      .patch(
+        `https://likelionustest.com/att/checks/${week.att.id}/${student.id}`,
+        {
+          status: status,
+          comment: !comment ? null : comment,
+        }
+      )
+      .then((res) => {
+        setTrigger(!dataChangeTrigger);
+        setComment("");
+        handlingFalsyStatus({});
+      });
+  };
 
   return (
     <Layout>
@@ -172,32 +203,28 @@ const Attendances = () => {
             setFalsyStatusData={setFalsyStatusData}
           />
           <p className="text-gray-800 h-10 mt-10">{selectedComment}</p>
-          {isCommentInputOn ? (
-            <section className="mt-6 w-120 h-8 flex bg-white shadow-md z-10">
-              <input
-                type="text"
-                className="flex-1 h-full p-2"
-                placeholder="post comments here and post"
-                onChange={(e) => handleChange(e)}
-                ref={inputRef}
-              />
-              <button className="p-1 bg-gray-100" onClick={undefined}>
-                Submit
-              </button>
-            </section>
+          {Object.keys(falsyStatus).length ? (
+            <>
+              <section className="mt-6 w-120 h-8 flex bg-white shadow-md z-10">
+                <input
+                  type="text"
+                  className="flex-1 h-full p-2"
+                  placeholder="post comments here and post"
+                  onChange={(e) => handleChange(e)}
+                  ref={inputRef}
+                />
+                <button
+                  className="p-1 bg-gray-100"
+                  onClick={submitFalsyStatusWithComment}
+                >
+                  Submit
+                </button>
+              </section>
+              <p className="text-red-600 text-sm">{`${
+                falsyStatus.status === 2 ? "delay" : "non-checked"
+              } selected!`}</p>
+            </>
           ) : null}
-          <section className="mt-6 w-120 h-8 flex bg-white shadow-md z-10">
-            <input
-              type="text"
-              className="flex-1 h-full p-2"
-              placeholder="post comments here and post"
-              onChange={(e) => handleChange(e)}
-              ref={inputRef}
-            />
-            <button className="p-1 bg-gray-100" onClick={undefined}>
-              Submit
-            </button>
-          </section>
         </section>
       </div>
     </Layout>

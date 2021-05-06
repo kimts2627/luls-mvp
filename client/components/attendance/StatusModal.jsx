@@ -1,5 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleFalsyStatus } from "../../reducers/attendance";
 
 const StatusModal = ({
   student,
@@ -12,29 +14,41 @@ const StatusModal = ({
   falsyStatusData,
   setFalsyStatusData,
 }) => {
+  const dispatch = useDispatch();
+
+  const handlingFalsyStatus = useCallback((statusInfo) => {
+    dispatch(handleFalsyStatus(statusInfo));
+  }, []);
+
   //! 각 버튼 클릭 핸들링하는 함수
   const handleClick = (e) => {
     switch (e.target.textContent) {
       case "check":
         modifyStatusData(week, student, 1, null);
+        handlingFalsyStatus({});
         return;
       case "non-check":
-        // setCommentInput(true);
-        modifyStatusData(week, student, 3, currentComment);
+        handlingFalsyStatus({
+          week: week,
+          student: student,
+          status: 3,
+        });
         return;
-      case "delay-15min":
-        // setCommentInput(true);
-        modifyStatusData(week, student, 2, currentComment);
+      case "delay":
+        handlingFalsyStatus({
+          week: week,
+          student: student,
+          status: 2,
+        });
         return;
       case "neutral":
         modifyStatusData(week, student, 0, null);
+        handlingFalsyStatus({});
         return;
       default:
         return;
     }
   };
-
-  const falsyDataPatch = () => {};
 
   //! params 데이터를 통해, 데이터를 patch 하는 클로저 함수
   const modifyStatusData = (week, student, status, comment) => {
@@ -58,7 +72,7 @@ const StatusModal = ({
   return (
     <>
       <div className="absolute w-full h-full shadow-inner bg-white flex flex-col justify-center items-center hidden opacity-80">
-        {["check", "non-check", "delay-15min", "neutral"].map((button) => (
+        {["check", "non-check", "delay", "neutral"].map((button) => (
           <section
             className="flex-1 border w-full text-center"
             onClick={(e) => handleClick(e)}
