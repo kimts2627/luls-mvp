@@ -51,7 +51,6 @@ const StatusModal = ({
         `https://likelionustest.com/admins/att/checks/${week.att.id}/${student.id}`,
         {
           status: status,
-          comment: !comment ? null : comment,
         }
       )
       .then((res) => {
@@ -82,7 +81,7 @@ const StatusModal = ({
               button
             )} w-7 h-7 text-center rounded-full hover:${handleButtonColors(
               button
-            ).replace("400", "600")}`}
+            ).replace("4", "6")}`}
             id={button}
             key={button}
             onClick={(e) => handleClick(e)}

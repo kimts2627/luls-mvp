@@ -39,12 +39,13 @@ const AttendanceChart = ({
       .patch(
         `https://likelionustest.com/admins/att/checks/${week.att.id}/${student.id}`,
         {
-          comment: e.currentTarget.previousSibling.value,
+          comment: e.target.previousSibling.value,
         }
       )
       .then((res) => {
+        e.target.previousSibling.value = "";
+        console.log("clear");
         setTrigger(!dataChangeTrigger);
-        e.currentTarget.previousSibling.value = "";
       });
   };
 
@@ -80,17 +81,17 @@ const AttendanceChart = ({
                   )} cursor-pointer relative flex justify-center items-end status text-xs truncate p-1`}
                 >
                   <input
-                    className="w-full h-1/2 bg-white p-0.5 overflow-scroll focus:outline-none flex"
+                    className="w-full h-1/2 bg-white p-0.5 overflow-scroll focus:outline-none flex placeholder-gray-700"
                     type="text"
-                    placeholder="memo"
-                    value={week.comment}
+                    placeholder={week.comment}
                   />
                   <img
-                    src="/img/triangle-or.png"
+                    src="/img/triangle-bk.png"
                     alt=""
-                    className="w-4 absolute right-2 bottom-2 transform rotate-90"
+                    className="w-3 absolute opacity-40 hover:opacity-70 right-2 bottom-2 transform rotate-90"
                     onClick={(e) => memoModifyRequest(week, student, e)}
                   />
+                  <div className="w-full h-1/2 bg-white p-0.5 overflow-scroll focus:outline-none flex"></div>
                   <div className="absolute h-10 w-full top-0 box">
                     <StatusModal
                       student={student}
