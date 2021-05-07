@@ -25,7 +25,7 @@ const Posts = (props) => {
   }, []);
 
   const lastQuery = useSelector((state) => state.task.lastQuery);
-
+  //
   //! 현재 페이지의 내용과 부수적인 내용들을 서버로부터 받아오는 함수
   const getCurrentTask = () => {
     let token = window.localStorage.getItem("ac-token");
