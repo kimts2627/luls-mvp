@@ -88,7 +88,7 @@ const AttendanceChart = ({
                   <img
                     src="/img/triangle-bk.png"
                     alt=""
-                    className="absolute w-3 opacity-40 hover:opacity-70 right-2 bottom-2 transform rotate-90"
+                    className="absolute w-4 opacity-40 hover:opacity-70 right-2 bottom-2 transform rotate-90"
                     onClick={(e) => memoModifyRequest(week, student, e)}
                   />
                   <div className="w-full h-1/2 bg-white p-0.5 overflow-scroll focus:outline-none flex"></div>
