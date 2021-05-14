@@ -55,6 +55,9 @@ const AttendanceChart = ({
         {attendance.map((student) => (
           <h1
             key={student.l_name}
+            style={{
+              height: '6rem'
+            }}
             className="h-24 border w-full flex justify-center items-center"
           >
             {`${student.l_name} ${student.f_name}`}
@@ -72,7 +75,7 @@ const AttendanceChart = ({
             ))}
           </div>
           {attendance.map((student) => (
-            <div key={student.id} className="w-full h-24 bg-gray-50 flex">
+            <div key={student.id} className="w-full h-24 bg-gray-50 flex" style={{height: '6rem'}}>
               {student.mem_att.map((week) => (
                 <div
                   key={week.att.date}
@@ -87,7 +90,10 @@ const AttendanceChart = ({
                   />
                   <img
                     src="/img/triangle-bk.png"
-                    alt=""
+                    alt="a"
+                    // style={{
+                    //   width: '0.75rem'
+                    // }}
                     className="absolute w-4 opacity-40 hover:opacity-70 right-2 bottom-2 transform rotate-90"
                     onClick={(e) => memoModifyRequest(week, student, e)}
                   />
