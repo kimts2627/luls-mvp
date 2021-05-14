@@ -55,9 +55,9 @@ const AttendanceChart = ({
         {attendance.map((student) => (
           <h1
             key={student.l_name}
-            style={{
-              height: '6rem'
-            }}
+            // style={{
+            //   height: '6rem'
+            // }}
             className="h-24 border w-full flex justify-center items-center"
           >
             {`${student.l_name} ${student.f_name}`}
@@ -75,7 +75,11 @@ const AttendanceChart = ({
             ))}
           </div>
           {attendance.map((student) => (
-            <div key={student.id} className="w-full h-24 bg-gray-50 flex" style={{height: '6rem'}}>
+            <div
+              key={student.id}
+              className="w-full h-24 bg-gray-50 flex"
+              style={{height: '6rem'}}
+            >
               {student.mem_att.map((week) => (
                 <div
                   key={week.att.date}
